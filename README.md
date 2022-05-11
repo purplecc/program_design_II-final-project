@@ -16,15 +16,15 @@
 &#x274C; Add a new item to the database system. **The program must print an error message if**
 **the item is already in the database.**
 ### Delete
-- [ ] Delete a given item from the database. **The program must print an error message if**
+&#x274C; Delete a given item from the database. **The program must print an error message if**
 **there is no matching item to be deleted in the database.**
 ### Traverse
-- [ ] Print all items in the database in a specific format.
+&#x274C; Print all items in the database in a specific format.
 ### Search
-- [ ]  Given certain information about the item, the program needs to find and print the
+&#x274C;  Given certain information about the item, the program needs to find and print the
 specific item.
 ### Sort
-- [ ] Sort all the items in ascending or descending order according to the given data. 
+&#x274C; Sort all the items in ascending or descending order according to the given data. 
 For example, you can sort products by their prices or expired dates.
 ### File I/O
 &#x2705; Users can import items to the database system from external files and they can also
@@ -37,23 +37,23 @@ the database system.
 ## Method
 
 ### SORT **(Use qsort)**
-* - [ ] Distance  int
+* &#x274C; Distance  int
   * set coordinates and count
-* - [ ] Gender   int
-* - [ ] Age	    int
-* - [ ] Height	float
-* - [ ] Zodiac	string
-* - [ ] income	int
-* - [ ] job	    string
+* &#x274C; Gender   int
+* &#x274C; Age	    int
+* &#x274C; Height	float
+* &#x274C; Zodiac	string
+* &#x274C; income	int
+* &#x274C; job	    string
 
 ### Pairing Mechanism
-- [ ] A good-looking interface
-- [ ] A bottom to choose whether you like the person
-- [ ] 25 people like the **USER** after entering the information (random)
+&#x274C; A good-looking interface
+&#x274C; A bottom to choose whether you like the person
+&#x274C; 25 people like the **USER** after entering the information (random)
 > mode
-- [ ] Match mode
-- [ ] Chat mode
-- [ ] Exit app
+&#x274C; Match mode
+&#x274C; Chat mode
+&#x274C; Exit app
 
 ### Display Order **(Use linked list)**
 * Sexuality
@@ -103,3 +103,6 @@ the database system.
 *  自我介紹
 *  少座標 之後想怎麼算距離
 ```
+
+### Zodiac
+&#x
