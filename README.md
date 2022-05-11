@@ -1,10 +1,13 @@
-# Final_Project
+# Final_Project &#x1F60D;&#x1F60D;&#x1F60D;&#x1F60D;&#x1F60D;
 
 ## Basic Part
 ### Data Type and Data Structure
 &#x2705; Your database system needs to have at least three basic data types.
+
 &#x2705; There should be at least one data with the string type in the system.
+
 &#x2705; There should be at least one kind of data created using structure, union, or enumerations.
+
 &#x2705; You need to use at least a linked list to store some data in your database system.
 
 ## Operation
