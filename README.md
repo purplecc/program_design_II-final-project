@@ -34,7 +34,7 @@ the database system.
 ## Method
 
 ### SORT **(Use qsort)**
-* Distance  int
+* - [] Distance  int
   * set coordinates and count
 * - [ ] Gender   int
 * - [ ] Age	    int
@@ -46,11 +46,11 @@ the database system.
 ### Pairing Mechanism
 - [ ] A good-looking interface
 - [ ] A bottom to choose whether you like the person
-* [ ] 25 people like the **USER** after entering the information (random)
+- [ ] 25 people like the **USER** after entering the information (random)
 > mode
->> - [ ] Match mode
->> - [ ] Chat mode
->> - [ ] Exit app
+- [ ] Match mode
+- [ ] Chat mode
+- [ ] Exit app
 
 ### Display Order **(Use linked list)**
 * Sexuality
@@ -64,13 +64,13 @@ the database system.
   * Show the person I like, if someone you don't like anymore, you can delete him
 
 ### Paired Successfully
-* Pop the pairing success message up with all information of each other
-* Show the phone number
+* Pop the pairing success message up and all information of each other
+* Show the phone number to each other
 
 ## To do (5/10)
 
 ### Write character information
-* Must write 150 people in total
+* Must write 155 people in total
   * man 50 people
   * woman 50 people
   * lesbian 25 people
@@ -83,7 +83,7 @@ the database system.
   * 王昱人 6~7
   * 邱義咸 8~9
 
-##### Example
+#### Example
     * 名字	John
     * 性別	Male
     * 興趣	Shopping, Brunch, Memes, Motorcycling, Acapella
