@@ -85,16 +85,16 @@ the database system.
   * 邱義咸 8~9
 
 #### Example
-    * 名字	John
-    * 性別	Male
-    * 興趣	Shopping, Brunch, Memes, Motorcycling, Acapella
-    * 手機號碼	0910000001
-    * 生活地區	嘉義市
-    * 目標性別	Female
-    * 年紀	23
-    * 身高	175.2
-    * 星座	 Aquarius
-    * 收入	under 100萬 100-500萬 500萬up
-    * 工作	學生
-    * 自我介紹
-    *   少座標, 之後想怎麼算距離
+    *  名字	 John
+    *  性別	 Male
+    *  興趣	 Shopping, Brunch, Memes, Motorcycling, Acapella
+    *  手機號碼	 0910000001
+    *  生活地區	 嘉義市
+    *  目標性別	 Female
+    *  年紀	 23
+    *  身高	 175.2
+    *  星座	  Aquarius
+    *  收入	 under 100萬 100-500萬 500萬up
+    *  工作	 學生
+    *  自我介紹
+    *  少座標 之後想怎麼算距離
