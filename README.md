@@ -97,7 +97,7 @@ the database system.
 *  目標性別  Female
 *  年紀	 23
 *  身高	 175.2
-*  星座	  Aquarius
+*  星座	 Aquarius
 *  收入	 under 100萬 100-500萬 500萬up
 *  工作	 學生
 *  自我介紹
