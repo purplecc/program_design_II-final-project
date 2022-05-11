@@ -1,7 +1,7 @@
 # Final_Project
 
 ## Basic Part
-##### Data Type and Data Structure
+### Data Type and Data Structure
 - [x] Your database system needs to have at least three basic data types.
 - [x] There should be at least one data with the string type in the system.
 - [x] There should be at least one kind of data created using structure, union, or enumerations.
@@ -33,9 +33,9 @@ the database system.
 
 ## Method
 
-### SORT **Use qsort**
->* Distance  int
->> set coordinates
+### SORT **(Use qsort)**
+*Distance  int
+  *set coordinates and count
 * - [ ] Gender   int
 * - [ ] Age	    int
 * - [ ] Height	float
@@ -48,20 +48,20 @@ the database system.
 - [ ] A bottom to choose whether you like the person
 * [ ] 25 people like the **USER** after entering the information (random)
 >* mode
->> - [] Match mode
->> - [] Chat mode
->> - [] Exit app
+>> - [ ] Match mode
+>> - [ ] Chat mode
+>> - [ ] Exit app
 
-### Display Order **Use linked list**
+### Display Order **(Use linked list)**
 * Sexuality
 * Does that guy like me
 * Distance
 * Hobby
 **同分就Random**
 * The length limit of the list of the person you like is 20 every day
->* Person you like
->> Can chat
->> Show the person I like, if someone you don't like anymore, you can delete him
+  * Person you like
+  * Can chat
+  * Show the person I like, if someone you don't like anymore, you can delete him
 
 ### Paired Successfully
 * Pop the pairing success message up with all information of each other
