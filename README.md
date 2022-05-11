@@ -48,11 +48,16 @@ the database system.
 
 ### Pairing Mechanism
 &#x274C; A good-looking interface
+
 &#x274C; A bottom to choose whether you like the person
+
 &#x274C; 25 people like the **USER** after entering the information (random)
+
 > mode
 &#x274C; Match mode
+
 &#x274C; Chat mode
+
 &#x274C; Exit app
 
 ### Display Order **(Use linked list)**
@@ -105,4 +110,17 @@ the database system.
 ```
 
 ### Zodiac
-&#x
+```
+* &#x2648; Aries
+* &#x2648; Taurus
+* &#x2648; Gemini
+* &#x2648; Cancer
+* &#x2648; Leo
+* &#x2648; Virgo
+* &#x2648; Libra
+* &#x2648; Scorpius
+* &#x2648; Sagittarius
+* &#x2648; Capricorn
+* &#x2648; Aquarius
+* &#x2648; Pisces
+```
