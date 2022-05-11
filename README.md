@@ -92,9 +92,9 @@ the database system.
 *  名字	 John
 *  性別	 Male
 *  興趣	 Shopping, Brunch, Memes, Motorcycling, Acapella
-*  手機號碼	 0910000001
-*  生活地區	 嘉義市
-*  目標性別	 Female
+*  手機號碼  0910000001
+*  生活地區  嘉義市
+*  目標性別  Female
 *  年紀	 23
 *  身高	 175.2
 *  星座	  Aquarius
