@@ -34,8 +34,8 @@ the database system.
 ## Method
 
 ### SORT **(Use qsort)**
-*Distance  int
-  *set coordinates and count
+* Distance  int
+  * set coordinates and count
 * - [ ] Gender   int
 * - [ ] Age	    int
 * - [ ] Height	float
@@ -47,7 +47,7 @@ the database system.
 - [ ] A good-looking interface
 - [ ] A bottom to choose whether you like the person
 * [ ] 25 people like the **USER** after entering the information (random)
->* mode
+> mode
 >> - [ ] Match mode
 >> - [ ] Chat mode
 >> - [ ] Exit app
