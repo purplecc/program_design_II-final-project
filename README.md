@@ -57,6 +57,7 @@ the database system.
 * Does that guy like me
 * Distance
 * Hobby
+
 **同分就Random**
 * The length limit of the list of the person you like is 20 every day
   * Person you like
@@ -96,4 +97,4 @@ the database system.
     * 收入	under 100萬 100-500萬 500萬up
     * 工作	學生
     * 自我介紹
-    * **少座標 之後想要怎麼算距離**
+*   **少座標, 之後想要怎麼算距離**
