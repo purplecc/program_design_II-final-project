@@ -24,7 +24,7 @@ specific item.
 - [ ] Sort all the items in ascending or descending order according to the given data. 
 For example, you can sort products by their prices or expired dates.
 ### File I/O
-- [ ] Users can import items to the database system from external files and they can also
+- [x] Users can import items to the database system from external files and they can also
 export files of outputs or selected items into files. You can design the special file format for
 the database system.
 
