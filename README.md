@@ -13,21 +13,21 @@
 ## Operation
 
 ### Add
-&#x274C; Add a new item to the database system. **The program must print an error message if**
+- [ ] Add a new item to the database system. **The program must print an error message if**
 **the item is already in the database.**
 ### Delete
-&#x274C; Delete a given item from the database. **The program must print an error message if**
+- [ ] Delete a given item from the database. **The program must print an error message if**
 **there is no matching item to be deleted in the database.**
 ### Traverse
-&#x274C; Print all items in the database in a specific format.
+- [ ] Print all items in the database in a specific format.
 ### Search
-&#x274C;  Given certain information about the item, the program needs to find and print the
+- [ ]  Given certain information about the item, the program needs to find and print the
 specific item.
 ### Sort
-&#x274C; Sort all the items in ascending or descending order according to the given data. 
+- [ ] Sort all the items in ascending or descending order according to the given data. 
 For example, you can sort products by their prices or expired dates.
 ### File I/O
-&#x2705; Users can import items to the database system from external files and they can also
+- [ ] Users can import items to the database system from external files and they can also
 export files of outputs or selected items into files. You can design the special file format for
 the database system.
 
@@ -37,28 +37,29 @@ the database system.
 ## Method
 
 ### SORT **(Use qsort)**
-* &#x274C; Distance  int
+* - [ ] Distance  int
   * set coordinates and count
-* &#x274C; Gender   int
-* &#x274C; Age	    int
-* &#x274C; Height	float
-* &#x274C; Zodiac	string
-* &#x274C; income	int
-* &#x274C; job	    string
+* - [ ] Gender   int
+* - [ ] Age	    int
+* - [ ] Height	float
+* - [ ] Zodiac	string
+* - [ ] income	int
+* - [ ] job	    string
 
 ### Pairing Mechanism
-&#x274C; A good-looking interface
+- [ ] A good-looking interface
 
-&#x274C; A bottom to choose whether you like the person
+- [ ] A bottom to choose whether you like the person
 
-&#x274C; 25 people like the **USER** after entering the information (random)
+- [ ] 25 people like the **USER** after entering the information (random)
 
 > mode
-&#x274C; Match mode
 
-&#x274C; Chat mode
+- [ ] Match mode
 
-&#x274C; Exit app
+- [ ] Chat mode
+
+- [ ] Exit app
 
 ### Display Order **(Use linked list)**
 * Sexuality
