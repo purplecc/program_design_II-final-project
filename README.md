@@ -110,17 +110,15 @@ the database system.
 ```
 
 ### Zodiac
-```
 * &#x2648; Aries
-* &#x2648; Taurus
-* &#x2648; Gemini
-* &#x2648; Cancer
-* &#x2648; Leo
-* &#x2648; Virgo
-* &#x2648; Libra
-* &#x2648; Scorpius
-* &#x2648; Sagittarius
-* &#x2648; Capricorn
-* &#x2648; Aquarius
-* &#x2648; Pisces
-```
+* &#x2649; Taurus
+* &#x264A; Gemini
+* &#x264B; Cancer
+* &#x264C; Leo
+* &#x264D; Virgo
+* &#x264E; Libra
+* &#x264F; Scorpius
+* &#x2650; Sagittarius
+* &#x2651; Capricorn
+* &#x2652; Aquarius
+* &#x2653; Pisces
