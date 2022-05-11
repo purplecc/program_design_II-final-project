@@ -2,10 +2,10 @@
 
 ## Basic Part
 ### Data Type and Data Structure
-U+2705 -> &#x2705; Your database system needs to have at least three basic data types.
-- [x] There should be at least one data with the string type in the system.
-- [x] There should be at least one kind of data created using structure, union, or enumerations.
-- [x] You need to use at least a linked list to store some data in your database system.
+&#x2705; Your database system needs to have at least three basic data types.
+&#x2705; There should be at least one data with the string type in the system.
+&#x2705; There should be at least one kind of data created using structure, union, or enumerations.
+&#x2705; You need to use at least a linked list to store some data in your database system.
 
 ## Operation
 
@@ -24,7 +24,7 @@ specific item.
 - [ ] Sort all the items in ascending or descending order according to the given data. 
 For example, you can sort products by their prices or expired dates.
 ### File I/O
-- [x] Users can import items to the database system from external files and they can also
+&#x2705; Users can import items to the database system from external files and they can also
 export files of outputs or selected items into files. You can design the special file format for
 the database system.
 
