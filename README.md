@@ -61,7 +61,7 @@ the database system.
 * Distance
 * Hobby
 
-**同分就Random**
+**_同分就Random_**
 * The length limit of the list of the person you like is 20 every day
   * Person you like
   * Can chat
@@ -80,7 +80,7 @@ the database system.
   * lesbian 25 people
   * gay 25 people
   * bisexual 5 people
-* Phone number's third value (Ex.09**1**0502291)
+* Phone number's third value (Ex.09**_1_**0502291)
   * 林子婕 0~1
   * 柯宸瑀 2~3
   * 蔡維彬 4~5
