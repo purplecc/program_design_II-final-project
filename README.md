@@ -9,50 +9,50 @@
 
 ## Operation
 
-##### Add
-- [] Add a new item to the database system. **The program must print an error message if**
+### Add
+- [ ] Add a new item to the database system. **The program must print an error message if**
 **the item is already in the database.**
-##### Delete
-- [] : Delete a given item from the database. **The program must print an error message if**
+### Delete
+- [ ] : Delete a given item from the database. **The program must print an error message if**
 **there is no matching item to be deleted in the database.**
-##### Traverse
-- [] Print all items in the database in a specific format.
-##### Search
-- []  Given certain information about the item, the program needs to find and print the
+### Traverse
+- [ ] Print all items in the database in a specific format.
+### Search
+- [ ]  Given certain information about the item, the program needs to find and print the
 specific item.
-##### Sort
-- [] Sort all the items in ascending or descending order according to the given data. 
+### Sort
+- [ ] Sort all the items in ascending or descending order according to the given data. 
 For example, you can sort products by their prices or expired dates.
-##### File I/O
-- [] Users can import items to the database system from external files and they can also
+### File I/O
+- [ ] Users can import items to the database system from external files and they can also
 export files of outputs or selected items into files. You can design the special file format for
 the database system.
 
 ## Advance Part
-##### ?????????????????????????????????????????????????
+### ?????????????????????????????????????????????????
 
 ## Method
 
-##### SORT **Use qsort**
+### SORT **Use qsort**
 >* Distance  int
 >> set coordinates
-* - [] Gender   int
-* - [] Age	    int
-* - [] Height	float
-* - [] Zodiac	string
-* - [] income	int
-* - [] job	    string
+* - [ ] Gender   int
+* - [ ] Age	    int
+* - [ ] Height	float
+* - [ ] Zodiac	string
+* - [ ] income	int
+* - [ ] job	    string
 
-##### Pairing Mechanism
-- [] A good-looking interface
-- [] A bottom to choose whether you like the person
-* [] 25 people like the **USER** after entering the information (random)
+### Pairing Mechanism
+- [ ] A good-looking interface
+- [ ] A bottom to choose whether you like the person
+* [ ] 25 people like the **USER** after entering the information (random)
 >* mode
 >> - [] Match mode
 >> - [] Chat mode
 >> - [] Exit app
 
-##### Display Order **Use linked list**
+### Display Order **Use linked list**
 * Sexuality
 * Does that guy like me
 * Distance
@@ -63,13 +63,13 @@ the database system.
 >> Can chat
 >> Show the person I like, if someone you don't like anymore, you can delete him
 
-##### Paired Successfully
+### Paired Successfully
 * Pop the pairing success message up with all information of each other
 * Show the phone number
 
 ## To do (5/10)
 
-##### Write character information
+### Write character information
 * Must write 150 people in total
   * man 50 people
   * woman 50 people
@@ -83,7 +83,7 @@ the database system.
   * 王昱人 6~7
   * 邱義咸 8~9
 
-###### Example
+##### Example
     * 名字	John
     * 性別	Male
     * 興趣	Shopping, Brunch, Memes, Motorcycling, Acapella
