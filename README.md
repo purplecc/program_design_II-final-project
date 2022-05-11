@@ -34,7 +34,7 @@ the database system.
 ## Method
 
 ### SORT **(Use qsort)**
-* - [] Distance  int
+* - [ ] Distance  int
   * set coordinates and count
 * - [ ] Gender   int
 * - [ ] Age	    int
@@ -97,4 +97,4 @@ the database system.
     * 收入	under 100萬 100-500萬 500萬up
     * 工作	學生
     * 自我介紹
-*   **少座標, 之後想要怎麼算距離**
+    *   少座標, 之後想怎麼算距離
