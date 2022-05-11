@@ -13,7 +13,7 @@
 ## Operation
 
 ### Add
-&#x274E; Add a new item to the database system. **The program must print an error message if**
+&#x274C; Add a new item to the database system. **The program must print an error message if**
 **the item is already in the database.**
 ### Delete
 - [ ] Delete a given item from the database. **The program must print an error message if**
