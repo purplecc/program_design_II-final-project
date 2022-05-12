@@ -80,7 +80,7 @@ the database system.
 ## To do (5/10)
 
 ### Write character information
-* Each group member must write 155 people
+* Each group member must write 155 people's information
   * man 50 people
   * woman 50 people
   * lesbian 25 people
@@ -93,7 +93,25 @@ the database system.
   * 王昱人 6~7
   * 邱義咸 8~9
 
-#### Example
+### Txt Format
+```c
+typedef struct data{
+    char name[21];
+    char gender;
+    char hobby[5][21]; 
+    char phone_number[11];
+    char area[16];
+    char target;
+    int age;
+    float height;
+    char zodiac[21];
+    char income[11];
+    char work[21];
+    char self_introduction[151];
+} Data;
+```
+
+### Example
 ```
 *  名字	 John
 *  性別	 Male
