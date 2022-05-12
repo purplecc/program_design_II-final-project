@@ -80,7 +80,7 @@ the database system.
 ## To do (5/10)
 
 ### Write character information
-* Must write 155 people in total
+* Each group member must write 155 people
   * man 50 people
   * woman 50 people
   * lesbian 25 people
