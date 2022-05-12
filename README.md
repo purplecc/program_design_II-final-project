@@ -96,7 +96,7 @@ the database system.
 ### Txt Format
 ```c
 typedef struct data{
-    char name[21];
+    char name[21];                  // txt用空格切, 照順序打下來, 整個人的資訊打完再換行
     char gender;
     char hobby[5][21]; 
     char phone_number[11];
