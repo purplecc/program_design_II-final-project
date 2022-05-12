@@ -37,14 +37,14 @@ the database system.
 ## Method
 
 ### SORT **(Use qsort)**
-* - [ ] Distance  int
+- [ ] Distance  int
   * set coordinates and count
-* - [ ] Gender   int
-* - [ ] Age	    int
-* - [ ] Height	float
-* - [ ] Zodiac	string
-* - [ ] income	int
-* - [ ] job	    string
+- [ ] Gender   int
+- [ ] Age	    int
+- [ ] Height	float
+- [ ] Zodiac	string
+- [ ] income	int
+- [ ] job	    string
 
 ### Pairing Mechanism
 - [ ] A good-looking interface
