@@ -72,6 +72,6 @@ int read_file(Data *person){
         , person[data_id].income
         , person[data_id].job
         , person[data_id].self_introduction);
-    }*/ 
+    }*/
     return data_id;
 }
