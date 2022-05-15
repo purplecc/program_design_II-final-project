@@ -53,7 +53,7 @@ int read_file(Data *person){
         data_id++;
     }
     fclose(input_file);
-    int temp_i = data_id;                       //這個只是看他有沒有讀進去 要測試有沒有讀對的話把註解弄掉
+    /*int temp_i = data_id;                       //這個只是看他有沒有讀進去 要測試有沒有讀對的話把註解弄掉
     for (int data_id = 0; data_id < temp_i; data_id++){
         printf("%s %c %s %s %s %s %s %s %s %c %d %.1f %s %s %s\n%s\n"
         , person[data_id].name
@@ -72,6 +72,6 @@ int read_file(Data *person){
         , person[data_id].income
         , person[data_id].job
         , person[data_id].self_introduction);
-    }
+    }*/
     return data_id;
 }
