@@ -99,7 +99,7 @@ typedef struct data{
     char hobby[5][21];              // 最後輸入自我介紹的時候有空格沒關係
     char phone_number[11];          // 打完再按Enter
     char area[16];
-    char target;
+    char target;                    // 雙性戀填'B'喔🐉🐉🐉🐉🐉
     int age;
     float height;
     char zodiac[21];
