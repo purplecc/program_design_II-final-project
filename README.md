@@ -28,8 +28,7 @@ specific item.
 For example, you can sort products by their prices or expired dates.
 ### File I/O
 &#x2705; Users can import items to the database system from external files and they can also
-export files of outputs or selected items into files. You can design the special file format for
-the database system.
+export files of outputs or selected items into files. &emsp;&emsp;You can design the special file format for the database system.
 
 ## Advance Part
 ### ?????????????????????????????????????????????????
@@ -37,14 +36,14 @@ the database system.
 ## Method
 
 ### SORT **(Use qsort)**
-- [ ] Distance  int
+- [ ] Distance&emsp;(int)
   * set coordinates and count
-- [ ] Gender   int
-- [ ] Age	    int
-- [ ] Height	float
-- [ ] Zodiac	string
-- [ ] income	int
-- [ ] job	    string
+- [ ] Gender&emsp;(int)
+- [ ] Age&emsp;(int)
+- [ ] Height&emsp;(float)
+- [ ] Zodiac&emsp;(string)
+- [ ] income&emsp;(int)
+- [ ] job&emsp;(string)
 
 ### Pairing Mechanism
 - [ ] A good-looking interface
@@ -86,7 +85,7 @@ the database system.
   * lesbian 25 people
   * gay 25 people
   * bisexual 5 people
-* Phone number's third value (Ex.09**_1_**0502291)
+* Phone number's third value (Ex.09***1***0502291)
   * 林子婕 0~1
   * 柯宸瑀 2~3
   * 蔡維彬 4~5
@@ -94,7 +93,7 @@ the database system.
   * 邱義咸 8~9
 
 ### Txt Format
-```c
+```C
 typedef struct data{
     char name[21];                  // txt用空格切, 照順序打下來, 整個人的資訊打完再換行
     char gender;                    // 單字中間有空格用 '-' 代替
@@ -106,7 +105,7 @@ typedef struct data{
     float height;
     char zodiac[21];
     char income[11];
-    char work[21];
+    char job[41];
     char self_introduction[151];
 } Data;
 ```
@@ -128,7 +127,6 @@ typedef struct data{
 *  少座標 之後想怎麼算距離
 ```
 ### Zodiac
-* &#x2648; Aries
 * &#x2649; Taurus
 * &#x264A; Gemini
 * &#x264B; Cancer
