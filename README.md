@@ -27,9 +27,7 @@ specific item.
 - [ ] Sort all the items in ascending or descending order according to the given data. 
 For example, you can sort products by their prices or expired dates.
 ### File I/O
-&#x2705; Users can import items to the database system from external files and they can also
-export files of outputs or selected items into files. You can design the special file format for
-the database system.
+&#x2705; Users can import items to the database system from external files and they can also export files of outputs or selected items into files. You can design the special file format for the database system.
 
 ## Advance Part
 ### ?????????????????????????????????????????????????
@@ -37,14 +35,14 @@ the database system.
 ## Method
 
 ### SORT **(Use qsort)**
-- [ ] Distance  int
+- [ ] Distance&emsp;(int)
   * set coordinates and count
-- [ ] Gender   int
-- [ ] Age	    int
-- [ ] Height	float
-- [ ] Zodiac	string
-- [ ] income	int
-- [ ] job	    string
+- [ ] Gender&emsp;(int)
+- [ ] Age&emsp;(int)
+- [ ] Height&emsp;(float)
+- [ ] Zodiac&emsp;(string)
+- [ ] income&emsp;(int)
+- [ ] job&emsp;(string)
 
 ### Pairing Mechanism
 - [ ] A good-looking interface
@@ -86,7 +84,7 @@ the database system.
   * lesbian 25 people
   * gay 25 people
   * bisexual 5 people
-* Phone number's third value (Ex.09**_1_**0502291)
+* Phone number's third value (Ex.09***1***0502291)
   * 林子婕 0~1
   * 柯宸瑀 2~3
   * 蔡維彬 4~5
@@ -94,19 +92,19 @@ the database system.
   * 邱義咸 8~9
 
 ### Txt Format
-```c
+```C
 typedef struct data{
     char name[21];                  // txt用空格切, 照順序打下來, 整個人的資訊打完再換行
     char gender;                    // 單字中間有空格用 '-' 代替
-    char hobby[5][21];              // 最後輸入自我介紹的時候有空格沒關係
+    char hobby[5][36];              // 最後輸入自我介紹的時候有空格沒關係
     char phone_number[11];          // 打完再按Enter
     char area[16];
-    char target;
+    char target;                    // 雙性戀填'B'喔🐉🐉🐉🐉🐉
     int age;
     float height;
     char zodiac[21];
     char income[11];
-    char work[21];
+    char job[41];
     char self_introduction[151];
 } Data;
 ```
@@ -127,16 +125,52 @@ typedef struct data{
 *  自我介紹
 *  少座標 之後想怎麼算距離
 ```
-### Zodiac
-* &#x2648; Aries
-* &#x2649; Taurus
-* &#x264A; Gemini
-* &#x264B; Cancer
-* &#x264C; Leo
-* &#x264D; Virgo
-* &#x264E; Libra
-* &#x264F; Scorpius
-* &#x2650; Sagittarius
-* &#x2651; Capricorn
-* &#x2652; Aquarius
-* &#x2653; Pisces
+</br>
+<table>
+    <tr>
+    <td><h2 style="margin:0px; padding:5px 390px 5px 5px; ">Zodiac</h2></td>
+    <td><h2 style="margin:0px; padding:5px 390px 5px 5px;">Cities</h2></td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <br/> <li>&#x2651; Capricorn</li><br/>
+          <li>&#x2652; Aquarius</li><br/>
+          <li>&#x2653; Pisces</li><br/>
+          <li>&#x2648; Aries</li><br/>
+          <li>&#x2649; Taurus</li><br/>
+          <li>&#x264A; Gemini</li><br/>
+          <li>&#x264B; Cancer</li><br/>
+          <li>&#x264C; Leo</li><br/>
+          <li>&#x264D; Virgo</li><br/>
+          <li>&#x264E; Libra</li><br/>
+          <li>&#x264F; Scorpio</li><br/>
+          <li>&#x2650; Sagittarius</li><br/>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>&#x1F308; Keelung
+          <li>&#x1F309; New-Taipei
+          <li>&#x1F30A; Taipei
+          <li>&#x1F30B; Taoyuan
+          <li>&#x1F30C; Hsinchu
+          <li>&#x1F30F; Miaoli
+          <li>&#x1F42C; Taichung
+          <li>&#x1F47D; Changhua
+          <li>&#x1F314; Nantou
+          <li>&#x1F4A6; Yunlin
+          <li>&#x1F320; Chiayi
+          <li>&#x1F331; Tainan
+          <li>&#x1F337; Kaohsiung
+          <li>&#x1F33A; Pingtung
+          <li>&#x1F33B; Yilan
+          <li>&#x1F33C; Hualien
+          <li>&#x1F33D; Taitung
+          <li>&#x1F341; Penghu
+          <li>&#x1F41B; Kinmen
+          <li>&#x1F427; Lienchiang
+        </ul>
+      </td>
+    </tr>
+  </table>  

@@ -2,3 +2,5 @@
 *.in
 *.exe
 *.o
+*.json
+*.log
