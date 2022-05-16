@@ -125,16 +125,52 @@ typedef struct data{
 *  自我介紹
 *  少座標 之後想怎麼算距離
 ```
-### Zodiac
-* &#x2651; Capricorn
-* &#x2652; Aquarius
-* &#x2653; Pisces
-* &#x2648; Aries
-* &#x2649; Taurus
-* &#x264A; Gemini
-* &#x264B; Cancer
-* &#x264C; Leo
-* &#x264D; Virgo
-* &#x264E; Libra
-* &#x264F; Scorpio
-* &#x2650; Sagittarius
+</br>
+<table>
+    <tr>
+    <td><h2 style="margin:0px; padding:5px 200px 5px 5px; ">Zodiac</h2></td>
+    <td><h2 style="margin:0px; padding:5px 200px 5px 5px;">Cities</h2></td>
+    </tr>
+    <tr>
+      <td>
+        <ul>
+          <br/> <li>&#x2651; Capricorn</li><br/>
+          <li>&#x2652; Aquarius</li><br/>
+          <li>&#x2653; Pisces</li><br/>
+          <li>&#x2648; Aries</li><br/>
+          <li>&#x2649; Taurus</li><br/>
+          <li>&#x264A; Gemini</li><br/>
+          <li>&#x264B; Cancer</li><br/>
+          <li>&#x264C; Leo</li><br/>
+          <li>&#x264D; Virgo</li><br/>
+          <li>&#x264E; Libra</li><br/>
+          <li>&#x264F; Scorpio</li><br/>
+          <li>&#x2650; Sagittarius</li><br/>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>&#x1F308; Keelung
+          <li>&#x1F309; New-Taipei
+          <li>&#x1F30A; Taipei
+          <li>&#x1F30B; Taoyuan
+          <li>&#x1F30C; Hsinchu
+          <li>&#x1F30F; Miaoli
+          <li>&#x1F42C; Taichung
+          <li>&#x1F47D; Changhua
+          <li>&#x1F314; Nantou
+          <li>&#x1F4A6; Yunlin
+          <li>&#x1F320; Chiayi
+          <li>&#x1F331; Tainan
+          <li>&#x1F337; Kaohsiung
+          <li>&#x1F33A; Pingtung
+          <li>&#x1F33B; Yilan
+          <li>&#x1F33C; Hualien
+          <li>&#x1F33D; Taitung
+          <li>&#x1F341; Penghu
+          <li>&#x1F41B; Kinmen
+          <li>&#x1F427; Lienchiang
+        </ul>
+      </td>
+    </tr>
+  </table>  
