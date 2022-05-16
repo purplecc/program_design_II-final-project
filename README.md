@@ -128,8 +128,8 @@ typedef struct data{
 </br>
 <table>
     <tr>
-    <td><h2 style="margin:0px; padding:5px 200px 5px 5px; ">Zodiac</h2></td>
-    <td><h2 style="margin:0px; padding:5px 200px 5px 5px;">Cities</h2></td>
+    <td><h2 style="margin:0px; padding:5px 390px 5px 5px; ">Zodiac</h2></td>
+    <td><h2 style="margin:0px; padding:5px 390px 5px 5px;">Cities</h2></td>
     </tr>
     <tr>
       <td>
