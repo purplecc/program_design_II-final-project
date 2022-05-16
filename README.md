@@ -126,14 +126,15 @@ typedef struct data{
 *  少座標 之後想怎麼算距離
 ```
 ### Zodiac
+* &#x2651; Capricorn
+* &#x2652; Aquarius
+* &#x2653; Pisces
+* &#x2648; Aries
 * &#x2649; Taurus
 * &#x264A; Gemini
 * &#x264B; Cancer
 * &#x264C; Leo
 * &#x264D; Virgo
 * &#x264E; Libra
-* &#x264F; Scorpius
+* &#x264F; Scorpio
 * &#x2650; Sagittarius
-* &#x2651; Capricorn
-* &#x2652; Aquarius
-* &#x2653; Pisces
