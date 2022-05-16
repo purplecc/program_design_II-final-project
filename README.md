@@ -96,7 +96,7 @@ For example, you can sort products by their prices or expired dates.
 typedef struct data{
     char name[21];                  // txt用空格切, 照順序打下來, 整個人的資訊打完再換行
     char gender;                    // 單字中間有空格用 '-' 代替
-    char hobby[5][21];              // 最後輸入自我介紹的時候有空格沒關係
+    char hobby[5][36];              // 最後輸入自我介紹的時候有空格沒關係
     char phone_number[11];          // 打完再按Enter
     char area[16];
     char target;                    // 雙性戀填'B'喔🐉🐉🐉🐉🐉

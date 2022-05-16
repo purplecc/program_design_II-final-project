@@ -5,7 +5,7 @@
 typedef struct data{
     char name[21];
     char gender;
-    char hobby[5][21];
+    char hobby[5][36];
     char phone_number[11];
     char area[16];
     char target;
@@ -28,7 +28,7 @@ int main(){
 
 int read_file(Data *person){
     int data_id = 0;                                // 檔名要記得改自己txt的名字喔
-    const char *filename = "allen.txt";
+    const char *filename = ".txt";
     FILE *input_file = fopen(filename, "r");
     if (!input_file){
         exit(EXIT_FAILURE);
