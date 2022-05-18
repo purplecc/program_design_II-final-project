@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 typedef struct data{
     char name[21];
@@ -23,12 +24,13 @@ int main(){
     int data_amount = 0;
     Data person[780];
     data_amount = read_file(person);
-    printf("%d", data_amount);                      // 看讀到的人數對不對
+    printf("%d\n", data_amount);                        // 看讀到的人數對不對
+    printf("%lf", (double)clock() / CLOCKS_PER_SEC);    // 看整個程式執行時間(/s)
 }
 
 int read_file(Data *person){
-    int data_id = 0;                                // 檔名要記得改自己txt的名字喔
-    const char *filename = ".txt";
+    int data_id = 0;                                    // 檔名要記得改自己txt的名字喔
+    const char *filename = "nefertari.txt";
     FILE *input_file = fopen(filename, "r");
     if (!input_file){
         exit(EXIT_FAILURE);
@@ -53,7 +55,7 @@ int read_file(Data *person){
         data_id++;
     }
     fclose(input_file);
-    /*int temp_i = data_id;                       //這個只是看他有沒有讀進去 要測試有沒有讀對的話把註解弄掉
+    int temp_i = data_id;                   //這個只是看他有沒有讀進去 要測試有沒有讀對的話把註解弄掉
     for (int data_id = 0; data_id < temp_i; data_id++){
         printf("%s %c %s %s %s %s %s %s %s %c %d %.1f %s %s %s\n%s\n"
         , person[data_id].name
@@ -72,6 +74,6 @@ int read_file(Data *person){
         , person[data_id].income
         , person[data_id].job
         , person[data_id].self_introduction);
-    }*/
+    }
     return data_id;
 }
