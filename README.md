@@ -105,6 +105,7 @@ typedef struct data{
     char zodiac[21];
     char income[11];
     char job[41];
+    int index_of_area;
     char self_introduction[151];
 } Data;
 ```
@@ -174,3 +175,8 @@ typedef struct data{
       </td>
     </tr>
   </table>  
+
+<img src="taiwan_all.png">
+
+### 昱人的小空間
+* 1.0.1 fileIO.c 加了讀縣市距離的編號, 還有執行時間
