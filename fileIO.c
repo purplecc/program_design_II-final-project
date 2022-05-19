@@ -15,6 +15,7 @@ typedef struct data{
     char zodiac[21];
     char income[11];
     char job[41];
+    int index_of_area;
     char self_introduction[151];
 } Data;
 
@@ -22,58 +23,60 @@ int read_file(Data *person);
 
 int main(){
     int data_amount = 0;
-    Data person[780];
+    Data person[1000];
     data_amount = read_file(person);
     printf("%d\n", data_amount);                        // 看讀到的人數對不對
     printf("%lf", (double)clock() / CLOCKS_PER_SEC);    // 看整個程式執行時間(/s)
 }
 
 int read_file(Data *person){
-    int data_id = 0;                                    // 檔名要記得改自己txt的名字喔
-    const char *filename = "nefertari.txt";
+    int i = 0;                                    // 檔名要記得改自己txt的名字喔
+    const char *filename = "apin.txt";
     FILE *input_file = fopen(filename, "r");
     if (!input_file){
         exit(EXIT_FAILURE);
     }
-    while (fscanf(input_file, "%s %c %s %s %s %s %s %s %s %c %d %f %s %s %s "
-    , person[data_id].name
-    , &person[data_id].gender
-    , person[data_id].hobby[0]
-    , person[data_id].hobby[1]
-    , person[data_id].hobby[2]
-    , person[data_id].hobby[3]
-    , person[data_id].hobby[4]
-    , person[data_id].phone_number
-    , person[data_id].area
-    , &person[data_id].target
-    , &person[data_id].age
-    , &person[data_id].height
-    , person[data_id].zodiac
-    , person[data_id].income
-    , person[data_id].job) != EOF){
-        fgets(person[data_id].self_introduction, 151, input_file);
-        data_id++;
+    while (fscanf(input_file, "%s %c %s %s %s %s %s %s %s %c %d %f %s %s %d %s "
+    , person[i].name
+    , &person[i].gender
+    , person[i].hobby[0]
+    , person[i].hobby[1]
+    , person[i].hobby[2]
+    , person[i].hobby[3]
+    , person[i].hobby[4]
+    , person[i].phone_number
+    , person[i].area
+    , &person[i].target
+    , &person[i].age
+    , &person[i].height
+    , person[i].zodiac
+    , person[i].income
+    , &person[i].index_of_area
+    , person[i].job) != EOF){
+        fgets(person[i].self_introduction, 151, input_file);
+        i++;
     }
     fclose(input_file);
-    int temp_i = data_id;                   //這個只是看他有沒有讀進去 要測試有沒有讀對的話把註解弄掉
-    for (int data_id = 0; data_id < temp_i; data_id++){
-        printf("%s %c %s %s %s %s %s %s %s %c %d %.1f %s %s %s\n%s\n"
-        , person[data_id].name
-        , person[data_id].gender
-        , person[data_id].hobby[0]
-        , person[data_id].hobby[1]
-        , person[data_id].hobby[2]
-        , person[data_id].hobby[3]
-        , person[data_id].hobby[4]
-        , person[data_id].phone_number
-        , person[data_id].area
-        , person[data_id].target
-        , person[data_id].age
-        , person[data_id].height
-        , person[data_id].zodiac
-        , person[data_id].income
-        , person[data_id].job
-        , person[data_id].self_introduction);
+    int temp_i = i;
+    for (int i = 0; i < temp_i; i++){
+        printf("%s %c %s %s %s %s %s %s %s %c %d %.1f %s %s %s %d\n%s\n"
+        , person[i].name
+        , person[i].gender
+        , person[i].hobby[0]
+        , person[i].hobby[1]
+        , person[i].hobby[2]
+        , person[i].hobby[3]
+        , person[i].hobby[4]
+        , person[i].phone_number
+        , person[i].area
+        , person[i].target
+        , person[i].age
+        , person[i].height
+        , person[i].zodiac
+        , person[i].income
+        , person[i].job
+        , person[i].index_of_area
+        , person[i].self_introduction);
     }
-    return data_id; 
+    return i;
 }
