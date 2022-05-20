@@ -9,14 +9,14 @@
 #define finish          "\033[0m"
 #define light           "\033[01m"
 #define black           "\033[30m"
-#define B_red           "\033[1;31m"
+#define B_B_red         "\033[1;31;43m"
 #define B_I_green       "\033[1;3;32m"
 #define B_U_I_yellow    "\033[1;3;4;33m"
 #define B_yellow        "\033[1;33m"
 #define blue            "\033[34m"
 #define B_purple        "\033[1;35m"
 #define B_cyan          "\033[1;36m"
-#define B_white           "\033[1;37m"
+#define B_white         "\033[1;37m"
 //#define  "\x1B[1;30m"
 
 typedef struct data{
@@ -170,7 +170,7 @@ void add_account(Data *person, int *data_amount){
         int yes_no_position = 0;
         while(1){
             system("cls");
-            printf(B_white"\nCongratulations on completing your registration, the following is your information:\n\n"finish);
+            printf(B_B_red"\nCongratulations on completing your registration, the following is your information:\n\n"finish);
             printf(B_U_I_yellow"Personal Profile\n"finish);
             printf(B_I_green"*******************************************************************\n"finish);
             printf(B_cyan"Name: %s\n", person[*data_amount].name);
