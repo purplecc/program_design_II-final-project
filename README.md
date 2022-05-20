@@ -192,4 +192,4 @@ typedef struct data{
 * 1.0.2 fileIO.c 新增score變數
 * 1.0.1 display_order
     * 把Data person移到全域了，用qsort比較方便
-    * 我沒有用linked list，因為一開始用陣列存就是連續記憶體了，覺得沒必要用到 &#xU+1F605;
+    * 我沒有用linked list，因為一開始用陣列存就是連續記憶體了，覺得沒必要用到
