@@ -176,7 +176,7 @@ typedef struct data{
     </tr>
   </table>  
 
-<img src="Taiwan.png">
+<img src="Taiwan_all.png">
 
 ### 昱人的小空間
 * 1.0.1 fileIO.c 加了讀縣市距離的編號, 還有執行時間
