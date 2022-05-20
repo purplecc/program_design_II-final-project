@@ -16,6 +16,7 @@ typedef struct data{
     char income[11];
     char job[41];
     int index_of_area;
+    int score;
     char self_introduction[151];
 } Data;
 
