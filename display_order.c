@@ -24,19 +24,19 @@ typedef struct data{
 int idx[1000];                                          // 排序會用到的index
 Data person[1000];                                      // 移出來ㄛ
 int read_file(Data *person);
-void calculate_score(Data *User,int data_amount);
+void calculate_score(Data *User,int *data_amount);
 int judge_mode(Data *User);                             // 回傳使用者性向狀況
-void sexuality_score(Data *User,int data_amount);
-void age_score(Data *User,int data_amount);
-void area_score(Data *User,int data_amount);
-void hobby_score(Data *User,int data_amount);
+void sexuality_score(Data *User,int *data_amount);
+void age_score(Data *User,int *data_amount);
+void area_score(Data *User,int *data_amount);
+void hobby_score(Data *User,int *data_amount);
 int comp(const void *p,const void *q);
 
 int main(){
     int data_amount = 0;
     data_amount = read_file(person);
 
-    calculate_score(User,data_amount);
+    calculate_score(User,&data_amount);
     qsort(idx,data_amount,sizeof(int),comp);
     // printf("%d\n", data_amount);                        // 看讀到的人數對不對
     // printf("%lf", (double)clock() / CLOCKS_PER_SEC);    // 看整個程式執行時間(/s)
@@ -95,7 +95,7 @@ int read_file(Data *person){
     return i;
 }
 
-void calculate_score(Data *User,int data_amount){
+void calculate_score(Data *User,int *data_amount){
     sexuality_score(User,data_amount);
     age_score(User,data_amount);
     area_score(User,data_amount);
@@ -121,7 +121,7 @@ int judge_mode(Data *User){
     }
 }
 
-void sexuality_score(Data *User,int data_amount){     // 性向對了+500
+void sexuality_score(Data *User,int *data_amount){     // 性向對了+500
     int mode = judge_mode(User);
     int i;
     if(mode == 1){
@@ -184,7 +184,7 @@ void sexuality_score(Data *User,int data_amount){     // 性向對了+500
     }
 }
 
-void age_score(Data *User,int data_amount){           // 年齡對了+100
+void age_score(Data *User,int *data_amount){           // 年齡對了+100
     for(int i = 0;i < data_amount;i++){
         if(abs(((person + i)->age)- (User->age))<=10){
             (person + i)->score += 100;
@@ -192,7 +192,7 @@ void age_score(Data *User,int data_amount){           // 年齡對了+100
     }
 }
 
-void area_score(Data *User,int data_amount){          // 距離差0加100,差1加90,差2加80...10以上不加了
+void area_score(Data *User,int *data_amount){          // 距離差0加100,差1加90,差2加80...10以上不加了
     for(int i = 0;i < data_amount;i++){
         int ans = abs(((person + i)->index_of_area)- (User->index_of_area));
         if(ans == 0){
@@ -204,7 +204,7 @@ void area_score(Data *User,int data_amount){          // 距離差0加100,差1�
     }
 }
 
-void hobby_score(Data *User,int data_amount){         //每對一個+20
+void hobby_score(Data *User,int *data_amount){         //每對一個+20
     for(int i = 0;i < 5;i++){       
         for(int j = 0;j < data_amount;j++){
             for(int k = 0;k < 5;k++){
