@@ -204,8 +204,10 @@ typedef struct data{
   * 1.0.1
     * 把Data person移到全域了，用qsort比較方便
     * 我沒有用linked list，因為一開始用陣列存就是連續記憶體了，覺得沒必要用到
-    * <img src="relationship.jpg">
+    
+    <img src="relationship.jpg">
+
   * 1.0.2
     * 小小修改
   * 1.0.3
-    * 顯示順序出來了剩下*漂亮的排版*和*做YES/NO鍵* 
+    * 顯示順序出來了剩下漂亮的排版和做YES/NO鍵 
