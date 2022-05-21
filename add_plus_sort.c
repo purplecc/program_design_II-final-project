@@ -41,13 +41,21 @@ bool search_duplicates(int data_amount);
 bool check_boundary(int x, int y);
 void print_data(int data_amount);
 
+void calculate_score(Data *User, int data_amount);
+int judge_mode(Data *User); // 回傳使用者性向狀況
+void sexuality_score(Data *User, int data_amount);
+void age_score(Data *User, int data_amount);
+void area_score(Data *User, int data_amount);
+void hobby_score(Data *User, int data_amount);
+int comp(const void *p, const void *q);
+
 char hobbies[6][5][13] = {{{"Writing"}, {"Reading"}, {"Singing"}, {"Photography"}, {"Gardening"}},
                         {{"Cooking"}, {"Baking"}, {"Jogging"}, {"Swimming"}, {"Working-out"}},
                         {{"badminton"}, {"Tennis"}, {"Basketball"}, {"Volleyball"},{"Cycling"}},
                         {{"Dancing"}, {"Films"}, {"Fashion"}, {"Collecting"}, {"Music"}},
                         {{"Anime"}, {"Delicacy"}, {"Shopping"}, {"Yoga"}, {"Memes"}}};
-bool hobbies_flag[6][5];
 char decision[2][27] = {"Yes", "No(enter my profile again)"};
+bool hobbies_flag[6][5];
 Data person[1000];
 
 int main(){
@@ -56,7 +64,10 @@ int main(){
     printf("%d\n", data_amount);                            // 看讀到的人數對不對
     printf("%lf\n", (double)clock() / CLOCKS_PER_SEC);      // 讀檔時間(/s)
     add_account(&data_amount);
+    calculate_score(&person[data_amount-1], data_amount);
+    qsort(person, data_amount-1, sizeof(Data), comp);
     print_data(data_amount);
+    printf("%d\n", data_amount);
 }
 
 int read_file(){
@@ -90,7 +101,7 @@ int read_file(){
 }
 
 void print_data(int data_amount){
-    for (int i = 0; i < data_amount; i++){
+    /*for (int i = 0; i < data_amount; i++){
         printf("%s %c %s %s %s %s %s %s %s %c %d %.1f %s %s %s\n%s\n"
         , person[i].name
         , person[i].gender
@@ -108,6 +119,9 @@ void print_data(int data_amount){
         , person[i].income
         , person[i].job
         , person[i].self_introduction);
+    }*/
+    for (int i = 0; i < data_amount - 1;i++){
+        printf("%d\n", person[i].score);
     }
 }
 
@@ -244,7 +258,6 @@ void add_account(int *data_amount){
         system("cls");
     }
     (*data_amount)+=1;
-    printf("%d\n", *data_amount);
 }
 
 bool search_duplicates(int data_amount){
@@ -262,4 +275,117 @@ bool check_boundary(int x, int y){
     }
     return true;
 }
+//* 柯的
+void calculate_score(Data *User, int data_amount){
+    sexuality_score(User, data_amount);
+    age_score(User, data_amount);
+    area_score(User, data_amount);
+    hobby_score(User, data_amount);
+}
 
+int judge_mode(Data *User){
+    if (User->gender == 'F'){
+        if (User->target == 'M')
+            return 1; //直女回傳1
+        else if (User->target == 'F')
+            return 2; //女同回傳2
+        else if (User->target == 'B')
+            return 3; //女雙回傳3
+    }
+    else if (User->gender == 'M'){
+        if (User->target == 'F')
+            return 4; //直男回傳4
+        else if (User->target == 'M')
+            return 5; //男同回傳5
+        else if (User->target == 'B')
+            return 6; //男雙回傳6
+    }
+    return -1;
+}
+
+void sexuality_score(Data *User, int data_amount){ // 性向對了+500
+    for (int i = 0; i < data_amount - 1;i++){
+        person[i].score = 0;
+    }
+    int mode = judge_mode(User);
+    int i;
+    if (mode == 1){
+        for (i = 0; i < data_amount - 1; i++){
+            if ((person + i)->gender == 'M' && (person + i)->target == 'F'){
+                (person + i)->score += 500;
+            }
+        }
+    }
+    else if (mode == 2){
+        for (i = 0; i < data_amount - 1; i++){
+            if ((person + i)->gender == 'F'){
+                if ((person + i)->target == 'F' || (person + i)->target == 'B')
+                    (person + i)->score += 500;
+            }
+        }
+    }
+    else if (mode == 3){
+        for (i = 0; i < data_amount - 1; i++){
+            if ((person + i)->target == 'F' || (person + i)->target == 'B'){
+                (person + i)->score += 500;
+            }
+        }
+    }
+    else if (mode == 4){
+        for (i = 0; i < data_amount - 1; i++){
+            if ((person + i)->gender == 'F' && (person + i)->target == 'M'){
+                (person + i)->score += 500;
+            }
+        }
+    }
+    else if (mode == 5){
+        for (i = 0; i < data_amount - 1; i++){
+            if ((person + i)->gender == 'M'){
+                if ((person + i)->target == 'M' || (person + i)->target == 'B')
+                    (person + i)->score += 500;
+            }
+        }
+    }
+    else if (mode == 6){
+        for (i = 0; i < data_amount - 1; i++){
+            if ((person + i)->target == 'M' || (person + i)->target == 'B'){
+                (person + i)->score += 500;
+            }
+        }
+    }
+}
+
+void age_score(Data *User, int data_amount){ // 年齡對了+100
+    for (int i = 0; i < data_amount - 1; i++){
+        if (abs(((person + i)->age) - (User->age)) <= 10){
+            (person + i)->score += 100;
+        }
+    }
+}
+
+void area_score(Data *User, int data_amount){ // 距離差0加100,差1加90,差2加80...10以上不加了
+    for (int i = 0; i < data_amount - 1; i++){
+        int ans = abs(((person + i)->index_of_area) - (User->index_of_area));
+        if (ans == 0){
+            (person + i)->score += 100;
+        }
+        else if (ans < 10){
+            (person + i)->score += ((10 - i) * 10);
+        }
+    }
+}
+
+void hobby_score(Data *User, int data_amount){ //每對一個+20
+    for (int i = 0; i < 5; i++){
+        for (int j = 0; j < data_amount - 1; j++){
+            for (int k = 0; k < 5; k++){
+                if (!strcmp(User->hobby[i], (person + j)->hobby[k]))
+                    (person + j)->score += 20;
+            }
+        }
+    }
+}
+
+int comp(const void *p, const void *q){
+    return (((Data *)q)->score - ((Data *)p)->score);
+}
