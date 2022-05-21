@@ -17,7 +17,6 @@
 #define B_purple        "\033[1;35m"
 #define B_cyan          "\033[1;36m"
 #define B_white         "\033[1;37m"
-//#define  "\x1B[1;30m"
 
 typedef struct data{
     char name[21];
@@ -31,33 +30,36 @@ typedef struct data{
     char zodiac[21];
     char income[11];
     char job[41];
-    //int index_of_area;
+    int index_of_area;
     char self_introduction[151];
+    int score;
 } Data;
 
-int read_file(Data *person);
-void add_account(Data *person, int *data_amount);
-bool search_duplicates(Data *person, int data_amount);
+int read_file();
+void add_account(int *data_amount);
+bool search_duplicates(int data_amount);
 bool check_boundary(int x, int y);
+void print_data(int data_amount);
 
 char hobbies[6][5][13] = {{{"Writing"}, {"Reading"}, {"Singing"}, {"Photography"}, {"Gardening"}},
                         {{"Cooking"}, {"Baking"}, {"Jogging"}, {"Swimming"}, {"Working-out"}},
                         {{"badminton"}, {"Tennis"}, {"Basketball"}, {"Volleyball"},{"Cycling"}},
                         {{"Dancing"}, {"Films"}, {"Fashion"}, {"Collecting"}, {"Music"}},
                         {{"Anime"}, {"Delicacy"}, {"Shopping"}, {"Yoga"}, {"Memes"}}};
-char decision[2][27] = {"Yes", "No(enter my profile again)"};
 bool hobbies_flag[6][5];
+char decision[2][27] = {"Yes", "No(enter my profile again)"};
+Data person[1000];
 
 int main(){
     int data_amount = 0;
-    Data person[1000];
-    data_amount = read_file(person);
+    data_amount = read_file();
     printf("%d\n", data_amount);                            // 看讀到的人數對不對
-    printf("%lf\n", (double)clock() / CLOCKS_PER_SEC);      // 看整個程式執行時間(/s)
-    add_account(person, &data_amount);
+    printf("%lf\n", (double)clock() / CLOCKS_PER_SEC);      // 讀檔時間(/s)
+    add_account(&data_amount);
+    print_data(data_amount);
 }
 
-int read_file(Data *person){
+int read_file(){
     int i = 0;                                    // 檔名要記得改自己txt的名字喔
     const char *filename = "allen.txt";
     FILE *input_file = fopen(filename, "r");
@@ -87,10 +89,32 @@ int read_file(Data *person){
     return i;
 }
 
-void add_account(Data *person, int *data_amount){
+void print_data(int data_amount){
+    for (int i = 0; i < data_amount; i++){
+        printf("%s %c %s %s %s %s %s %s %s %c %d %.1f %s %s %s\n%s\n"
+        , person[i].name
+        , person[i].gender
+        , person[i].hobby[0]
+        , person[i].hobby[1]
+        , person[i].hobby[2]
+        , person[i].hobby[3]
+        , person[i].hobby[4]
+        , person[i].phone_number
+        , person[i].area
+        , person[i].target
+        , person[i].age
+        , person[i].height
+        , person[i].zodiac
+        , person[i].income
+        , person[i].job
+        , person[i].self_introduction);
+    }
+}
+
+void add_account(int *data_amount){
     printf("Welecome to omni, please enter your mobile number to register before you start: ");
     scanf("%s", person[*data_amount].phone_number);
-    while(search_duplicates(person, *data_amount)){
+    while(search_duplicates(*data_amount)){
         printf("The phone number is already exist, please enter another phone number: ");
         scanf("%s", person[*data_amount].phone_number);
     }
@@ -223,7 +247,7 @@ void add_account(Data *person, int *data_amount){
     printf("%d\n", *data_amount);
 }
 
-bool search_duplicates(Data *person, int data_amount){
+bool search_duplicates(int data_amount){
     for (int i = 0; i < data_amount; i++){
         if(!strcmp(person[i].phone_number, person[data_amount].phone_number)){
             return true;
@@ -238,3 +262,4 @@ bool check_boundary(int x, int y){
     }
     return true;
 }
+
