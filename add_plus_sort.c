@@ -220,7 +220,7 @@ void add_account(int *data_amount){
             printf("City: %s\n", person[*data_amount].area);
             printf("Zodiac: %s\n", person[*data_amount].zodiac);
             printf("Job: %s\n", person[*data_amount].job);
-            printf("Age: %s\n\n"finish, person[*data_amount].income);
+            printf("Income: %s\n\n"finish, person[*data_amount].income);
             printf(B_U_I_yellow"Hobbies:\n"finish);
             printf(B_I_green"*******************************************************************\n"finish);
             printf(B_cyan"%s\n", person[*data_amount].hobby[0]);
