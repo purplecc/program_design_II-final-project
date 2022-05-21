@@ -4,6 +4,12 @@
 #include <time.h>
 #include<math.h>
 
+#define B_BLUE "\x1B[1;36m"
+#define DBLUE "\x1B[0;34m"
+#define GREEN "\x1B[0;32m"
+#define BACK_YELLOW "\x1B[3;33m"
+#define PURPLE "\x1B[0;35m"
+
 typedef struct data{
     char name[21];
     char gender;
@@ -31,20 +37,41 @@ void age_score(Data *User,int *data_amount);
 void area_score(Data *User,int *data_amount);
 void hobby_score(Data *User,int *data_amount);
 int comp(const void *p,const void *q);
+void display(int *data_amount);
 
 int main(){
     int data_amount = 0;
     data_amount = read_file(person);
-
+    Data User[1];
+    scanf("%s %c %s %s %s %s %s %s %s %c %d %f %s %s %d %s "
+    , User->name
+    , &User->gender
+    , User->hobby[0]
+    , User->hobby[1]
+    , User->hobby[2]
+    , User->hobby[3]
+    , User->hobby[4]
+    , User->phone_number
+    , User->area
+    , &User->target
+    , &User->age
+    , &User->height
+    , User->zodiac
+    , User->income
+    , User->self_introduction
+    );
     calculate_score(User,&data_amount);
+    printf("calculate\n");
     qsort(idx,data_amount,sizeof(int),comp);
+    printf("sort\n");
+    display(&data_amount);
     // printf("%d\n", data_amount);                        // 看讀到的人數對不對
     // printf("%lf", (double)clock() / CLOCKS_PER_SEC);    // 看整個程式執行時間(/s)
 }
 
 int read_file(Data *person){
     int i = 0;                                    // 檔名要記得改自己txt的名字喔
-    const char *filename = "apin copy.txt";
+    const char *filename = "nefertari.txt";
     FILE *input_file = fopen(filename, "r");
     if (!input_file){
         exit(EXIT_FAILURE);
@@ -73,7 +100,7 @@ int read_file(Data *person){
     fclose(input_file);
     int temp_i = i;
     /*for (int i = 0; i < temp_i; i++){
-        printf("%s %c %s %s %s %s %s %s %s %c %d %.1f %s %s %s %d\n%s\n"
+        printf("%s %c %s %s %s %s %s %s %s %c %d %.1f %s %s %s %s\n"
         , person[i].name
         , person[i].gender
         , person[i].hobby[0]
@@ -125,7 +152,7 @@ void sexuality_score(Data *User,int *data_amount){     // 性向對了+500
     int mode = judge_mode(User);
     int i;
     if(mode == 1){
-        for ( i = 0; i < data_amount; i++){
+        for ( i = 0; i < *data_amount; i++){
            if((person + i)->gender == 'M' && (person + i)->target == 'F'){
                (person + i)->score += 500;                  
            }
@@ -135,7 +162,7 @@ void sexuality_score(Data *User,int *data_amount){     // 性向對了+500
         }
     }
     else if(mode == 2){
-        for ( i = 0; i < data_amount; i++){
+        for ( i = 0; i < *data_amount; i++){
            if((person + i)->gender == 'F'){
                if((person + i)->target == 'F' || (person + i)->target == 'B')
                    (person + i)->score += 500;
@@ -146,7 +173,7 @@ void sexuality_score(Data *User,int *data_amount){     // 性向對了+500
         }
     }
     else if(mode == 3){
-        for ( i = 0; i < data_amount; i++){
+        for ( i = 0; i < *data_amount; i++){
             if((person + i)->target == 'F' || (person + i)->target == 'B')
                 (person + i)->score += 500;
             else{
@@ -155,7 +182,7 @@ void sexuality_score(Data *User,int *data_amount){     // 性向對了+500
         }
     }
     else if(mode == 4){
-        for ( i = 0; i < data_amount; i++){
+        for ( i = 0; i < *data_amount; i++){
            if((person + i)->gender == 'F' && (person + i)->target == 'M'){
                (person + i)->score += 500;
            }
@@ -165,7 +192,7 @@ void sexuality_score(Data *User,int *data_amount){     // 性向對了+500
         }
     }
     else if(mode == 5){
-        for ( i = 0; i < data_amount; i++){
+        for ( i = 0; i < *data_amount; i++){
            if((person + i)->gender == 'M'){
                if((person + i)->target == 'M' || (person + i)->target == 'B')
                    (person + i)->score += 500;
@@ -185,7 +212,7 @@ void sexuality_score(Data *User,int *data_amount){     // 性向對了+500
 }
 
 void age_score(Data *User,int *data_amount){           // 年齡對了+100
-    for(int i = 0;i < data_amount;i++){
+    for(int i = 0;i < *data_amount;i++){
         if(abs(((person + i)->age)- (User->age))<=10){
             (person + i)->score += 100;
         }
@@ -193,7 +220,7 @@ void age_score(Data *User,int *data_amount){           // 年齡對了+100
 }
 
 void area_score(Data *User,int *data_amount){          // 距離差0加100,差1加90,差2加80...10以上不加了
-    for(int i = 0;i < data_amount;i++){
+    for(int i = 0;i < *data_amount;i++){
         int ans = abs(((person + i)->index_of_area)- (User->index_of_area));
         if(ans == 0){
             (person + i)->score += 100;
@@ -206,7 +233,7 @@ void area_score(Data *User,int *data_amount){          // 距離差0加100,差1�
 
 void hobby_score(Data *User,int *data_amount){         //每對一個+20
     for(int i = 0;i < 5;i++){       
-        for(int j = 0;j < data_amount;j++){
+        for(int j = 0;j < *data_amount;j++){
             for(int k = 0;k < 5;k++){
                 if(!strcmp(User->hobby[i],(person + j)->hobby[k]))
                     (person + j)->score += 20;
@@ -216,5 +243,28 @@ void hobby_score(Data *User,int *data_amount){         //每對一個+20
 }
 
 int comp(const void *p,const void *q){
-    return (person[*(int *)p].score) - (person[*(int *)q].score) ;
+    return (person[*(int *)q].score) - (person[*(int *)p].score) ;
+}
+
+void display(int *data_amount){
+    int j = 0;
+    for(int i = 0;i < *data_amount;i++){
+        // system("cls");
+        if(person[idx[i]].score >= 500){
+            printf("%d\n%d\n",i,person[idx[i]].score);
+            printf(BACK_YELLOW"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n"); //看能不能把justify拿出來用 再修改邊幅
+            int space = (80 - strlen(person[idx[i]].name))/2;
+            for(int j = 0;j < space;j++){
+                printf(" ");
+            }
+            printf(B_BLUE"%s\n",person[idx[i]].name);
+            printf(DBLUE"Age: %d\n",person[idx[i]].age);
+            printf(DBLUE"Area:%s\n",person[idx[i]].area);
+            printf(DBLUE"Hobbies:\n  %s %s %s %s %s\n",person[idx[i]].hobby[0],person[idx[i]].hobby[1],person[idx[i]].hobby[2],person[idx[i]].hobby[3],person[idx[i]].hobby[4]);
+            printf(PURPLE"Self introduction :\n  %s\n\n",person[idx[i]].self_introduction);  //justify內容?
+            printf(BACK_YELLOW"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n");
+            j++;
+        }
+    }
+    printf("%d\n",j);
 }
