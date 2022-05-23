@@ -403,11 +403,11 @@ void hobby_score(Data *User,int *data_amount){         //每對一個+20
     for(int i = 0;i < 5;i++){       
         for(int j = 0;j < *data_amount;j++){
             for(int k = 0;k < 5;k++){
-                if(!strcmp(User->hobby[i],(person + j)->hobby[k]))
+                if(!strcasecmp(User->hobby[i],(person + j)->hobby[k]))
                     (person + j)->score += 20;
             }
         }
-    }    
+    }
 }
 
 int comp(const void *p,const void *q){
