@@ -13,7 +13,7 @@
 ## Operation
 
 ### Add
-- [x] Add a new item to the database system. **The program must print an error message if**
+&#x2705; Add a new item to the database system. **The program must print an error message if**
 **the item is already in the database.**
 ### Delete
 - [ ] Delete a given item from the database. **The program must print an error message if**
@@ -37,17 +37,17 @@ For example, you can sort products by their prices or expired dates.
 ### SORT **(Use qsort)**
 - [ ] Distance&emsp;(int)
   * set coordinates and count
-- [x] Gender&emsp;(int)
-- [x] Age&emsp;(int)
-- [x] Height&emsp;(float)
-- [x] Zodiac&emsp;(string)
-- [x] income&emsp;(int)
-- [x] job&emsp;(string)
+&#x2705; Gender&emsp;(int)
+&#x2705; Age&emsp;(int)
+&#x2705; Height&emsp;(float)
+&#x2705; Zodiac&emsp;(string)
+&#x2705; income&emsp;(int)
+&#x2705; job&emsp;(string)
 
 ### Pairing Mechanism
-- [x] A good-looking interface
+- [ ] A good-looking interface
 
-- [x] A bottom to choose whether you like the person
+&#x2705; A bottom to choose whether you like the person
 
 - [ ] 25 people like the **USER** after entering the information (random)
 
