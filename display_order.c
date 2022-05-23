@@ -3,12 +3,24 @@
 #include <string.h>
 #include <time.h>
 #include<math.h>
+#include <conio.h>
 
-#define B_BLUE "\x1B[1;36m"
-#define DBLUE "\x1B[0;34m"
-#define GREEN "\x1B[0;32m"
-#define BACK_YELLOW "\x1B[3;33m"
-#define PURPLE "\x1B[0;35m"
+#ifndef _COLOR_
+#define _COLOR_
+#define B_BLUE          "\x1B[1;36m"
+#define BLUE            "\x1B[0;36m"
+#define DBLUE           "\x1B[0;34m"
+#define GREEN           "\x1B[0;32m"
+#define BACK_YELLOW     "\x1B[3;33m"
+#define PURPLE          "\x1B[0;35m"
+#define B_PURPLE        "\x1B[1;35m"
+#define finish          "\033[0m"
+#define light           "\033[01m"
+#define B_U_I_yellow    "\033[1;3;4;33m"
+#define B_B_red         "\033[1;31;43m"
+#define B_I_BA_red      "\033[1;3;2;41m"      
+#define B_I_BA_green    "\033[1;3;2;42m"     
+#endif
 
 typedef struct data{
     char name[21];
@@ -38,33 +50,36 @@ void area_score(Data *User,int *data_amount);
 void hobby_score(Data *User,int *data_amount);
 int comp(const void *p,const void *q);
 void display(int *data_amount);
+void yes_or_no();
+int check_boundary_second(int x,int y);
 
 int main(){
     int data_amount = 0;
     data_amount = read_file(person);
-    Data User[1];
-    scanf("%s %c %s %s %s %s %s %s %s %c %d %f %s %s %d %s "
-    , User->name
-    , &User->gender
-    , User->hobby[0]
-    , User->hobby[1]
-    , User->hobby[2]
-    , User->hobby[3]
-    , User->hobby[4]
-    , User->phone_number
-    , User->area
-    , &User->target
-    , &User->age
-    , &User->height
-    , User->zodiac
-    , User->income
-    , User->self_introduction
-    );
+    // Data User[1];                                        //測試時自己可以輸
+    // scanf("%s %c %s %s %s %s %s %s %s %c %d %f %s %s %d %s "
+    // , User->name
+    // , &User->gender
+    // , User->hobby[0]
+    // , User->hobby[1]
+    // , User->hobby[2]
+    // , User->hobby[3]
+    // , User->hobby[4]
+    // , User->phone_number
+    // , User->area
+    // , &User->target
+    // , &User->age
+    // , &User->height
+    // , User->zodiac
+    // , User->income
+    // , User->self_introduction
+    // );
     calculate_score(User,&data_amount);
     printf("calculate\n");
     qsort(idx,data_amount,sizeof(int),comp);
     printf("sort\n");
     display(&data_amount);
+    printf("You skip too many people today!\n");
     // printf("%d\n", data_amount);                        // 看讀到的人數對不對
     // printf("%lf", (double)clock() / CLOCKS_PER_SEC);    // 看整個程式執行時間(/s)
 }
@@ -247,24 +262,54 @@ int comp(const void *p,const void *q){
 }
 
 void display(int *data_amount){
-    int j = 0;
+    int x ,y;
+    char yes_no[1][2][6];
+    strcpy(yes_no[0][0], " YES ");
+    strcpy(yes_no[0][1], " NO ");
     for(int i = 0;i < *data_amount;i++){
-        // system("cls");
+        x = 0;
+        y = 0;
+        system("cls");
         if(person[idx[i]].score >= 500){
-            printf("%d\n%d\n",i,person[idx[i]].score);
-            printf(BACK_YELLOW"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n"); //看能不能把justify拿出來用 再修改邊幅
-            int space = (80 - strlen(person[idx[i]].name))/2;
+            while(1){
+            // printf("%d\n",person[idx[i]].score);
+            printf(BACK_YELLOW"\nFIND YOUR SOUL MATE!\n\n"finish);
+            printf(B_U_I_yellow"***************************************************************************\n\n"finish); //看能不能把justify拿出來用 再修改邊幅
+            int space = (70 - strlen(person[idx[i]].name))/2;
             for(int j = 0;j < space;j++){
                 printf(" ");
             }
-            printf(B_BLUE"%s\n",person[idx[i]].name);
-            printf(DBLUE"Age: %d\n",person[idx[i]].age);
-            printf(DBLUE"Area:%s\n",person[idx[i]].area);
-            printf(DBLUE"Hobbies:\n  %s %s %s %s %s\n",person[idx[i]].hobby[0],person[idx[i]].hobby[1],person[idx[i]].hobby[2],person[idx[i]].hobby[3],person[idx[i]].hobby[4]);
-            printf(PURPLE"Self introduction :\n  %s\n\n",person[idx[i]].self_introduction);  //justify內容?
-            printf(BACK_YELLOW"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n");
-            j++;
+            printf(B_BLUE"%s\n"finish,person[idx[i]].name);
+            printf(B_BLUE"Gender :%c\n"finish,person[idx[i]].gender);
+            printf(B_BLUE"Age    :%d\n"finish,person[idx[i]].age);
+            printf(B_BLUE"Area   :%s\n"finish,person[idx[i]].area);
+            printf(B_BLUE"Hobbies:%s %s %s %s %s\n"finish,person[idx[i]].hobby[0],person[idx[i]].hobby[1],person[idx[i]].hobby[2],person[idx[i]].hobby[3],person[idx[i]].hobby[4]);
+            printf(B_PURPLE"Self introduction :\n  %s\n\n"finish,person[idx[i]].self_introduction);  //justify內容?
+            for(int i = 0;i < 1;i++){
+                for(int j = 0;j < 2;j++){
+                    if(i == x && j == y ){
+                        if(y == 0)printf(B_I_BA_green"\t\t\t%s"finish,yes_no[i][j]);
+                        else if(y == 1)printf(B_I_BA_red"\t\t\t%s"finish,yes_no[i][j]);
+                    }
+                    else
+                        printf("\t\t\t%s",yes_no[i][j]);
+                }
+            }
+            printf("\n\n");
+            printf(B_U_I_yellow"***************************************************************************\n\n"finish);
+            char key;
+            key = getch();
+            if((key == 'A' || key == 'a' || key == 75) && ((y - 1) >= 0)){
+                y-=1;
+            }
+            else if((key == 'D' || key =='d' || key == 77) && ((y + 1) <= 1)){
+                y+=1;
+            }
+            else if(key == '\r' ){
+                break;
+            }
+            system("cls");
+            }
         }
     }
-    printf("%d\n",j);
 }
