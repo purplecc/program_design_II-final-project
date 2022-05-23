@@ -414,13 +414,11 @@ int comp(const void *p,const void *q){
     return (person[*(int *)q].score) - (person[*(int *)p].score) ;
 }
 void display(int *data_amount){
-    int x ,y;
+    int x = 0,y = 0;
     char yes_no[1][2][6];
     strcpy(yes_no[0][0], " YES ");
     strcpy(yes_no[0][1], " NO ");
     for(int i = 0;i < *data_amount;i++){
-        x = 0;
-        y = 0;
         system("cls");
         if(person[idx[i]].score >= 500){
             while(1){
