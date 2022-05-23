@@ -10,16 +10,14 @@
 #define B_BLUE          "\x1B[1;36m"
 #define BLUE            "\x1B[0;36m"
 #define DBLUE           "\x1B[0;34m"
-#define GREEN           "\x1B[0;32m"
 #define BACK_YELLOW     "\x1B[3;33m"
 #define PURPLE          "\x1B[0;35m"
 #define B_PURPLE        "\x1B[1;35m"
 #define finish          "\033[0m"
-#define light           "\033[01m"
 #define B_U_I_yellow    "\033[1;3;4;33m"
 #define B_B_red         "\033[1;31;43m"
-#define B_I_BA_red      "\033[1;3;2;41m"      
-#define B_I_BA_green    "\033[1;3;2;42m"     
+#define B_I_BA_red      "\033[1;3;2;41m"
+#define B_I_BA_green    "\033[1;3;2;42m"
 #endif
 
 typedef struct data{
