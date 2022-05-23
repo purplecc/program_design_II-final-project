@@ -56,24 +56,24 @@ int check_boundary_second(int x,int y);
 int main(){
     int data_amount = 0;
     data_amount = read_file(person);
-    // Data User[1];                                        //測試時自己可以輸
-    // scanf("%s %c %s %s %s %s %s %s %s %c %d %f %s %s %d %s "
-    // , User->name
-    // , &User->gender
-    // , User->hobby[0]
-    // , User->hobby[1]
-    // , User->hobby[2]
-    // , User->hobby[3]
-    // , User->hobby[4]
-    // , User->phone_number
-    // , User->area
-    // , &User->target
-    // , &User->age
-    // , &User->height
-    // , User->zodiac
-    // , User->income
-    // , User->self_introduction
-    // );
+    Data User[1];                                        //測試時自己可以輸
+    scanf("%s %c %s %s %s %s %s %s %s %c %d %f %s %s %d %s "
+    , User->name
+    , &User->gender
+    , User->hobby[0]
+    , User->hobby[1]
+    , User->hobby[2]
+    , User->hobby[3]
+    , User->hobby[4]
+    , User->phone_number
+    , User->area
+    , &User->target
+    , &User->age
+    , &User->height
+    , User->zodiac
+    , User->income
+    , User->self_introduction
+    );
     calculate_score(User,&data_amount);
     printf("calculate\n");
     qsort(idx,data_amount,sizeof(int),comp);
