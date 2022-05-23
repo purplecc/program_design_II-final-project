@@ -37,11 +37,17 @@ For example, you can sort products by their prices or expired dates.
 ### SORT **(Use qsort)**
 - [ ] Distance&emsp;(int)
   * set coordinates and count
+
 &#x2705; Gender&emsp;(int)
+
 &#x2705; Age&emsp;(int)
+
 &#x2705; Height&emsp;(float)
+
 &#x2705; Zodiac&emsp;(string)
+
 &#x2705; income&emsp;(int)
+
 &#x2705; job&emsp;(string)
 
 ### Pairing Mechanism
