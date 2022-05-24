@@ -53,7 +53,8 @@ char hobbies[6][5][13] = {{{"Writing"}, {"Reading"}, {"Singing"}, {"Photography"
                         {{"Cooking"}, {"Baking"}, {"Jogging"}, {"Swimming"}, {"Working-out"}},
                         {{"badminton"}, {"Tennis"}, {"Basketball"}, {"Volleyball"},{"Cycling"}},
                         {{"Dancing"}, {"Films"}, {"Fashion"}, {"Collecting"}, {"Music"}},
-                        {{"Anime"}, {"Delicacy"}, {"Shopping"}, {"Yoga"}, {"Memes"}}};
+                        {{"Anime"}, {"Delicacy"}, {"Shopping"}, {"Yoga"}, {"Memes"}},
+                        {{"Diving"},{"Sunbathing"},{"Piano"},{"Guitar"},{"Makeup"}}};
 char decision[2][27] = {"Yes", "No(enter my profile again)"};
 bool hobbies_flag[6][5];
 Data person[1000];
