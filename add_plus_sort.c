@@ -66,7 +66,6 @@ char hobbies[6][5][13] = {{{"Writing"}, {"Reading"}, {"Singing"}, {"Photography"
                         {{"Diving"},{"Sunbathing"},{"Piano"},{"Guitar"},{"Makeup"}}};
 char decision[2][27] = {"Yes", "No(enter my profile again)"};
 bool hobbies_flag[6][5];
-int idx[1000];                                          // 排序會用到的index
 Data person[1000];
 
 int main(){
@@ -76,7 +75,8 @@ int main(){
     printf("%lf\n", (double)clock() / CLOCKS_PER_SEC);      // 讀檔時間(/s)
     add_account(&data_amount);
     calculate_score(&person[data_amount-1], &data_amount);
-    qsort(idx,data_amount,sizeof(int),comp);
+    qsort(person,data_amount,sizeof(Data),comp);
+    print_data(data_amount);
     display(&data_amount);
     printf("You skip too many people today!\n");
     printf("%d\n", data_amount);
@@ -106,14 +106,13 @@ int read_file(){
     , person[i].income
     , person[i].job) != EOF){
         fgets(person[i].self_introduction, 151, input_file);
-        idx[i] = i;
         i++;
     }
     fclose(input_file);
     return i;
 }
 
-// void print_data(int data_amount){
+void print_data(int data_amount){
 //     for (int i = 0; i < data_amount; i++){
 //         printf("%s %c %s %s %s %s %s %s %s %c %d %.1f %s %s %s\n%s\n"
 //         , person[i].name
@@ -133,10 +132,11 @@ int read_file(){
 //         , person[i].job
 //         , person[i].self_introduction);
 //     }
-//     for (int i = 0; i < data_amount - 1;i++){
-//         printf("%d\n", person[i].score);
-//     }
-// }
+    // for (int i = 0; i < data_amount - 1;i++){
+    //     printf("%d\n", person[i].score);
+        
+    // }
+}
 
 void add_account(int *data_amount){
     printf("Welecome to omni, please enter your mobile number to register before you start: ");
@@ -318,26 +318,26 @@ int judge_mode(Data *User){
 
 void sexuality_score(Data *User,int *data_amount){     // 性向對了+500
     int mode = judge_mode(User);
-    int i;
+    int i = 0;
     if(mode == 1){
         for ( i = 0; i < *data_amount; i++){
-           if((person + i)->gender == 'M' && (person + i)->target == 'F'){
-               (person + i)->score += 500;                  
-           }
-           else{
-               (person + i)->score = 0;
-           }
+            if((person + i)->gender == 'M' && (person + i)->target == 'F'){
+                (person + i)->score += 500;                  
+            }
+            else{
+                (person + i)->score = 0;
+            }
         }
     }
     else if(mode == 2){
         for ( i = 0; i < *data_amount; i++){
-           if((person + i)->gender == 'F'){
-               if((person + i)->target == 'F' || (person + i)->target == 'B')
-                   (person + i)->score += 500;
-           }
-           else{
-               (person + i)->score = 0;
-           }
+            if((person + i)->gender == 'F'){
+                if((person + i)->target == 'F' || (person + i)->target == 'B')
+                    (person + i)->score += 500;
+            }
+            else{
+                (person + i)->score = 0;
+            }
         }
     }
     else if(mode == 3){
@@ -345,36 +345,36 @@ void sexuality_score(Data *User,int *data_amount){     // 性向對了+500
             if((person + i)->target == 'F' || (person + i)->target == 'B')
                 (person + i)->score += 500;
             else{
-               (person + i)->score = 0;
+                (person + i)->score = 0;
             }
         }
     }
     else if(mode == 4){
         for ( i = 0; i < *data_amount; i++){
-           if((person + i)->gender == 'F' && (person + i)->target == 'M'){
-               (person + i)->score += 500;
-           }
-           else{
-               (person + i)->score = 0;
-           }
+            if((person + i)->gender == 'F' && (person + i)->target == 'M'){
+                (person + i)->score += 500;
+            }
+            else{
+                (person + i)->score = 0;
+            }
         }
     }
     else if(mode == 5){
         for ( i = 0; i < *data_amount; i++){
-           if((person + i)->gender == 'M'){
-               if((person + i)->target == 'M' || (person + i)->target == 'B')
-                   (person + i)->score += 500;
-           }
-           else{
-               (person + i)->score = 0;
-           }
+            if((person + i)->gender == 'M'){
+                if((person + i)->target == 'M' || (person + i)->target == 'B')
+                    (person + i)->score += 500;
+            }
+            else{
+                (person + i)->score = 0;
+            }
         }
     }
     else if(mode == 6){
         if((person + i)->target == 'M' || (person + i)->target == 'B')
                 (person + i)->score += 500;
             else{
-               (person + i)->score = 0;
+                (person + i)->score = 0;
             }
     }
 }
@@ -412,8 +412,9 @@ void hobby_score(Data *User,int *data_amount){         //每對一個+20
 }
 
 int comp(const void *p,const void *q){
-    return (person[*(int *)q].score) - (person[*(int *)p].score) ;
+    return (((Data *)q)->score - ((Data *)p)->score);
 }
+
 void display(int *data_amount){
     int x = 0,y = 0;
     char yes_no[1][2][6];
@@ -421,21 +422,20 @@ void display(int *data_amount){
     strcpy(yes_no[0][1], " NO ");
     for(int i = 0;i < *data_amount;i++){
         system("cls");
-        if(person[idx[i]].score >= 500){
+        if(person[i].score >= 500){
             while(1){
-            // printf("%d\n",person[idx[i]].score);
             printf(BACK_YELLOW"\nFIND YOUR SOUL MATE!\n\n"finish);
             printf(B_U_I_yellow"***************************************************************************\n\n"finish); //看能不能把justify拿出來用 再修改邊幅
-            int space = (70 - strlen(person[idx[i]].name))/2;
+            int space = (70 - strlen(person[i].name))/2;
             for(int j = 0;j < space;j++){
                 printf(" ");
             }
-            printf(B_BLUE"%s\n"finish,person[idx[i]].name);
-            printf(B_BLUE"Gender :%c\n"finish,person[idx[i]].gender);
-            printf(B_BLUE"Age    :%d\n"finish,person[idx[i]].age);
-            printf(B_BLUE"Area   :%s\n"finish,person[idx[i]].area);
-            printf(B_BLUE"Hobbies:%s %s %s %s %s\n"finish,person[idx[i]].hobby[0],person[idx[i]].hobby[1],person[idx[i]].hobby[2],person[idx[i]].hobby[3],person[idx[i]].hobby[4]);
-            printf(B_PURPLE"Self introduction :\n  %s\n\n"finish,person[idx[i]].self_introduction);  //justify內容?
+            printf(B_BLUE"%s\n"finish,person[i].name);
+            printf(B_BLUE"Gender :%c\n"finish,person[i].gender);
+            printf(B_BLUE"Age    :%d\n"finish,person[i].age);
+            printf(B_BLUE"Area   :%s\n"finish,person[i].area);
+            printf(B_BLUE"Hobbies:%s %s %s %s %s\n"finish,person[i].hobby[0],person[i].hobby[1],person[i].hobby[2],person[i].hobby[3],person[i].hobby[4]);
+            printf(B_PURPLE"Self introduction :\n  %s\n\n"finish,person[i].self_introduction);  //justify內容?
             for(int i = 0;i < 1;i++){
                 for(int j = 0;j < 2;j++){
                     if(i == x && j == y ){
