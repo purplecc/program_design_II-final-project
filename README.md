@@ -13,7 +13,7 @@
 ## Operation
 
 ### Add
-- [ ] Add a new item to the database system. **The program must print an error message if**
+&#x2705; Add a new item to the database system. **The program must print an error message if**
 **the item is already in the database.**
 ### Delete
 - [ ] Delete a given item from the database. **The program must print an error message if**
@@ -37,17 +37,23 @@ For example, you can sort products by their prices or expired dates.
 ### SORT **(Use qsort)**
 - [ ] Distance&emsp;(int)
   * set coordinates and count
-- [ ] Gender&emsp;(int)
-- [ ] Age&emsp;(int)
-- [ ] Height&emsp;(float)
-- [ ] Zodiac&emsp;(string)
-- [ ] income&emsp;(int)
-- [ ] job&emsp;(string)
+
+&#x2705; Gender&emsp;(int)
+
+&#x2705; Age&emsp;(int)
+
+&#x2705; Height&emsp;(float)
+
+&#x2705; Zodiac&emsp;(string)
+
+&#x2705; income&emsp;(int)
+
+&#x2705; job&emsp;(string)
 
 ### Pairing Mechanism
 - [ ] A good-looking interface
 
-- [ ] A bottom to choose whether you like the person
+&#x2705; A bottom to choose whether you like the person
 
 - [ ] 25 people like the **USER** after entering the information (random)
 
@@ -198,7 +204,26 @@ typedef struct data{
     * 順序已經排出來了, 但還不行只讓圈內人顯示出來就好
 
 ### 柯的
-* 1.0.2 fileIO.c 新增score變數
-* 1.0.1 display_order
+* fileIO.c
+  * 新增score變數
+* display_order
+  * 1.0.1
     * 把Data person移到全域了，用qsort比較方便
     * 我沒有用linked list，因為一開始用陣列存就是連續記憶體了，覺得沒必要用到
+    
+    <img src="relationship.jpg">
+
+  * 1.0.2
+    * 小小修改
+  * 1.0.3
+    * 顯示順序出來了剩下漂亮的排版和做YES/NO鍵
+  * 1.0.4
+    * 好了耶！還是覺得排版醜醜的，還有不確定滑完會發生什麼事，應該沒事啦～
+* add_plus_sort
+  * 1.0.1
+    * 前半部需要修改的有
+      * file的地區賦值
+      * 輸錯資訊的應對措施
+      * 漂亮排版
+  * 1.0.2
+    * 比對hobbies(和area)換成strcasecmp避免資料一開始大小寫就不一樣
