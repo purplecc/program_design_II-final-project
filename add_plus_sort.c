@@ -439,7 +439,7 @@ void display(int *data_amount){
     while(like_people <= 20){
         for(int i = 0;i < correct;i++){
             system("cls");
-            if(correct_person[i].flag == 0){
+            if(correct_person[i].flag == 0 && like_people <= 20){
                 while(1){
                     printf(BACK_YELLOW"\nFIND YOUR SOULMATE!\n\n"finish);
                     printf(B_U_I_yellow"***************************************************************************\n\n"finish); 
@@ -450,7 +450,7 @@ void display(int *data_amount){
                     printf(B_BLUE"%s\n"finish,correct_person[i].name);
                     printf(B_BLUE"Gender :%c\n"finish,correct_person[i].gender);
                     printf(B_BLUE"Age    :%d\n"finish,correct_person[i].age);
-                    printf(B_BLUE"Height :%lf\n"finish,correct_person[i].height);
+                    printf(B_BLUE"Height :%.1f\n"finish,correct_person[i].height);
                     printf(B_BLUE"Zodiac :%s\n"finish,correct_person[i].zodiac);
                     printf(B_BLUE"Area   :%s\n"finish,correct_person[i].area);
                     printf(B_BLUE"Hobbies:%s %s %s %s %s\n"finish,correct_person[i].hobby[0],correct_person[i].hobby[1],correct_person[i].hobby[2],correct_person[i].hobby[3],correct_person[i].hobby[4]);
