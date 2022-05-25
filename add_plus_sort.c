@@ -41,6 +41,7 @@ typedef struct data{
     int index_of_area;
     char self_introduction[151];
     int score;
+    int flag;                                          // 是否被喜歡過
 } Data;
 
 int read_file();
@@ -67,6 +68,7 @@ char hobbies[6][5][13] = {{{"Writing"}, {"Reading"}, {"Singing"}, {"Photography"
 char decision[2][27] = {"Yes", "No(enter my profile again)"};
 bool hobbies_flag[6][5];
 Data person[1000];
+Data correct_person[500];
 
 int main(){
     int data_amount = 0;
@@ -78,7 +80,6 @@ int main(){
     qsort(person,data_amount,sizeof(Data),comp);
     print_data(data_amount);
     display(&data_amount);
-    printf("You skip too many people today!\n");
     printf("%d\n", data_amount);
 }
 
@@ -178,7 +179,7 @@ void add_account(int *data_amount){
         int count_hobby = 0;
         while(1){
             system("cls");
-            printf("\nAfter filling out the basic information, let's Choose 5 hobby from the following list:\n\n");
+            printf("\nAfter filling out the basic information, let's choose 5 hobbies from the following list:\n\n");
             char key;
             for (int i = 0; i<6; i++){
                 for (int j = 0; j < 5; j++){
@@ -320,17 +321,18 @@ void sexuality_score(Data *User,int *data_amount){     // 性向對了+500
     int mode = judge_mode(User);
     int i = 0;
     if(mode == 1){
-        for ( i = 0; i < *data_amount; i++){
+        for (i = 0; i < *data_amount; i++){
             if((person + i)->gender == 'M' && (person + i)->target == 'F'){
                 (person + i)->score += 500;                  
             }
             else{
                 (person + i)->score = 0;
             }
+            (person + i)->flag = 0;
         }
     }
     else if(mode == 2){
-        for ( i = 0; i < *data_amount; i++){
+        for (i = 0; i < *data_amount; i++){
             if((person + i)->gender == 'F'){
                 if((person + i)->target == 'F' || (person + i)->target == 'B')
                     (person + i)->score += 500;
@@ -338,29 +340,32 @@ void sexuality_score(Data *User,int *data_amount){     // 性向對了+500
             else{
                 (person + i)->score = 0;
             }
+            (person + i)->flag = 0;
         }
     }
     else if(mode == 3){
-        for ( i = 0; i < *data_amount; i++){
+        for (i = 0; i < *data_amount; i++){
             if((person + i)->target == 'F' || (person + i)->target == 'B')
                 (person + i)->score += 500;
             else{
                 (person + i)->score = 0;
             }
+            (person + i)->flag = 0;
         }
     }
     else if(mode == 4){
-        for ( i = 0; i < *data_amount; i++){
+        for (i = 0; i < *data_amount; i++){
             if((person + i)->gender == 'F' && (person + i)->target == 'M'){
                 (person + i)->score += 500;
             }
             else{
                 (person + i)->score = 0;
             }
+            (person + i)->flag = 0;
         }
     }
     else if(mode == 5){
-        for ( i = 0; i < *data_amount; i++){
+        for (i = 0; i < *data_amount; i++){
             if((person + i)->gender == 'M'){
                 if((person + i)->target == 'M' || (person + i)->target == 'B')
                     (person + i)->score += 500;
@@ -368,14 +373,17 @@ void sexuality_score(Data *User,int *data_amount){     // 性向對了+500
             else{
                 (person + i)->score = 0;
             }
+            (person + i)->flag = 0;
         }
     }
     else if(mode == 6){
-        if((person + i)->target == 'M' || (person + i)->target == 'B')
+        for(i = 0 ; i < *data_amount ; i++){
+            if((person + i)->target == 'M' || (person + i)->target == 'B')
                 (person + i)->score += 500;
-            else{
+            else
                 (person + i)->score = 0;
-            }
+            (person + i)->flag = 0;
+        }
     }
 }
 
@@ -417,49 +425,67 @@ int comp(const void *p,const void *q){
 
 void display(int *data_amount){
     int x = 0,y = 0;
+    int like_people = 0;
     char yes_no[1][2][6];
     strcpy(yes_no[0][0], " YES ");
     strcpy(yes_no[0][1], " NO ");
+    int correct = 0;
     for(int i = 0;i < *data_amount;i++){
-        system("cls");
         if(person[i].score >= 500){
-            while(1){
-            printf(BACK_YELLOW"\nFIND YOUR SOUL MATE!\n\n"finish);
-            printf(B_U_I_yellow"***************************************************************************\n\n"finish); //看能不能把justify拿出來用 再修改邊幅
-            int space = (70 - strlen(person[i].name))/2;
-            for(int j = 0;j < space;j++){
-                printf(" ");
-            }
-            printf(B_BLUE"%s\n"finish,person[i].name);
-            printf(B_BLUE"Gender :%c\n"finish,person[i].gender);
-            printf(B_BLUE"Age    :%d\n"finish,person[i].age);
-            printf(B_BLUE"Area   :%s\n"finish,person[i].area);
-            printf(B_BLUE"Hobbies:%s %s %s %s %s\n"finish,person[i].hobby[0],person[i].hobby[1],person[i].hobby[2],person[i].hobby[3],person[i].hobby[4]);
-            printf(B_PURPLE"Self introduction :\n  %s\n\n"finish,person[i].self_introduction);  //justify內容?
-            for(int i = 0;i < 1;i++){
-                for(int j = 0;j < 2;j++){
-                    if(i == x && j == y ){
-                        if(y == 0)printf(B_I_BA_green"\t\t\t%s"finish,yes_no[i][j]);
-                        else if(y == 1)printf(B_I_BA_red"\t\t\t%s"finish,yes_no[i][j]);
-                    }
-                    else
-                        printf("\t\t\t%s",yes_no[i][j]);
-                }
-            }
-            printf("\n\n");
-            printf(B_U_I_yellow"***************************************************************************\n\n"finish);
-            char key;
-            key = getch();
-            if((key == 'A' || key == 'a' || key == 75) && ((y - 1) >= 0)){
-                y-=1;
-            }
-            else if((key == 'D' || key =='d' || key == 77) && ((y + 1) <= 1)){
-                y+=1;
-            }
-            else if(key == '\r' ){
-                break;
-            }
+            correct_person[correct] = person[i];            // 對的人才會印，縮短判斷的時間
+            correct++;
+        }
+    }
+    while(like_people <= 20){
+        for(int i = 0;i < correct;i++){
             system("cls");
+            if(correct_person[i].flag == 0){
+                while(1){
+                    printf(BACK_YELLOW"\nFIND YOUR SOULMATE!\n\n"finish);
+                    printf(B_U_I_yellow"***************************************************************************\n\n"finish); 
+                    int space = (70 - strlen(correct_person[i].name))/2;
+                    for(int j = 0;j < space;j++){
+                        printf(" ");
+                    }
+                    printf(B_BLUE"%s\n"finish,correct_person[i].name);
+                    printf(B_BLUE"Gender :%c\n"finish,correct_person[i].gender);
+                    printf(B_BLUE"Age    :%d\n"finish,correct_person[i].age);
+                    printf(B_BLUE"Height :%lf\n"finish,correct_person[i].height);
+                    printf(B_BLUE"Zodiac :%s\n"finish,correct_person[i].zodiac);
+                    printf(B_BLUE"Area   :%s\n"finish,correct_person[i].area);
+                    printf(B_BLUE"Hobbies:%s %s %s %s %s\n"finish,correct_person[i].hobby[0],correct_person[i].hobby[1],correct_person[i].hobby[2],correct_person[i].hobby[3],correct_person[i].hobby[4]);
+                    printf(B_BLUE"Job    :%s\n"finish,correct_person[i].job);
+                    printf(B_PURPLE"Self introduction :\n  %s\n\n"finish,correct_person[i].self_introduction);  
+                    for(int i = 0;i < 1;i++){
+                        for(int j = 0;j < 2;j++){
+                            if(i == x && j == y ){
+                                if(y == 0)printf(B_I_BA_green"\t\t\t%s"finish,yes_no[i][j]);
+                                else if(y == 1)printf(B_I_BA_red"\t\t\t%s"finish,yes_no[i][j]);
+                            }
+                            else
+                                printf("\t\t\t%s",yes_no[i][j]);
+                        }
+                    }
+                    printf("\n\n");
+                    printf(B_U_I_yellow"***************************************************************************\n\n"finish);
+                    char key;
+                    key = getch();
+                    if((key == 'A' || key == 'a' || key == 75) && ((y - 1) >= 0)){
+                        y-=1;
+                    }
+                    else if((key == 'D' || key =='d' || key == 77) && ((y + 1) <= 1)){
+                        y+=1;
+                    }
+                    else if(key == '\r' && !strcmp(yes_no[x][y]," YES ")){
+                        correct_person[i].flag = 1;
+                        like_people++;
+                        break;
+                    }
+                    else if(key == '\r' && !strcmp(yes_no[x][y]," NO ")){
+                        break;
+                    }
+                    system("cls");
+                }
             }
         }
     }
