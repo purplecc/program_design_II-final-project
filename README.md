@@ -230,3 +230,10 @@ typedef struct data{
       * 漂亮排版
   * 1.0.2
     * 比對hobbies(和area)換成strcasecmp避免資料一開始大小寫就不一樣
+### 邱
+* add_plus_sort2
+  * 1.0.0
+    * 目前可以把20個喜歡的人存進鏈結裡面
+    * 能隨機選5個人存到另一條鏈結裡面
+* 然後因為不是window系統，我把conio.h windows.h換成別的函式庫，裡面有小改一點，但功能一樣
+* 抱歉檔名取的很懶
