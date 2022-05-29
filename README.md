@@ -230,6 +230,8 @@ typedef struct data{
       * 漂亮排版
   * 1.0.2
     * 比對hobbies(和area)換成strcasecmp避免資料一開始大小寫就不一樣
+  * 1.0.4
+    * search 的部分都好了，多加了一個preference的部分，可喜可賀！
 ### 邱
 * add_plus_sort2
   * 1.0.0
