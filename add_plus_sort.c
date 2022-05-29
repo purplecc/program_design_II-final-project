@@ -12,6 +12,7 @@
 #define B_B_red         "\033[1;31;43m"
 #define B_I_green       "\033[1;3;32m"
 #define B_U_I_yellow    "\033[1;3;4;33m"
+#define B_U_I_green    "\033[1;3;4;32m"
 #define B_yellow        "\033[1;33m"
 #define blue            "\033[34m"
 #define B_purple        "\033[1;35m"
@@ -46,16 +47,23 @@ typedef struct data{
 
 int read_file();
 void add_account(int *data_amount);
+void preference(int *times1,int *times2,int *times3,float *left,float *right,int *l_age,int *r_age);
+void height(int *times,int *x1,int *x2,float *left,float *right);
+void age(int *times3,int *l_age,int *r_age);
 bool search_duplicates(int data_amount);
 bool check_boundary(int x, int y);
 void print_data(int data_amount);
+void zodiac_choice(int *times,int *x_zodiac,int *y_zodiac);
 
-void calculate_score(Data *User,int *data_amount);
+void calculate_score(int *times1,int *times2,int *times3,float *left,float *right,\
+                    int *l_age,int *r_age,Data *User,int *data_amount);
 int judge_mode(Data *User);                            // 回傳使用者性向狀況
 void sexuality_score(Data *User,int *data_amount);
-void age_score(Data *User,int *data_amount);
+void age_score(int *times3,int *l_age,int *r_age,Data *User,int *data_amount);
 void area_score(Data *User,int *data_amount);
 void hobby_score(Data *User,int *data_amount);
+void prefer_zodiac_score(int *times1,int *data_amount);
+void prefer_height_score(int *times2,int *data_amount,float *left,float *right);
 int comp(const void *p, const void *q);
 void display(int *data_amount);
 
@@ -65,18 +73,29 @@ char hobbies[6][5][13] = {{{"Writing"}, {"Reading"}, {"Singing"}, {"Photography"
                         {{"Dancing"}, {"Films"}, {"Fashion"}, {"Collecting"}, {"Music"}},
                         {{"Anime"}, {"Delicacy"}, {"Shopping"}, {"Yoga"}, {"Memes"}},
                         {{"Diving"},{"Sunbathing"},{"Piano"},{"Guitar"},{"Makeup"}}};
+
 char decision[2][27] = {"Yes", "No(enter my profile again)"};
 bool hobbies_flag[6][5];
+char twelve_zodiac[2][6][15] = {{{"Capricorn"},{"Aquarius"},{"Pisces"},{"Aries"},{"Taurus"},{"Gemini"}},
+                                {{"Cancer"},{"Leo"},{"Virgo"},{"Libra"},{"Scorpio"},{"Sagittarius"}}};
+int zodiac_flag[2][6] = {{0,0,0,0,0,0,},{0,0,0,0,0,0,}};
+char prefer_zodiac[3][15];
+
 Data person[1000];
 Data correct_person[500];
 
 int main(){
     int data_amount = 0;
+    int times1 = 0,times2 = 0,times3 = 0;
+    int l_age = 0,r_age = 0;
+    float left,right;
+
     data_amount = read_file();
     printf("%d\n", data_amount);                            // 看讀到的人數對不對
     printf("%lf\n", (double)clock() / CLOCKS_PER_SEC);      // 讀檔時間(/s)
     add_account(&data_amount);
-    calculate_score(&person[data_amount-1], &data_amount);
+    preference(&times1,&times2,&times3,&left,&right,&l_age,&r_age);
+    calculate_score(&times1,&times2,&times3,&left,&right,&l_age,&r_age,&person[data_amount-1],&data_amount);
     qsort(person,data_amount,sizeof(Data),comp);
     print_data(data_amount);
     display(&data_amount);
@@ -85,7 +104,7 @@ int main(){
 
 int read_file(){
     int i = 0;                                    // 檔名要記得改自己txt的名字喔
-    const char *filename = "allen.txt";
+    const char *filename = "nefertari.txt";
     FILE *input_file = fopen(filename, "r");
     if (!input_file){
         exit(EXIT_FAILURE);
@@ -113,7 +132,7 @@ int read_file(){
     return i;
 }
 
-void print_data(int data_amount){
+ void print_data(int data_amount){
 //     for (int i = 0; i < data_amount; i++){
 //         printf("%s %c %s %s %s %s %s %s %s %c %d %.1f %s %s %s\n%s\n"
 //         , person[i].name
@@ -137,7 +156,7 @@ void print_data(int data_amount){
     //     printf("%d\n", person[i].score);
         
     // }
-}
+ }
 
 void add_account(int *data_amount){
     printf("Welecome to omni, please enter your mobile number to register before you start: ");
@@ -274,6 +293,239 @@ void add_account(int *data_amount){
     (*data_amount)+=1;
 }
 
+void preference(int *times1,int *times2,int *times3,float *left,float *right,int *l_age,int *r_age){ 
+    char four_choices[1][4][10] = {{{" Zodiac "},{" Height "},{" Age "},{" Next "}}};
+    int x = 0,y = 0;
+    int x1 = 0,x2 = 41;
+    int x_zodiac = 0,y_zodiac = 0;
+    while(1){
+        printf("\nDo You have preferred characteristic?\n");
+        for(int i = 0; i < 1 ;i++){
+            for(int j = 0; j < 4 ;j++){
+                if(i == x && j == y)
+                    printf(B_U_I_yellow"\t%s\t\t"finish,four_choices[i][j]);
+                else
+                    printf("\t%s\t\t",four_choices[i][j]);
+            }
+        }
+        char key;
+        key = getch();
+        if((key == 'A' || key == 'a' || key == 75) && y-1 >= 0){
+            y-=1;
+        }
+        else if((key == 'D' || key == 'd' || key == 77) && y+1 <= 3){
+            y+=1;
+        }
+        else if(key == '\r' && !strcmp(four_choices[x][y]," Zodiac ")){
+            zodiac_choice(times1,&x_zodiac,&y_zodiac);
+        }
+        else if(key == '\r' && !strcmp(four_choices[x][y]," Height ")){
+            height(times2,&x1,&x2,left,right);
+        }
+        else if(key == '\r' && !strcmp(four_choices[x][y]," Age ")){
+            age(times3,l_age,r_age);
+        }
+        else if(key == '\r' && !strcmp(four_choices[x][y]," Next ")){
+            break;
+        }
+        system("cls");
+    }
+}
+
+void zodiac_choice(int *times1,int *x_zodiac,int *y_zodiac){
+    if(*times1 == 3){
+        printf("\nDo you want to modify your chioces?\n(Enter Y or N)\n");
+        char ch = getchar();
+        if(ch == 'Y'){
+            *x_zodiac = 0;
+            *y_zodiac = 0;
+            *times1 = 0;
+            for(int i = 0;i < 2;i++){
+                for(int j = 0;j < 6;j++){
+                    zodiac_flag[i][j] = 0;
+                }
+            }
+            getchar();
+        }
+        else{
+            return;
+        }
+    }
+    while(1){
+        system("cls");
+        printf("\nChoose 3 preferred zoidac:\n");
+        for(int i = 0; i < 2;i++){
+            for(int j = 0; j < 6;j++){
+                if(i == *x_zodiac && j == *y_zodiac)
+                    printf(B_U_I_green"%s      \t"finish,twelve_zodiac[i][j]);
+                else if(zodiac_flag[i][j])
+                    printf(B_U_I_green"%s      \t"finish,twelve_zodiac[i][j]);
+                else
+                    printf("%s      \t",twelve_zodiac[i][j]);
+            }
+            printf("\n");
+        }
+        char key_z;
+        key_z = getch();
+        if((key_z == 'W' || key_z == 'w' || key_z == 72) && (*x_zodiac-1) >= 0){
+            *x_zodiac-=1;
+        }
+        else if((key_z == 'S' || key_z == 's' || key_z == 80) && (*x_zodiac+1) <= 1){
+            *x_zodiac+=1;
+        }
+        else if((key_z == 'A' || key_z == 'a' || key_z == 75) && (*y_zodiac-1) >= 0){
+            *y_zodiac-=1;
+        }
+        else if((key_z == 'D' || key_z == 'd' || key_z == 77) && (*y_zodiac+1) <= 5){
+            *y_zodiac+=1;
+        }
+        else if(key_z == '\r' && zodiac_flag[*x_zodiac][*y_zodiac] == 0){
+            strcpy(prefer_zodiac[*times1],twelve_zodiac[*x_zodiac][*y_zodiac]);
+            (*times1)++;
+            zodiac_flag[*x_zodiac][*y_zodiac] = 1;
+            if(*times1 == 3){
+                break;
+            }
+        }
+        
+    }
+    printf(B_BLUE"Preferred zodiac :\n%s\n%s\n%s\nPress enter and continue..."finish,prefer_zodiac[0],prefer_zodiac[1],prefer_zodiac[2]);
+    getchar();
+}
+
+void height(int *times2,int *x1,int *x2,float *left,float *right){ 
+    if(*times2 == 1){
+        printf("\nDo you want to modify your chioces?\n(Enter Y or N)\n");
+        char ch = getchar();
+        if(ch == 'Y'){
+            *x1 = 0;
+            *x2 = 41;
+            *times2 = 0;
+            getchar();
+        }
+        else{
+            return;
+        }
+    }
+    int num[6] = {160,165,170,175,180,185};
+    char line[49] = "------------------------------------------> (cm)";                                                         
+    while(1){
+        system("cls");
+        printf("Set the range of your soulmate's height!\n");
+        printf("Please move the left hand side to your ideal height lower limit:\n\n");
+        printf("  ");
+        for(int i = 0;i < 6;i++){
+            printf("%d    ",num[i]);
+        }
+        printf("\n");
+        for(int i = 0;i < 50;i++){
+            if(i == *x1){
+                printf(B_I_BA_red"%c"finish,line[i]);
+            }
+            else{
+                printf("%c",line[i]);
+            }
+        }
+        char key;
+        key = getch();
+        if((key == 'A' || key == 'a' || key == 75) && (*x1)-1 >= 0){
+            (*x1)-=1;
+        }
+        else if((key == 'D' || key == 'd' || key == 77) && (*x1)+1 <= 42){
+            (*x1)+=1;
+        }
+        else if(key == '\r'){
+            if(*x1 < 3) *left = 157.5;  
+            else if(*x1 == 3) *left = 160;
+            else if(*x1 > 3 && *x1 < 10) *left = 162.5;
+            else if(*x1 == 10) *left = 165;
+            else if(*x1 > 10 && *x1 < 17) *left = 167.5;
+            else if(*x1 == 17) *left = 170;
+            else if(*x1 > 17 && *x1 < 24) *left = 172.5;
+            else if(*x1 == 24) *left = 175;
+            else if(*x1 > 24 && *x1 < 31) *left = 177.5;
+            else if(*x1 == 31) *left = 180;
+            else if(*x1 > 31 && *x1 < 38) *left = 182.5;
+            else if(*x1 == 38) *left = 185;
+            else *left = 187.5;        
+            break; 
+        }
+    }
+    while(1){
+        system("cls");
+        printf("Set the range of your soulmate's height!\n");
+        printf("Please move the right hand side to your ideal height upper limit:\n\n");
+        printf("  ");
+        for(int i = 0;i < 6;i++){
+            printf("%d    ",num[i]);
+        }
+        printf("\n");
+        for(int i = 0;i < 50 ;i++){
+            if(i == *x1){
+                printf(B_I_BA_red"%c"finish,line[i]);
+            }
+            else if(i == *x2){
+                 printf(B_I_BA_red"%c"finish,line[i]);
+            }
+            else{
+                printf("%c",line[i]);
+            }
+        }
+        char key;
+        key = getch();
+        if((key == 'A' || key == 'a' || key == 75) && (*x2)-1 > *x1 ){
+            (*x2)-=1;
+        }
+        else if((key == 'D' || key == 'd' || key == 77) && (*x2)+1 <= 41){
+            (*x2)+=1;
+        }
+        else if(key == '\r'){                                        //160 165 170 175 180 185 
+                                                                     //3  10  17   24  31  38
+            if(*x2 < 3) *right = 157.5;  
+            else if(*x2 == 3) *right = 160;
+            else if(*x2 > 3 && *x2 < 10) *right = 162.5;
+            else if(*x2 == 10) *right = 165;
+            else if(*x2 > 10 && *x2 < 17) *right = 167.5;
+            else if(*x2 == 17) *right = 170;
+            else if(*x2 > 17 && *x2 < 24) *right = 172.5;
+            else if(*x2 == 24) *right = 175;
+            else if(*x2 > 24 && *x2 < 31) *right = 177.5;
+            else if(*x2 == 31) *right = 180;
+            else if(*x2 > 31 && *x2 < 38) *right = 182.5;
+            else if(*x2 == 38) *right = 185;
+            else *right = 187.5;        
+            break;
+        }
+    }
+    *times2 = 1;
+    printf(B_BLUE"\nPrefered height :\n%.2lf ~ %.2lf\nPress enter to continue..."finish,*left,*right);
+    getchar();
+}
+
+void age(int *times3,int *l_age,int *r_age){
+    system("cls");
+    if(*times3 != 0){
+        printf("\nDo you want to modify your chioces?\n(Enter Y or N)\n");
+        char ch = getchar();
+        if(ch == 'Y'){
+            *l_age = 0;
+            *r_age = 0;
+            getchar();
+        }
+        else{
+            return;
+        }
+    }
+    char c;
+    printf(B_BLUE"Please enter your preferred soulmate's age :\n"finish);
+    printf(B_BLUE"Ex:18-25\n"finish);
+    scanf("%d%c%d",l_age,&c,r_age);
+
+    printf(B_BLUE"\nPreferred age: %d ~ %d.\nPress enter to continue...\n"finish,*l_age,*r_age);
+    (*times3) ++;
+    getchar();
+}
+
 bool search_duplicates(int data_amount){
     for (int i = 0; i < data_amount; i++){
         if(!strcmp(person[i].phone_number, person[data_amount].phone_number)){
@@ -290,11 +542,13 @@ bool check_boundary(int x, int y){
     return true;
 }
 //* 柯的
-void calculate_score(Data *User,int *data_amount){
+void calculate_score(int *times1,int *times2,int *times3,float *left,float *right,int *l_age,int *r_age,Data *User,int *data_amount){
     sexuality_score(User,data_amount);
-    age_score(User,data_amount);
+    age_score(times3,l_age,r_age,User,data_amount); 
     area_score(User,data_amount);
     hobby_score(User,data_amount);
+    prefer_zodiac_score(times1,data_amount);
+    prefer_height_score(times2,data_amount,left,right);
 }
 
 int judge_mode(Data *User){
@@ -317,13 +571,13 @@ int judge_mode(Data *User){
     return -1;
 }
 
-void sexuality_score(Data *User,int *data_amount){     // 性向對了+500
+void sexuality_score(Data *User,int *data_amount){     // 性向對了+1500
     int mode = judge_mode(User);
     int i = 0;
     if(mode == 1){
         for (i = 0; i < *data_amount; i++){
             if((person + i)->gender == 'M' && (person + i)->target == 'F'){
-                (person + i)->score += 500;                  
+                (person + i)->score += 1500;                  
             }
             else{
                 (person + i)->score = 0;
@@ -335,7 +589,7 @@ void sexuality_score(Data *User,int *data_amount){     // 性向對了+500
         for (i = 0; i < *data_amount; i++){
             if((person + i)->gender == 'F'){
                 if((person + i)->target == 'F' || (person + i)->target == 'B')
-                    (person + i)->score += 500;
+                    (person + i)->score += 1500;
             }
             else{
                 (person + i)->score = 0;
@@ -346,7 +600,7 @@ void sexuality_score(Data *User,int *data_amount){     // 性向對了+500
     else if(mode == 3){
         for (i = 0; i < *data_amount; i++){
             if((person + i)->target == 'F' || (person + i)->target == 'B')
-                (person + i)->score += 500;
+                (person + i)->score += 1500;
             else{
                 (person + i)->score = 0;
             }
@@ -356,7 +610,7 @@ void sexuality_score(Data *User,int *data_amount){     // 性向對了+500
     else if(mode == 4){
         for (i = 0; i < *data_amount; i++){
             if((person + i)->gender == 'F' && (person + i)->target == 'M'){
-                (person + i)->score += 500;
+                (person + i)->score += 1500;
             }
             else{
                 (person + i)->score = 0;
@@ -368,7 +622,7 @@ void sexuality_score(Data *User,int *data_amount){     // 性向對了+500
         for (i = 0; i < *data_amount; i++){
             if((person + i)->gender == 'M'){
                 if((person + i)->target == 'M' || (person + i)->target == 'B')
-                    (person + i)->score += 500;
+                    (person + i)->score += 1500;
             }
             else{
                 (person + i)->score = 0;
@@ -379,7 +633,7 @@ void sexuality_score(Data *User,int *data_amount){     // 性向對了+500
     else if(mode == 6){
         for(i = 0 ; i < *data_amount ; i++){
             if((person + i)->target == 'M' || (person + i)->target == 'B')
-                (person + i)->score += 500;
+                (person + i)->score += 1500;
             else
                 (person + i)->score = 0;
             (person + i)->flag = 0;
@@ -387,11 +641,21 @@ void sexuality_score(Data *User,int *data_amount){     // 性向對了+500
     }
 }
 
-
-void age_score(Data *User,int *data_amount){           // 年齡對了+100
-    for(int i = 0;i < *data_amount;i++){
-        if(abs(((person + i)->age)- (User->age))<=10){
-            (person + i)->score += 100;
+void age_score(int *times3,int *l_age,int *r_age,Data *User,int *data_amount){           // 沒有偏好的情況下，年齡正負對了+100
+    if(*times3 == 0){
+        for(int i = 0;i < *data_amount;i++){
+            if(abs(((person + i)->age)- (User->age))<=10){
+                (person + i)->score += 100;
+            }
+        }
+    }
+    else{
+        for(int i = 0;i < *data_amount;i++){
+            if((*l_age <= (person + i)->age) && ((person + i)->age <= *r_age)){              // 有偏好的情況下，對了 +500
+                (person + i)->score += 500;
+            }
+            else
+                (person + i)->score += 100;
         }
     }
 }
@@ -412,11 +676,38 @@ void hobby_score(Data *User,int *data_amount){         //每對一個+20
     for(int i = 0;i < 5;i++){       
         for(int j = 0;j < *data_amount;j++){
             for(int k = 0;k < 5;k++){
-                if(!strcasecmp(User->hobby[i],(person + j)->hobby[k]))
+                if(!strcasecmp(User->hobby[i],(person + j)->hobby[k])){
                     (person + j)->score += 20;
+                }
             }
         }
     }
+}
+
+void prefer_zodiac_score(int *times1,int *data_amount){
+    if(*times1 == 3){
+        for(int i = 0;i < *data_amount;i++){
+            for(int j = 0;j < 3;j++){
+                if(!strcasecmp((person+i)->zodiac,prefer_zodiac[j])){
+                    (person+i)->score += 300;
+                }
+            }
+        }
+    }
+    else
+        return;
+}
+
+void prefer_height_score(int *times2,int *data_amount,float *left,float *right){
+    if(*times2 == 1){
+        for(int i = 0;i < *data_amount;i++){
+            if((*left <= (person+i)->height) && ((person+i)->height <= *right)){
+                (person+i)->score += 300;
+            }
+        }
+    }
+    else
+        return;
 }
 
 int comp(const void *p,const void *q){
@@ -426,12 +717,10 @@ int comp(const void *p,const void *q){
 void display(int *data_amount){
     int x = 0,y = 0;
     int like_people = 0;
-    char yes_no[1][2][6];
-    strcpy(yes_no[0][0], " YES ");
-    strcpy(yes_no[0][1], " NO ");
+    char yes_no[1][2][6] = {{{ " YES " },{ " NO " }}};
     int correct = 0;
     for(int i = 0;i < *data_amount;i++){
-        if(person[i].score >= 500){
+        if(person[i].score >= 1500){
             correct_person[correct] = person[i];            // 對的人才會印，縮短判斷的時間
             correct++;
         }
@@ -441,6 +730,7 @@ void display(int *data_amount){
             system("cls");
             if(correct_person[i].flag == 0 && like_people <= 20){
                 while(1){
+                    printf("\n%d\n",correct_person[i].score);
                     printf(BACK_YELLOW"\nFIND YOUR SOULMATE!\n\n"finish);
                     printf(B_U_I_yellow"***************************************************************************\n\n"finish); 
                     int space = (70 - strlen(correct_person[i].name))/2;
