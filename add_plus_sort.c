@@ -51,12 +51,13 @@ void preference(int *times1,int *times2,int *times3,float *left,float *right,int
 void height(int *times,int *x1,int *x2,float *left,float *right);
 void age(int *times3,int *l_age,int *r_age);
 bool search_duplicates(int data_amount);
-bool check_boundary(int x, int y);
+bool check_boundary(int x, int y, int row, int col);
 void print_data(int data_amount);
 void zodiac_choice(int *times,int *x_zodiac,int *y_zodiac);
+bool check_height(char *str);
 
 void calculate_score(int *times1,int *times2,int *times3,float *left,float *right,\
-                    int *l_age,int *r_age,Data *User,int *data_amount);
+int *l_age,int *r_age,Data *User,int *data_amount);
 int judge_mode(Data *User);                            // 回傳使用者性向狀況
 void sexuality_score(Data *User,int *data_amount);
 void age_score(int *times3,int *l_age,int *r_age,Data *User,int *data_amount);
@@ -67,20 +68,10 @@ void prefer_height_score(int *times2,int *data_amount,float *left,float *right);
 int comp(const void *p, const void *q);
 void display(int *data_amount);
 
-char hobbies[6][5][13] = {{{"Writing"}, {"Reading"}, {"Singing"}, {"Photography"}, {"Gardening"}},
-                        {{"Cooking"}, {"Baking"}, {"Jogging"}, {"Swimming"}, {"Working-out"}},
-                        {{"badminton"}, {"Tennis"}, {"Basketball"}, {"Volleyball"},{"Cycling"}},
-                        {{"Dancing"}, {"Films"}, {"Fashion"}, {"Collecting"}, {"Music"}},
-                        {{"Anime"}, {"Delicacy"}, {"Shopping"}, {"Yoga"}, {"Memes"}},
-                        {{"Diving"},{"Sunbathing"},{"Piano"},{"Guitar"},{"Makeup"}}};
-
-char decision[2][27] = {"Yes", "No(enter my profile again)"};
-bool hobbies_flag[6][5];
 char twelve_zodiac[2][6][15] = {{{"Capricorn"},{"Aquarius"},{"Pisces"},{"Aries"},{"Taurus"},{"Gemini"}},
                                 {{"Cancer"},{"Leo"},{"Virgo"},{"Libra"},{"Scorpio"},{"Sagittarius"}}};
 int zodiac_flag[2][6] = {{0,0,0,0,0,0,},{0,0,0,0,0,0,}};
 char prefer_zodiac[3][15];
-
 Data person[1000];
 Data correct_person[500];
 
@@ -159,46 +150,307 @@ void print_data(int data_amount){
 }
 
 void add_account(int *data_amount){
+    char hobbies[6][5][13] = {{{"Writing"}, {"Reading"}, {"Singing"}, {"Photography"}, {"Gardening"}},
+                            {{"Cooking"}, {"Baking"}, {"Jogging"}, {"Swimming"}, {"Working-out"}},
+                            {{"badminton"}, {"Tennis"}, {"Basketball"}, {"Volleyball"},{"Cycling"}},
+                            {{"Dancing"}, {"Films"}, {"Fashion"}, {"Collecting"}, {"Music"}},
+                            {{"Anime"}, {"Delicacy"}, {"Shopping"}, {"Yoga"}, {"Memes"}},
+                            {{"Diving"},{"Sunbathing"},{"Piano"},{"Guitar"},{"Makeup"}}};
+    char decision[2][27] = {"Yes", "No(enter my profile again)"};
+    char cities[4][5][11] = {{{"Keelung"}, {"New-Taipei"}, {"Taipei"}, {"Taoyuan"}, {"Hsinchu"}},
+                            {{"Miaoli"}, {"Taichung"}, {"Changhua"}, {"Nantou"}, {"Yunlin"}},
+                            {{"Chiayi"}, {"Tainan"}, {"Kaohsiung"}, {"Pintung"}, {"Yilan"}},
+                            {{"Hualien"}, {"Taitung"}, {"Penghu"}, {"Kinmen"}, {"Lienchiang"}}};
+    char Zodiac[3][4][12] = {{{"Capricorn"}, {"Aquarius"}, {"Pisces"}, {"Aries"}},
+                            {{"Taurus"}, {"Gemini"}, {"Cancer"}, {"Leo"}},
+                            {{"Virgo"}, {"Libra"}, {"Scorpio"}, {"Sagittarius"}}};
+    char Income[4][8] = {{"<100"}, {"100~300"}, {"300~500"}, {">500"}};
+    bool hobbies_flag[6][5];
     printf("Welecome to omni, please enter your mobile number to register before you start: ");
     scanf("%s", person[*data_amount].phone_number);
-    while(search_duplicates(*data_amount)){
-        printf("The phone number is already exist, please enter another phone number: ");
-        scanf("%s", person[*data_amount].phone_number);
+    char *str = person[*data_amount].phone_number;
+    bool invalid = false;while((*str)!='\0'){
+        if(isdigit(*str)==0){
+            invalid = true;
+            break;
+        }else{
+            str+=1;
+        }
     }
-    printf("Great! Let's create your personal profile!\n");
-    while(1){
-        for (int i = 0; i < 6;i++){
-            for (int j = 0; j < 5;j++){
-                hobbies_flag[i][j] = 0;
+    while(search_duplicates(*data_amount) || (person[*data_amount].phone_number[0]!='0' || person[*data_amount].phone_number[1] !='9') || strlen(person[*data_amount].phone_number)!=10 || invalid == true){
+        system("cls");
+        if(search_duplicates(*data_amount)){
+            printf("The phone number is already exist, please enter another phone number: ");
+            scanf("%s", person[*data_amount].phone_number);
+            invalid = false;
+            str = person[*data_amount].phone_number;
+            while((*str)!='\0'){
+                if(isdigit(*str)==0){
+                    invalid = true;
+                    break;
+                }else{
+                    str+=1;
+                }
             }
         }
-        printf("Name: ");
-        scanf("%s", person[*data_amount].name);
-        printf("Gender: ");
-        scanf(" %c", &person[*data_amount].gender);
-        printf("Sexual Orientation: ");
-        scanf(" %c", &person[*data_amount].target);
-        printf("Age: ");
-        scanf("%d", &person[*data_amount].age);
-        printf("Height: ");
-        scanf("%f", &person[*data_amount].height);
-        printf("City: ");
-        scanf("%s", person[*data_amount].area);
-        printf("Zodiac: ");
-        scanf("%s", person[*data_amount].zodiac);
-        printf("Job: ");
-        scanf("%s", person[*data_amount].job);
-        printf("Income: ");
-        scanf("%s", person[*data_amount].income);
-        char absorb_return;
-        scanf("%c", &absorb_return);
-        printf("Write something to introduce yourself: \n");
-        fgets(person[*data_amount].self_introduction, 151, stdin);
+        else if((person[*data_amount].phone_number[0]!='0' || person[*data_amount].phone_number[1] !='9') || strlen(person[*data_amount].phone_number)!=10 || invalid == true){
+            printf("The phone number format is invalid! Please ensure your input are correct:\n");
+            printf("Enter your phone number again: ");
+            scanf("%s", person[*data_amount].phone_number);
+            invalid = false;
+            str = person[*data_amount].phone_number;
+            while((*str)!='\0'){
+                if(isdigit(*str)==0){
+                    invalid = true;
+                    break;
+                }else{
+                    str+=1;
+                }
+            }
+        }
+    }
+    printf("Next, please enter your age. We have to make sure you are of age: ");
+    char temp_a[5];
+    str = temp_a;
+    scanf("%s", temp_a);
+    while(atoi(temp_a) < 18 || atoi(temp_a)==0 || atoi(temp_a)>120){
+        invalid = false;
+        while((*str)!='\0'){
+            if(isdigit(*str)==0){
+                invalid = true;
+                break;
+            }else{
+                str+=1;
+            }
+        }
+        system("cls");
+        if(atoi(temp_a) < 18 && atoi(temp_a)>0 && invalid == false){
+            printf("You are too young to register an account, please enter again\n");
+            printf("Please renter your age: ");
+            scanf("%s", temp_a);
+            continue;
+        }
+        else if(atoi(temp_a)==0 || atoi(temp_a)>120 || invalid == true){
+            printf("Invalid input! Please ensure your input are real age and must be an integer\n");
+            printf("Please renter your age: ");
+            scanf("%s", temp_a);
+            continue;
+        }
+    }
+    person[*data_amount].age = atoi(temp_a);
+    printf("Great! Let's create your personal profile!\n");
+    Sleep(2000);
+    system("cls");
+    while(1){
+        memset(hobbies_flag, false, sizeof(hobbies_flag));
+        int print_to_where = 0;
+        int count = 0;
+        int cx = 0, cy = 0;
+        int zx = 0, zy = 0;
+        int ix = 0;
+        while(1){
+            if(print_to_where == 0){
+                printf("Name: ");
+                scanf("%s", person[*data_amount].name);
+                print_to_where = 1;
+            }else{
+                printf("Name: %s\n", person[*data_amount].name);
+            }
+            if(print_to_where == 1){
+                printf("Gender(M or F): ");
+                scanf(" %c", &person[*data_amount].gender);
+            }else{
+                printf("Gender: %c\n", person[*data_amount].gender);
+            }
+            if(person[*data_amount].gender != 'M' && person[*data_amount].gender != 'F'){
+                system("cls");
+                printf(B_I_BA_red"Invalid input !!! Please enter again\n"finish);
+                continue;
+            }else{
+                if(count==0){
+                    print_to_where = 2;
+                    system("cls");
+                    count++;
+                    continue;
+                }
+            }
+            if(print_to_where==2){
+                printf("Sexual Orientation(M or F or B): ");
+                scanf(" %c", &person[*data_amount].target);
+            }else{
+                printf("Sexual Orientation: %c\n", person[*data_amount].target);
+            }
+            if(person[*data_amount].target != 'M' && person[*data_amount].target != 'F' && person[*data_amount].target != 'B'){
+                system("cls");
+                printf(B_I_BA_red"Invalid input !!! Please enter again\n"finish);
+                continue;
+            }else{
+                if(count==1){
+                    print_to_where = 3;
+                    system("cls");
+                    count++;
+                    continue;
+                }
+            }
+            char temp_h[10];
+            if(print_to_where==3){
+                printf("Height: ");
+                scanf("%s", temp_h);
+            }else{
+                printf("Height: %.1f\n", person[*data_amount].height);
+            }
+            if(check_height(temp_h) == false){
+                system("cls");
+                printf(B_I_BA_red"Invalid input !!! Please enter again\n"finish);
+                continue;
+            }else{
+                if(count==2){
+                    person[*data_amount].height = atof(temp_h);
+                    print_to_where = 4;
+                    system("cls");
+                    count++;
+                    continue;
+                }
+            }
+            if(print_to_where==4){
+                printf("Job: ");
+                scanf("%s", person[*data_amount].job);
+                print_to_where++;
+            }else{
+                printf("Job: %s\n", person[*data_amount].job);
+            }
+            printf("*******************************************************************\n");
+            printf("City:\n");
+            char key;
+            for (int i = 0; i < 4; i++){
+                for (int j = 0; j < 5; j++){
+                    if(i==cx && j==cy){
+                        printf(B_U_I_yellow"%s    \t"finish, cities[i][j]);
+                    }
+                    else{
+                        printf("%s    \t", cities[i][j]);
+                    }
+                }
+                printf("\n");
+            }
+            if(print_to_where==5){
+                key = getch();
+                if((key == 'W' || key =='w' || key == 72) && check_boundary(cx-1,cy,4,5)){
+                    cx -= 1;
+                    system("cls");
+                    continue;
+                }
+                else if((key == 'A' || key =='a' || key == 75) && check_boundary(cx,cy-1,4,5)){
+                    cy -= 1;
+                    system("cls");
+                    continue;
+                }
+                else if((key == 'S' || key =='s' || key == 80) && check_boundary(cx+1,cy,4,5)){
+                    cx += 1;
+                    system("cls");
+                    continue;
+                }
+                else if((key == 'D' || key =='d' || key== 77) && check_boundary(cx,cy+1,4,5)){
+                    cy += 1;
+                    system("cls");
+                    continue;
+                }
+                else if(key == '\r'){
+                    strcpy(person[*data_amount].area, cities[cx][cy]);
+                    print_to_where++;
+                }
+                else{
+                    system("cls");
+                    continue;
+                }
+            }
+            printf("\n*******************************************************************\n");
+            printf("Zodiac:\n");
+            for (int i = 0; i < 3; i++){
+                for (int j = 0; j < 4; j++){
+                    if(i==zx && j==zy){
+                        printf(B_U_I_yellow"%s    \t"finish, Zodiac[i][j]);
+                    }
+                    else{
+                        printf("%s    \t", Zodiac[i][j]);
+                    }
+                }
+                printf("\n");
+            }
+            if(print_to_where==6){
+                key = getch();
+                if((key == 'W' || key =='w' || key == 72) && check_boundary(zx-1,zy,3,4)){
+                    zx -= 1;
+                    system("cls");
+                    continue;
+                }
+                else if((key == 'A' || key =='a' || key == 75) && check_boundary(zx,zy-1,3,4)){
+                    zy -= 1;
+                    system("cls");
+                    continue;
+                }
+                else if((key == 'S' || key =='s' || key == 80) && check_boundary(zx+1,zy,3,4)){
+                    zx += 1;
+                    system("cls");
+                    continue;
+                }
+                else if((key == 'D' || key =='d' || key== 77) && check_boundary(zx,zy+1,3,4)){
+                    zy += 1;
+                    system("cls");
+                    continue;
+                }
+                else if(key == '\r'){
+                    strcpy(person[*data_amount].zodiac, Zodiac[zx][zy]);
+                    print_to_where++;
+                }
+                else{
+                    system("cls");
+                    continue;
+                }
+            }
+            printf("*******************************************************************\n");
+            printf("Income: ");
+            for (int i = 0; i < 4; i++){
+                if(i==ix){
+                    printf(B_U_I_yellow"%s    \t"finish, Income[i]);
+                }
+                else{
+                    printf("%s    \t", Income[i]);
+                }
+            }
+            printf("\n");
+            if(print_to_where==7){
+                key = getch();
+                if((key == 'A' || key =='a' || key == 75) && (ix > -1 && ix < 4)){
+                    ix -= 1;
+                    system("cls");
+                    continue;
+                }
+                else if((key == 'D' || key =='d' || key== 77) && (ix > -1 && ix < 4)){
+                    ix += 1;
+                    system("cls");
+                    continue;
+                }
+                else if(key == '\r'){
+                    strcpy(person[*data_amount].income, Income[ix]);
+                    print_to_where++;
+                }
+                else{
+                    system("cls");
+                    continue;
+                }
+            }
+            getchar();
+            printf("*******************************************************************\n");
+            printf("Write something to introduce yourself: \n");
+            fgets(person[*data_amount].self_introduction, 151, stdin);
+            break;
+        }
         int x = 0, y = 0;
         int count_hobby = 0;
         while(1){
             system("cls");
-            printf("\nAfter filling out the basic information, let's choose 5 hobbies from the following list:\n\n");
+            printf("\nAfter filling out the basic information, let's Choose 5 hobby from the following list:\n\n");
             char key;
             for (int i = 0; i<6; i++){
                 for (int j = 0; j < 5; j++){
@@ -215,16 +467,16 @@ void add_account(int *data_amount){
                 printf("\n");
             }
             key = getch();
-            if((key == 'W' || key =='w' || key == 72) && check_boundary(x-1,y)){
+            if((key == 'W' || key =='w' || key == 72) && check_boundary(x-1,y,6,5)){
                 x -= 1;
             }
-            else if((key == 'A' || key =='a' || key == 75) && check_boundary(x,y-1)){
+            else if((key == 'A' || key =='a' || key == 75) && check_boundary(x,y-1,6,5)){
                 y -= 1;
             }
-            else if((key == 'S' || key =='s' || key == 80) && check_boundary(x+1,y)){
+            else if((key == 'S' || key =='s' || key == 80) && check_boundary(x+1,y,6,5)){
                 x += 1;
             }
-            else if((key == 'D' || key =='d' || key== 77) && check_boundary(x,y+1)){
+            else if((key == 'D' || key =='d' || key== 77) && check_boundary(x,y+1,6,5)){
                 y += 1;
             }
             else if(key == '\r' && hobbies_flag[x][y] == false){
@@ -291,6 +543,7 @@ void add_account(int *data_amount){
         system("cls");
     }
     (*data_amount)+=1;
+    printf("%d\n", *data_amount);
 }
 
 void preference(int *times1,int *times2,int *times3,float *left,float *right,int *l_age,int *r_age){ 
@@ -536,7 +789,7 @@ bool search_duplicates(int data_amount){
     return false;
 }
 
-bool check_boundary(int x, int y){
+bool check_boundary(int x, int y, int row, int col){
     if(x<0 || x>5 || y<0 || y>4){
         return false;
     }
@@ -780,4 +1033,20 @@ void display(int *data_amount){
             }
         }
     }
+}
+
+bool check_height(char *str){
+    int count = 0;
+    while((*str)!='\0'){
+        if((*str)=='.'){
+            count++;
+        }
+        if((isdigit(*str)==0 && (*str)!='.') || count>1){
+            return false;
+        }
+        else{
+            str += 1;
+        }
+    }
+    return true;
 }
