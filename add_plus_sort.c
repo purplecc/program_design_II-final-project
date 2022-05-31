@@ -12,7 +12,7 @@
 #define B_B_red         "\033[1;31;43m"
 #define B_I_green       "\033[1;3;32m"
 #define B_U_I_yellow    "\033[1;3;4;33m"
-#define B_U_I_green    "\033[1;3;4;32m"
+#define B_U_I_green     "\033[1;3;4;32m"
 #define B_yellow        "\033[1;33m"
 #define blue            "\033[34m"
 #define B_purple        "\033[1;35m"
@@ -132,7 +132,7 @@ int read_file(){
     return i;
 }
 
- void print_data(int data_amount){
+void print_data(int data_amount){
 //     for (int i = 0; i < data_amount; i++){
 //         printf("%s %c %s %s %s %s %s %s %s %c %d %.1f %s %s %s\n%s\n"
 //         , person[i].name
@@ -156,7 +156,7 @@ int read_file(){
     //     printf("%d\n", person[i].score);
         
     // }
- }
+}
 
 void add_account(int *data_amount){
     printf("Welecome to omni, please enter your mobile number to register before you start: ");
@@ -298,6 +298,7 @@ void preference(int *times1,int *times2,int *times3,float *left,float *right,int
     int x = 0,y = 0;
     int x1 = 0,x2 = 41;
     int x_zodiac = 0,y_zodiac = 0;
+    system("cls");
     while(1){
         printf("\nDo You have preferred characteristic?\n");
         for(int i = 0; i < 1 ;i++){
@@ -465,7 +466,7 @@ void height(int *times2,int *x1,int *x2,float *left,float *right){
                 printf(B_I_BA_red"%c"finish,line[i]);
             }
             else if(i == *x2){
-                 printf(B_I_BA_red"%c"finish,line[i]);
+                printf(B_I_BA_red"%c"finish,line[i]);
             }
             else{
                 printf("%c",line[i]);
