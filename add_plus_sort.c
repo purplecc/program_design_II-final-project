@@ -843,6 +843,7 @@ void age(int *times3,int *l_age,int *r_age){
     printf(B_BLUE"\nPreferred age: %d ~ %d.\nPress enter to continue...\n"finish,*l_age,*r_age);
     (*times3) ++;
     getchar();
+    getchar();
 }
 
 bool search_duplicates(int data_amount){
@@ -960,11 +961,11 @@ void sexuality_score(Data *User,int *data_amount){     // 性向對了+1500
     }
 }
 
-void age_score(int *times3,int *l_age,int *r_age,Data *User,int *data_amount){           // 沒有偏好的情況下，年齡正負對了+100
+void age_score(int *times3,int *l_age,int *r_age,Data *User,int *data_amount){           // 沒有偏好的情況下，和使用者年齡相差超過10就沒局囉
     if(*times3 == 0){
         for(int i = 0;i < *data_amount;i++){
-            if(abs(((person + i)->age)- (User->age))<=10){
-                (person + i)->score += 100;
+            if(abs(((person + i)->age)- (User->age)) > 10){
+                (person + i)->score = 0;
             }
         }
     }
@@ -974,7 +975,7 @@ void age_score(int *times3,int *l_age,int *r_age,Data *User,int *data_amount){  
                 (person + i)->score += 500;
             }
             else
-                (person + i)->score += 100;
+                (person + i)->score = 0;                                                     // 不在我想要的範圍我就不印了
         }
     }
 }
@@ -1022,6 +1023,9 @@ void prefer_height_score(int *times2,int *data_amount,float *left,float *right){
         for(int i = 0;i < *data_amount;i++){
             if((*left <= (person+i)->height) && ((person+i)->height <= *right)){
                 (person+i)->score += 300;
+            }
+            else{
+                (person+i)->score = 0;
             }
         }
     }
