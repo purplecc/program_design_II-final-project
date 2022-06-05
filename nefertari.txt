@@ -21,7 +21,7 @@ Davey M Dungeon-&-Dragons Hot-Pot Vlogging Electronic-Music Working-out 09200000
 Scot M Walking Running Travel Language-exchange Movies 0920000021 Tainan F 26 170 Scorpio 100~300 Chef Brief is life,but love is long.
 Chase M Fortnite Free-Diving Jiu-jitsu Climate-Change Exhibition 0920000022 Taitung F 18 168 Virgo <100 Student To the world you may be one person, but to one person you may be the world.
 Bryan M Cheerleading Choir Street-Food Car-Racing Catan 0920000023 Taitung F 18 176.5 Aquarius <100 Student Love me little and love me long.
-Owen M Binge-Watching-TV-Shows High-school-baseketball-league(TW) Western-drama-series Painting 0920000024 Taitung F 18 174.2 Aquarius <100 Student If you really want to do something, you'll find a way.If you don't, you'll find an excuse.
+Owen M Binge-Watching-TV-Shows High-school-baseketball-league(TW) Western-drama-series Painting Singing 0920000024 Taitung F 18 174.2 Aquarius <100 Student If you really want to do something, you'll find a way.If you don't, you'll find an excuse.
 Jace M Backpacking Fishing Ice-Cream Ice-Skating Pilates 0920000025 Taitung F 20 185 Leo <100 Student How do we treat the life, the life how we treat.
 Henry M Street-Food Car-Racing Catan Cosplay Content-Creation 0920000026 Taitung F 27 175 Pisces 100~300 Composer Years may wrinkle the skin, but to give up enthusiasm wrinkles the soul.
 Kevin M TikTok Picnicking Twitch Comedy Music 0920000027 Taitung F 42 176 Cancer >500 Curator Character is how you treat those who can do nothing for you.
@@ -29,7 +29,7 @@ Isaac M Marvel Walking Running Travel Language-exchange 0920000028 Taitung F 29 
 Ivan M Paddle-Boarding Badminton Padel Surfing Bowling 0920000029 Taitung F 25 190 Capricorn <100 Student Life is 10% what happens to you and 90% how you respond to it.
 Adam M LGBTQ+-Rights Ballet Feminism Band Nightlife 0920000030 Taitung F 25 186 Libra <100 Student Only they who fulfill their duties in everyday matters will fulfill them on great occasions.
 Ryder M Trivia Volunteering Table-Tennis Environmentalism Rollerskating 0920000031 Taitung F 29 180 Gemini >500 Designer Good friends are like stars. You don't always see them, but you know they're always there.
-Ethen M Gym Social-Media Skincare Korean-Dramas K-Pop  0920000032 Taitung F 32 188  Libra 300~500 Doctor Life is not fair, get used to it.
+Ethen M Gym Social-Media Skincare Korean-Dramas K-Pop 0920000032 Taitung F 32 188  Libra 300~500 Doctor Life is not fair, get used to it.
 Derek M Memes Motorcycling Acapella Investing Art-Galleries 0920000033 Taitung F 38 175 Capricorn >500 Economist you're not stuck because you can't, you're stuck because you won't.
 Simon M Archery Backpacking Fishing Ice-Cream Ice-Skating 0920000034 Taitung F 39 172 Aries 100~300 Editor Your time is limited, so don't waste it living someone else's life.
 James M Volleyball Sports Coffee Basketball League-of-Legends 0920000035 Taitung F 37 180 Gemini >500 Engineer Striving for perfection is demoralizing;Striving for excellence motivates you.
@@ -75,19 +75,19 @@ Michelle F Cheerleading Choir Street-Food Car-Racing Catan 0920000073 Changhua M
 Paige F Singing Volleyball Sports Coffee Basketball 0920000074 Changhua M 19 168 Sagittarius <100 Student Enrich your life today, yesterday is history.tomorrow is mystery.
 Sarah F Painting Night-Markets Paddle-Boarding Badminton Padel 0920000075 Changhua M 20 155 Leo <100 Student Learn to walk before you run.
 Norah F Cooking Fencing Soccer Dancing Gardening 0920000076 Chiayi M 22 175 Taurus <100 Student If a thing is worth doing it is worth worth doing well.
-Nina F Singing Volleyball Sports Coffee Basketball 0920000077 Chiyi M 23 177 Taurus <100 Student The secret of success is constancy of purpose.
-Diana F Wine Dungeon-&-Dragons Hot-Pot Vlogging Electronic-Music 0920000078 Chiyi M 18 156 Capricorn <100 Student To read without reflecting is like eating without digesting.
-Ivy F Baseball LGBTQ+-Rights Ballet Feminism Band 0920000079 Chiyi M 19 160 Aquarius <100 Pharmacist The important thing in life is to have a great aim, and the determination to attain it.
-Rylee F Drawing Trivia Volunteering Table-Tennis Environmentalism 0920000080 Chiyi M 22 170 Capricorn <100 Student Better an empty purse than an empty head.
-Ruth F drama-series Painting Night-Markets Paddle-Boarding Badminton 0920000081 Chiyi M 23 175 Pisces <100 Student Bind the sack before it be full.
-Jayla F Singing Volleyball Sports Coffee Basketball 0920000082 Chiyi M 25 176 Pisces 100~00 Nutritionist Constant dropping wears the stone. 
-Josie F Fencing Soccer Dancing Gardening Art 0920000083 Chiyi M 29 166 Aries >500 Pilot Nothing great was ever achieved without enthusiasm.
-Maya F Hot-Yoga Writing Hockey Home-Workout Manga 0920000084 Chiyi M 36 158 Aquarius 300~500 Professor Great works are performed not by strength but by perseverance.
-Lisa F  Korean-Dramas K-Pop Skateboarding Vegan-Cooking Photography 0920000085 Chiyi M 28 175 Capricorn 300~500 Scientist Experience is the mother of wisdom.
-Ellis F Start-ups Bicycle-Racing Fencing Soccer Dancing 0920000086 Chiyi M 30 176 Aries 100~300 Teacher All things are difficult before they are easy.
-Kiara F Singing Volleyball Sports Coffee Basketball 0920000087 Chiyi M 29 160 Capricorn Gemini 100~300 Therapist Nothing is impossible to a willing heart. 
-Amy F drama-series Painting Night-Markets Paddle-Boarding Badminton 0920000088 Chiyi M 25 158 Taurus >500 banker Pursue your object, be it what it will, steadily and indefatigably. 
-Gemma F Singing Volleyball Sports Coffee Basketball 0920000089 Chiyi M 26 169  Taurus 300~500 Veterinarian Every man is his own worst enemy.
+Nina F Singing Volleyball Sports Coffee Basketball 0920000077 Chiayi M 23 177 Taurus <100 Student The secret of success is constancy of purpose.
+Diana F Wine Dungeon-&-Dragons Hot-Pot Vlogging Electronic-Music 0920000078 Chiayi M 18 156 Capricorn <100 Student To read without reflecting is like eating without digesting.
+Ivy F Baseball LGBTQ+-Rights Ballet Feminism Band 0920000079 Chiayi M 19 160 Aquarius <100 Pharmacist The important thing in life is to have a great aim, and the determination to attain it.
+Rylee F Drawing Trivia Volunteering Table-Tennis Environmentalism 0920000080 Chiayi M 22 170 Capricorn <100 Student Better an empty purse than an empty head.
+Ruth F drama-series Painting Night-Markets Paddle-Boarding Badminton 0920000081 Chiayi M 23 175 Pisces <100 Student Bind the sack before it be full.
+Jayla F Singing Volleyball Sports Coffee Basketball 0920000082 Chiayi M 25 176 Pisces 100~00 Nutritionist Constant dropping wears the stone. 
+Josie F Fencing Soccer Dancing Gardening Art 0920000083 Chiayi M 29 166 Aries >500 Pilot Nothing great was ever achieved without enthusiasm.
+Maya F Hot-Yoga Writing Hockey Home-Workout Manga 0920000084 Chiayi M 36 158 Aquarius 300~500 Professor Great works are performed not by strength but by perseverance.
+Lisa F  Korean-Dramas K-Pop Skateboarding Vegan-Cooking Photography 0920000085 Chiayi M 28 175 Capricorn 300~500 Scientist Experience is the mother of wisdom.
+Ellis F Start-ups Bicycle-Racing Fencing Soccer Dancing 0920000086 Chiayi M 30 176 Aries 100~300 Teacher All things are difficult before they are easy.
+Kiara F Singing Volleyball Sports Coffee Basketball 0920000087 Chiayi M 29 160 Capricorn Gemini 100~300 Therapist Nothing is impossible to a willing heart. 
+Amy F drama-series Painting Night-Markets Paddle-Boarding Badminton 0920000088 Chiayi M 25 158 Taurus >500 banker Pursue your object, be it what it will, steadily and indefatigably. 
+Gemma F Singing Volleyball Sports Coffee Basketball 0920000089 Chiayi M 26 169  Taurus 300~500 Veterinarian Every man is his own worst enemy.
 Allie F Cheerleading Choir Street-Food Car-Racing Catan 0920000090 Yilan M 20 160 Gemini <100 Student From small beginnings comes great things. 
 Ella F Cheerleading Choir Street-Food Car-Racing Catan 0920000091 Yilan M 25 165 Capricorn 100~300 Waiter Keep trying no matter how hard it seems. it will get easier.
 Devin F Wine Dungeon-&-Dragons Hot-Pot Vlogging Electronic-Music 0920000092 Yilan M 22 170 Pisces <100 Student Birth is much, but breeding is more.
