@@ -84,6 +84,7 @@ int main(){
     data_amount = read_file();
     printf("%d\n", data_amount);                            // 看讀到的人數對不對
     printf("%lf\n", (double)clock() / CLOCKS_PER_SEC);      // 讀檔時間(/s)
+    //print_data(data_amount);
     add_account(&data_amount);
     preference(&times1,&times2,&times3,&left,&right,&l_age,&r_age);
     calculate_score(&times1,&times2,&times3,&left,&right,&l_age,&r_age,&person[data_amount-1],&data_amount);
@@ -117,6 +118,69 @@ int read_file(){
     , person[i].income
     , person[i].job) != EOF){
         fgets(person[i].self_introduction, 151, input_file);
+        if(!strcasecmp("Taipei",person[i].area)){
+            person[i].index_of_area = 22;
+        }
+        else if(!strcasecmp("New-Taipei",person[i].area)){
+            person[i].index_of_area = 23;
+        }
+        else if(!strcasecmp("Keelung",person[i].area)){
+            person[i].index_of_area = 24;
+        }
+        else if(!strcasecmp("Taoyuan",person[i].area)){
+            person[i].index_of_area = 25;
+        }
+        else if(!strcasecmp("Hsinchu",person[i].area)){
+            person[i].index_of_area = 26;
+        }
+        else if(!strcasecmp("Miaoli",person[i].area)){
+            person[i].index_of_area = 28;
+        }
+        else if(!strcasecmp("Taichung",person[i].area)){
+            person[i].index_of_area = 29;
+        }
+        else if(!strcasecmp("Changhua",person[i].area)){
+            person[i].index_of_area = 31;
+        }
+        else if(!strcasecmp("Nantou",person[i].area)){
+            person[i].index_of_area = 30;
+        }
+        else if(!strcasecmp("Yunlin",person[i].area)){
+            person[i].index_of_area = 33;
+        }
+        else if(!strcasecmp("Chiayi",person[i].area)){
+            person[i].index_of_area = 34;
+        }
+        else if(!strcasecmp("Tainan",person[i].area)){
+            person[i].index_of_area = 35;
+        }
+        else if(!strcasecmp("Kaohsiung",person[i].area)){
+            person[i].index_of_area = 36;
+        }
+        else if(!strcasecmp("Pingtung",person[i].area)){
+            person[i].index_of_area = 37;
+        }
+        else if(!strcasecmp("Yilan",person[i].area)){
+            person[i].index_of_area = 27;
+        }
+        else if(!strcasecmp("Hualien",person[i].area)){
+            person[i].index_of_area = 32;
+        }
+        else if(!strcasecmp("Taitung",person[i].area)){
+            person[i].index_of_area = 38;
+        }
+        else if(!strcasecmp("Penghu",person[i].area)){
+            person[i].index_of_area = 4;
+        }
+        else if(!strcasecmp("Kinmen",person[i].area)){
+            person[i].index_of_area = 2;
+        }
+        else if(!strcasecmp("Lienchiang",person[i].area)){
+            person[i].index_of_area = 1;
+        }
+        else{
+            person[i].index_of_area = 0;
+        }
         i++;
     }
     fclose(input_file);
@@ -143,10 +207,10 @@ void print_data(int data_amount){
 //         , person[i].job
 //         , person[i].self_introduction);
 //     }
-    // for (int i = 0; i < data_amount - 1;i++){
-    //     printf("%d\n", person[i].score);
+    for (int i = 0; i < data_amount - 1;i++){
+        printf("%d\n", person[i].index_of_area);
         
-    // }
+    }
 }
 
 void add_account(int *data_amount){
@@ -169,7 +233,8 @@ void add_account(int *data_amount){
     printf("Welecome to omni, please enter your mobile number to register before you start: ");
     scanf("%s", person[*data_amount].phone_number);
     char *str = person[*data_amount].phone_number;
-    bool invalid = false;while((*str)!='\0'){
+    bool invalid = false;
+    while((*str)!='\0'){
         if(isdigit(*str)==0){
             invalid = true;
             break;
@@ -313,7 +378,7 @@ void add_account(int *data_amount){
                 }
             }
             if(print_to_where==4){
-                printf("Job: ");
+                printf("Job(if have space between words, must replace to '-'): ");
                 scanf("%s", person[*data_amount].job);
                 print_to_where++;
             }else{
