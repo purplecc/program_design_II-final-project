@@ -199,6 +199,8 @@ typedef struct data{
     * 啊我不知道Mac的顏色跑不跑的出來
   * 1.0.1
     * Data person[1000]丟到全域
+  * 1.0.2
+    * 跟add_plus_sort 的 add 一樣 
 * add_plus_sort
   * 1.0.0
     * 順序已經排出來了, 但還不行只讓圈內人顯示出來就好
