@@ -7,7 +7,7 @@ KENDALL-VANG M Hiking Mountains Archery Backpacking Fishing 0950000006 Taipei F 
 CLAY-CASTANEDA M Exhibition NFTs Dancing K-Pop Movies 0950000007 Yilan F 27 177.8 Scorpio >500 collector Hope to find a special girl who likes to collect things too.
 WAYNE-PATE M Coffee Basketball League-of-Legends Karaoke Travel 0950000008 Penghu F 32 178.5 Gemini <100 accountant I'm really good at counting numbers.
 VANCE-BUCK M Binge-Watching TV-Shows Night-Markets Hot-Pot Climbing 0950000009 Taitung F 28 166.5 Pisces 100-300 artist I love you, not just talk about it.
-REESE-FAULKNER M Street-Food Band Art Tea TV-Shows 0950000010 Hualien F 19 173.5 Taurus <100 student Could someone help me with my calculus?
+REESE-FAULKNER M Street-Food Band Art Tea TV-Shows 0950000010 Hualien F 19 172.5 Taurus <100 student Could someone help me with my calculus?
 CRAIG-LANGLEY M NBA Soccer Cars Free-Diving NFTs 0950000011 Taichung F 28 165.5 Libra 100-300 engineer Computer is my life~
 OTIS-DELANEY M Martial-Arts Singing Coffee Band Art 0950000012 Chiayi F 35 182.5 Leo <100 martial-artist Everyone who knows me calls me Chiayi Bruce Lee
 ALFRED-DILLON M TikTok Boba-Tea Ice-Cream Singing Gym 0950000013 Nantou F 18 163.5 Sagittarius <100 student Hey beautiful,My doctor says I’m lacking vitamin U.
@@ -15,7 +15,7 @@ JEFFERY-HENDRICKS M Shopping Motorcycling Nightlife Memes Badminton 0950000014 T
 LAYNE-BURCH M Archery Fishing Cosplay Karaoke Memes 0950000015 Taichung F 30 180.5 Capricorn >500 lawyer I’m very rich, do you like it?
 LAMAR-CABRERA M NBA MLB Astrology Motorcycles Entrepreneurship 0950000016 Keelung F 29 170.0 Libra <100 clerk Wellcome to 7-11!
 RONNIE-ONEILL M Twitch TV-Shows Memes Anime Drawing 0950000017 Yunlin F 33 169.5 Aries <100 clerk Anime is my life!!
-VAN-TALLEY M Free-Diving Car-Racing Movies Vlogging Cooking 0950000018 Tainan F 25 185.2 Aries 100-300 Youtuber Please remember to subscribe my channel!
+VAN-TALLEY M Free-Diving Car-Racing Movies Vlogging Cooking 0950000018 Tainan F 25 188.2 Aries 100-300 Youtuber Please remember to subscribe my channel!
 LAYNE-SYKES M Binge-Watching TV-Shows Astrology Art Painting 0950000019 Kaohsiung F 30 165.2 Leo >500 pilot Give me a chance , I'll give you the world.
 VAN-DOTSON M Hot-Pot Yoga Badminton Motorcycling Gym 0950000020 Tainan F 32 175.2 Aries 100-300 designer Let me designe our dream house for us.
 JAMIE-WEEKS M Fishing Ice-Cream Ice-Skating Pilates Broadway 0950000021 Pingtung  F 33 175.3 Taurus 300-500 teacher Do you want to enjoy the ice cream with me?
@@ -120,36 +120,36 @@ BREANNA-CASH F Fishing Ice-Cream Ice-Skating Pilates Broadway 0950000119 Matsu F
 JAYLA-MARQUEZ F Climbing Baking Shopping Brunch Memes 0950000120 Matsu F 22 164.3 Libra 100-300 hairstylist It’s not whether you get knocked down. It’s whether you get up again.
 NORAH-CALLAHAN F Sports Coffee Basketball League-of-Legends Karaoke 0950000121 Taoyuan F 29 162.6 Scorpio 300-500 Bartender Too many people live too much in the past. The past must be a springboard, not a sofa.
 RAQUEL-RYAN F Hockey Home-Workout Manga Makeup Instagram 0950000122 Taoyuan F 30 178.5 Sagittarius >500 Bartender The future belongs to those who believe in the beauty of their dreams.
-JAIDEN-MALDONADO F Walking Running Travel Language-exchange Movies 0950000123 F 24 156.3 Capricorn <100 Weather-observer Impossible is a word to be found only in the dictionary of fools.
-LIANA-ROY F Korean-Dramas K-Pop Skateboarding Vegan Cooking 0950000124 F 18 152.4 Aquarius 100-300 Pilot Don’t try so hard,the best things come when you least expect them to.
-ALLISON-DAWSON F Photography Reading Singing Volleyball Sports 0950000125 F 18 151.3 Pisces 300-500 Bus-driver There is no such thing as a great talent without great will-power.
-CRAIG-VALENCIA M Ice-Cream Ice-Skating League-of-Legends Karaoke Home-Workout 0950000126 M 19 170.5 <100 Gemini Taxi-driver cheerfulness is the best promoter of health.
-KODY-MCCRAY M Soccer Dancing Gardening Car-Racing Catan 0950000127 M 18 171.5 Cancer 100-300 Truck-driver an aim in life is the only fortune worth finding.
-CAMRON-NIELSEN M Hot-Pot Vlogging Electronic-Music Exhibition NFTs 0950000128 M 19 174.5 Leo 300-500 Car-repairer we have no more right to consume happiness without producing it than to consume wealth without producing it .
-DARIAN-HOOPER M Manga Makeup Instagram Martial-Arts Drummer 0950000129 M 20 160.5 Virgo >500 racer when there’s no expectation, losing won’t bring hurt, gaining makes you surprised.
-CAMRON-ROCHA M Motorcycling Acapella Investing Art-Galleries Hiking 0950000130 M 21 170.8 Libra <100 courier eternal truths will be neither true nor eternal unless they have fresh meaning for every new social situation .
-ROCKY-WYNN M Ballet Feminism Band Nightlife Escape-Cafe 0950000131 M 22 180.5 Scorpio 100-300 Deliveryman success is the ability to go from one failure to another with no loss of enthusiasm.
-CHAD-BENJAMIN M Cycling Museum Climbing Baking Shopping 0950000132 M 23 182.5 Scorpio 300-500 Chef where there is life, there is hope.
-TRACE-HEWITT M Cosplay Content-Creation Street-Food Car-Racing Catan 0950000133 M 24 177.4 Sagittarius >500 Patissier the good seaman is known in bad weather.
-COLEMAN-STANTON M Swimming Drummer Tea Brunch Memes 0950000134 M 25 170.3 Sagittarius <100 Translator miracles sometimes occur, but one has to work terribly for them.
-DENVER-FITZPATRICK M Art-Galleries Hiking Mountains Archery Backpacking 0950000135 M 26 180.5 Capricorn 100-300 Sommelier nothing is impossible to a willing heart.
-VAN-WYNN M Exhibition NFTs Bar-Hopping Skateboarding Vegan 0950000136 M 27 173.6 Capricorn 300-500 Clerk never put off till tomorrow what you can do today.
-FLYNN-WOOTEN M Makeup Instagram Martial-Arts K-Pop Skateboarding 0950000137 M 28 170.9 Aquarius >500 farmer Man errs so long as he strives.
-GORDON-VANG M Choir Street-Food Car-Racing Dungeon-&-Dragons Hot-Pot 0950000138 M 29 171.5 Aquarius <100 Prosecutor Always remember to be happy because you never know who’s falling in love with your smile.
-NICKOLAS-GAMBLE M Shopping Brunch Memes Soccer Dancing 0950000139 M 30 181.5 Pisces 100-300 Insurer Blessed is he whose fame does not outshine his truth.
-KOLE-MULLEN M Exhibition NFTs Bar-Hopping Baseball LGBTQ-Rights 0950000140 M 31 170.3 Pisces 300-500 Counselor Definition of best friend? They would let you KNOW when you had something in your teeth!
-ZAVIER-COMPTON M Marvel Walking Running Travel Language-exchange 0950000141 M 32 170.1 Aquarius >500 interior-designer Don’t let the sadness of your past and the fear of your future ruin the happiness of your present.
-VAN-STOUT M Cooking Fencing Soccer Dancing Gardening 0950000142 M 33 166.5 Aquarius <100 nanny Expectation is the root of all heartache.
-KOLE-VINSON M Swimming Drummer Tea Boxing K-Pop 0950000143 M 34 180.5 Aquarius 100-300 architect I’m not crying. It’s been raining on my face.
-ANSON-HAYS M Painting Night-Markets Paddle-Boarding Badminton Padel 0950000144 M 35 188.5 Sagittarius 300-500 security-guard If we didn’t have stupid thoughts, we’d have no interesting thoughts at all.
-VAN-ENGLAND M Painting Camping Skiing Snowboarding Second-hand-apparel Meditation 0950000145 M 36 170.2 Sagittarius >500 Dietitian In order to be irreplaceable one must always be different.
-ANSON-YANG M Hot-Yoga Writing Hockey Home-Workout Manga 0950000146 M 25 166.5 Pisces <100 accompanying-butler Success is the ability to go from one failure to another with no loss of enthusiasm.
-HARPER-BRITT M Makeup Instagram Martial-Arts Marvel Walking 0950000147 M 27 176.3 Pisces 100-300 Professional-Organizer Getting out of bed in winter is one of life’s hardest mission.
-COLEMAN-LEVY M Running Travel Language-exchange Movies Gym 0950000148 M 29 186.6 Scorpio 300-500 Ski-coach The future is scary but you can’t just run to the past cause it’s familiar.
-LEROY-HOOPER M Sports Coffee Basketball League-of-Legends Karaoke 0950000149 M 21 201.3 Scorpio >500 Fitness-coach Having a calm smile to face with being disdained indicates kind of confidence.
-JEROME-GAMBLE M Bar-Hopping Baseball LGBTQ-Rights Ballet  Feminism 0950000150 M 18 198.5 Cancer <100 Surfer Being single is better than being in an unfaithful relationship.
-PAYTON-MAYER M Cosplay Content-Creation Street-Food  Car-Racing Catan 0950000151 B 19 182.5 Pisces <100 engineer I will greet this day with love in my heart.
-LONDON-CASTANEDA M Drummer Tea Boxing K-Pop Night-Markets 0950000152 B 25 178.3 Scorpio 100-300 Doctor Do what you say,say what you do
-EMERY-BAIRD F Ice-Cream Ice-Skating League-of-Legends Sports Coffee 0950000153 B 19 168.2 Cancer 300-500 sales I can make it through the rain. I can stand up once again on my own.
-HARPER-RAYMOND F Wine Dungeon-&-Dragons Hot-Pot Vlogging Electronic-Music 0950000154 B 25 159.2 Cancer >500 Policemen All things come to those who wait.
-SKYLAR-WHITNEY F Comedy Music Triathlon Netflix Disney 0950000155 B 23 180.5 Aquarius <100 lawyer Being single is better than being in an unfaithful relationship.
+JAIDEN-MALDONADO F Walking Running Travel Language-exchange Movies 0950000123 Taoyuan F 24 156.3 Capricorn <100 Weather-observer Impossible is a word to be found only in the dictionary of fools.
+LIANA-ROY F Korean-Dramas K-Pop Skateboarding Vegan Cooking 0950000124 Taoyuan F 18 152.4 Aquarius 100-300 Pilot Don’t try so hard,the best things come when you least expect them to.
+ALLISON-DAWSON F Photography Reading Singing Volleyball Sports 0950000125 Miaoli F 18 151.3 Pisces 300-500 Bus-driver There is no such thing as a great talent without great will-power.
+CRAIG-VALENCIA M Ice-Cream Ice-Skating League-of-Legends Karaoke Home-Workout 0950000126 Miaoli M 19 170.5 <100 Gemini Taxi-driver cheerfulness is the best promoter of health.
+KODY-MCCRAY M Soccer Dancing Gardening Car-Racing Catan 0950000127 Miaoli M 18 171.5 Cancer 100-300 Truck-driver an aim in life is the only fortune worth finding.
+CAMRON-NIELSEN M Hot-Pot Vlogging Electronic-Music Exhibition NFTs 0950000128 Taipei M 19 174.5 Leo 300-500 Car-repairer we have no more right to consume happiness without producing it than to consume wealth without producing it .
+DARIAN-HOOPER M Manga Makeup Instagram Martial-Arts Drummer 0950000129 Taipei M 20 160.5 Virgo >500 racer when there’s no expectation, losing won’t bring hurt, gaining makes you surprised.
+CAMRON-ROCHA M Motorcycling Acapella Investing Art-Galleries Hiking 0950000130 Taipei M 21 170.8 Libra <100 courier eternal truths will be neither true nor eternal unless they have fresh meaning for every new social situation .
+ROCKY-WYNN M Ballet Feminism Band Nightlife Escape-Cafe 0950000131 Taipei M 22 180.5 Scorpio 100-300 Deliveryman success is the ability to go from one failure to another with no loss of enthusiasm.
+CHAD-BENJAMIN M Cycling Museum Climbing Baking Shopping 0950000132 Hualien M 23 182.5 Scorpio 300-500 Chef where there is life, there is hope.
+TRACE-HEWITT M Cosplay Content-Creation Street-Food Car-Racing Catan 0950000133 Hualien M 24 177.4 Sagittarius >500 Patissier the good seaman is known in bad weather.
+COLEMAN-STANTON M Swimming Drummer Tea Brunch Memes 0950000134 Hualien M 25 170.3 Sagittarius <100 Translator miracles sometimes occur, but one has to work terribly for them.
+DENVER-FITZPATRICK M Art-Galleries Hiking Mountains Archery Backpacking 0950000135 Chiayi M 26 180.5 Capricorn 100-300 Sommelier nothing is impossible to a willing heart.
+VAN-WYNN M Exhibition NFTs Bar-Hopping Skateboarding Vegan 0950000136 Chiayi M 27 173.6 Capricorn 300-500 Clerk never put off till tomorrow what you can do today.
+FLYNN-WOOTEN M Makeup Instagram Martial-Arts K-Pop Skateboarding 0950000137 Chiayi M 28 170.9 Aquarius >500 farmer Man errs so long as he strives.
+GORDON-VANG M Choir Street-Food Car-Racing Dungeon-&-Dragons Hot-Pot 0950000138 Kaohsiung M 29 171.5 Aquarius <100 Prosecutor Always remember to be happy because you never know who’s falling in love with your smile.
+NICKOLAS-GAMBLE M Shopping Brunch Memes Soccer Dancing 0950000139 Kaohsiung M 30 181.5 Pisces 100-300 Insurer Blessed is he whose fame does not outshine his truth.
+KOLE-MULLEN M Exhibition NFTs Bar-Hopping Baseball LGBTQ-Rights 0950000140 Kaohsiung M 31 170.3 Pisces 300-500 Counselor Definition of best friend? They would let you KNOW when you had something in your teeth!
+ZAVIER-COMPTON M Marvel Walking Running Travel Language-exchange 0950000141 Kaohsiung M 32 170.1 Aquarius >500 interior-designer Don’t let the sadness of your past and the fear of your future ruin the happiness of your present.
+VAN-STOUT M Cooking Fencing Soccer Dancing Gardening 0950000142 Tainan M 33 166.5 Aquarius <100 nanny Expectation is the root of all heartache.
+KOLE-VINSON M Swimming Drummer Tea Boxing K-Pop 0950000143 Tainan M 34 180.5 Aquarius 100-300 architect I’m not crying. It’s been raining on my face.
+ANSON-HAYS M Painting Night-Markets Paddle-Boarding Badminton Padel 0950000144 Tainan M 35 188.5 Sagittarius 300-500 security-guard If we didn’t have stupid thoughts, we’d have no interesting thoughts at all.
+VAN-ENGLAND M Painting Camping Skiing Snowboarding Second-hand-apparel Meditation 0950000145 Tainan M 36 170.2 Sagittarius >500 Dietitian In order to be irreplaceable one must always be different.
+ANSON-YANG M Hot-Yoga Writing Hockey Home-Workout Manga 0950000146 Taitung M 25 166.5 Pisces <100 accompanying-butler Success is the ability to go from one failure to another with no loss of enthusiasm.
+HARPER-BRITT M Makeup Instagram Martial-Arts Marvel Walking 0950000147 Taitung M 27 176.3 Pisces 100-300 Professional-Organizer Getting out of bed in winter is one of life’s hardest mission.
+COLEMAN-LEVY M Running Travel Language-exchange Movies Gym 0950000148 Taitung M 29 186.6 Scorpio 300-500 Ski-coach The future is scary but you can’t just run to the past cause it’s familiar.
+LEROY-HOOPER M Sports Coffee Basketball League-of-Legends Karaoke 0950000149 Taitung M 21 201.3 Scorpio >500 Fitness-coach Having a calm smile to face with being disdained indicates kind of confidence.
+JEROME-GAMBLE M Bar-Hopping Baseball LGBTQ-Rights Ballet  Feminism 0950000150 Changhua M 18 198.5 Cancer <100 Surfer Being single is better than being in an unfaithful relationship.
+PAYTON-MAYER M Cosplay Content-Creation Street-Food  Car-Racing Catan 0950000151 Changhua B 19 182.5 Pisces <100 engineer I will greet this day with love in my heart.
+LONDON-CASTANEDA M Drummer Tea Boxing K-Pop Night-Markets 0950000152 Changhua B 25 178.3 Scorpio 100-300 Doctor Do what you say,say what you do
+EMERY-BAIRD F Ice-Cream Ice-Skating League-of-Legends Sports Coffee 0950000153 Taichung B 19 168.2 Cancer 300-500 sales I can make it through the rain. I can stand up once again on my own.
+HARPER-RAYMOND F Wine Dungeon-&-Dragons Hot-Pot Vlogging Electronic-Music 0950000154 Taichung B 25 159.2 Cancer >500 Policemen All things come to those who wait.
+SKYLAR-WHITNEY F Comedy Music Triathlon Netflix Disney 0950000155 Taichung B 23 180.5 Aquarius <100 lawyer Being single is better than being in an unfaithful relationship.
