@@ -248,3 +248,9 @@ typedef struct data{
     * 能隨機選5個人存到另一條鏈結裡面
 * 然後因為不是window系統，我把conio.h windows.h換成別的函式庫，裡面有小改一點，但功能一樣
 * 抱歉檔名取的很懶
+
+### 婕
+* with_change_mode
+  * 1.0.0
+    * 把add_plus_sort2加上換模式
+    * 但是選擇繼續配對的話會跳出一樣的人，等等再改
