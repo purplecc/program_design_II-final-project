@@ -254,3 +254,4 @@ typedef struct data{
   * 1.0.0
     * 把add_plus_sort2加上換模式
     * 但是選擇繼續配對的話會跳出一樣的人，等等再改
+    * user最喜歡的人的資料會被output到final_decision.txt
