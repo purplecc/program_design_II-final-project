@@ -64,9 +64,9 @@ BRITTANY-HINTON F Nightlife Escape-Cafe Start-ups Bicycle-Racing Free-Diving 095
 MORGAN-MEADOWS F Paddle-Boarding Badminton Padel Surfing Boba-Tea 0950000064 Hualien M 18 172.5 Capricorn >500 housekeeper You make me happy when skies are gray.
 MAGDALENA-BRITT F TV-Shows High-school-baseketball-league(TW) League-of-Legends Karaoke Band 0950000065 Taitung M 19 158.8 Sagittarius <100 Dietitian You'll never know dear, how much I love you.
 GWEN-BEST F Western-drama-series Painting Korean-Dramas K-Pop Walking 0950000066 Penghu M 20 154.3 Libra 300-500 nanny I dreamed I held you in my arms
-CELIA-SPEARS F TV-Shows High-school-baseketball-league(TW) Netflix Movies Volleyball 0950000067 Green-Island M 22 166.5 Virgo >500 farmer Want some milk? Wellcome to my farm!
+CELIA-SPEARS F TV-Shows High-school-baseketball-league(TW) Netflix Movies Volleyball 0950000067 Penghu M 22 166.5 Virgo >500 farmer Want some milk? Wellcome to my farm!
 FAYE-CHERRY F Binge-Watching TV-Shows Coffee Basketball League-of-Legends 0950000068 Kinmen M 25 167.2 Cancer 300-500 Clerk You didn't say a word to me, But love was in the air.
-RAQUEL-FAULKNER F TikTok Picnicking Twitch Comedy Motorcycles 0950000069 Matsu M 24 163.5 Gemini <100 Insurer Nothing can ever change what I feel inside.
+RAQUEL-FAULKNER F TikTok Picnicking Twitch Comedy Motorcycles 0950000069 Lienchiang M 24 163.5 Gemini <100 Insurer Nothing can ever change what I feel inside.
 ELSA-RICHMOND F  Sports Running Travel Coffee Ice-Cream 0950000070 Tainan M 31 159.6 Scorpio 100-300 architect Be your own boss!
 AVA-WALLS F Skateboarding Vegan Cooking Photography Reading 0950000071 Miaoli M 25 156.7 Cancer <100 Chef An apple a day keeps the doctor away.
 MADELINE-HOOVER F  Ballet Feminism Band Nightlife Escape-Cafe 0950000072 Hualien M 28 145.8 Pisces 100-300 Patissier Sweat is the lubricant of success.
@@ -92,9 +92,9 @@ MAYA-HOLMES F Comedy Music Triathlon Netflix Disney 0950000091 Chiayi M 45 162.1
 JOLIE-LANG F Collecting Cars Start-ups Bicycle-Racing Boba-Tea 0950000092 Miaoli M 55 157.6 Pisces >500 masseur It’s not easy to change friendship into love.
 EMERY-DICKSON F Shopping Brunch Memes Motorcycling Acapella 0950000093 Miaoli M 45 157.8 Pisces <100 Cleaner The better to have loved and lost; Than never to have loved at all.
 ZOE-SANTOS F Investing Art-Galleries Hiking Mountains Archery 0950000094 Miaoli M 44 167.6 Aquarius 100-300 fisherman Dreaming in the memory is not as good as waiting for the paradise in the hell.
-RAMONA-HOLT F Reading Singing Volleyball Sports Coffee 0950000095 Matsu M 58 152.6 Aquarius 300-500 Wedding-planner True love is visible not to the eyes but to the heart.
-ANNABELLE-FOSTER F League-of-Legends Karaoke Instagram-Cafe-Tour Fortnite Free-Diving 0950000096 Matsu M 62 151.6 Gemini >500 Diving-instructor In the world the most exhausting matter is that spending every day falsely.
-ZARA-PATTERSON F Exhibition NFTs Bar-Hopping Baseball LGBTQ-Rights 0950000097 Matsu M 40 165.3 Libra <100 Makeup-artist While there is life there is hope.
+RAMONA-HOLT F Reading Singing Volleyball Sports Coffee 0950000095 Lienchiang M 58 152.6 Aquarius 300-500 Wedding-planner True love is visible not to the eyes but to the heart.
+ANNABELLE-FOSTER F League-of-Legends Karaoke Instagram-Cafe-Tour Fortnite Free-Diving 0950000096 Lienchiang M 62 151.6 Gemini >500 Diving-instructor In the world the most exhausting matter is that spending every day falsely.
+ZARA-PATTERSON F Exhibition NFTs Bar-Hopping Baseball LGBTQ-Rights 0950000097 Lienchiang M 40 165.3 Libra <100 Makeup-artist While there is life there is hope.
 NINA-HALEY F Ballet Feminism Band Nightlife Escape-Cafe 0950000098 Changhua M 53 171.3 Gemini 100-300 politician I am a slow walker,but I never walk backwards.
 ELIZA-SANDOVAL F Memes Motorcycling Acapella Investing Art-Galleries 0950000099 Changhua M 49 180.5 Cancer 300-500 Model Nothing is impossible!
 ANGELINA-GONZALEZ F Broadway Cheerleading Choir Street-Food Car-Racing 0950000100 Changhua M 52 149.2 Cancer 500-up youtuber Never underestimate your power to change yourself!
@@ -116,8 +116,8 @@ SERENITY-MERCER F Boxing Camping Skiing Snowboarding Second-hand-apparel 0950000
 SUMMER-BUCKLEY F Clubbing Roadtrip Concerts Songwriting Mukbang 0950000116 Nantou F 32 153.5 Gemini 100-300 Photographer If you really want to do something, you’ll find a way. If you don’t, you’ll find an excuse.
 EVE-GLOVER F Wine Dungeon-&-Dragons Hot-Pot Vlogging Electronic-Music 0950000117 Nantou F 28 132.5 Cancer 300-500 writer Perfection is not attainable, but if we chase perfection we can catch excellence.
 RYLEE-DALE F Swimming Drummer Tea Brunch Memes 0950000118 Nantou F 25 126.7 Leo >500 Firemen Life is not fair. Get used to it.
-BREANNA-CASH F Fishing Ice-Cream Ice-Skating Pilates Broadway 0950000119 Matsu F 24 166.3 Virgo <100 hairstylist You have to believe in yourself. That’s the secret of success.
-JAYLA-MARQUEZ F Climbing Baking Shopping Brunch Memes 0950000120 Matsu F 22 164.3 Libra 100-300 hairstylist It’s not whether you get knocked down. It’s whether you get up again.
+BREANNA-CASH F Fishing Ice-Cream Ice-Skating Pilates Broadway 0950000119 Lienchiang F 24 166.3 Virgo <100 hairstylist You have to believe in yourself. That’s the secret of success.
+JAYLA-MARQUEZ F Climbing Baking Shopping Brunch Memes 0950000120 Lienchiang F 22 164.3 Libra 100-300 hairstylist It’s not whether you get knocked down. It’s whether you get up again.
 NORAH-CALLAHAN F Sports Coffee Basketball League-of-Legends Karaoke 0950000121 Taoyuan F 29 162.6 Scorpio 300-500 Bartender Too many people live too much in the past. The past must be a springboard, not a sofa.
 RAQUEL-RYAN F Hockey Home-Workout Manga Makeup Instagram 0950000122 Taoyuan F 30 178.5 Sagittarius >500 Bartender The future belongs to those who believe in the beauty of their dreams.
 JAIDEN-MALDONADO F Walking Running Travel Language-exchange Movies 0950000123 Taoyuan F 24 156.3 Capricorn <100 Weather-observer Impossible is a word to be found only in the dictionary of fools.
@@ -142,7 +142,7 @@ ZAVIER-COMPTON M Marvel Walking Running Travel Language-exchange 0950000141 Kaoh
 VAN-STOUT M Cooking Fencing Soccer Dancing Gardening 0950000142 Tainan M 33 166.5 Aquarius <100 nanny Expectation is the root of all heartache.
 KOLE-VINSON M Swimming Drummer Tea Boxing K-Pop 0950000143 Tainan M 34 180.5 Aquarius 100-300 architect I’m not crying. It’s been raining on my face.
 ANSON-HAYS M Painting Night-Markets Paddle-Boarding Badminton Padel 0950000144 Tainan M 35 188.5 Sagittarius 300-500 security-guard If we didn’t have stupid thoughts, we’d have no interesting thoughts at all.
-VAN-ENGLAND M Painting Camping Skiing Snowboarding Second-hand-apparel Meditation 0950000145 Tainan M 36 170.2 Sagittarius >500 Dietitian In order to be irreplaceable one must always be different.
+VAN-ENGLAND M Painting Camping Skiing Snowboarding Meditation 0950000145 Tainan M 36 170.2 Sagittarius >500 Dietitian In order to be irreplaceable one must always be different.
 ANSON-YANG M Hot-Yoga Writing Hockey Home-Workout Manga 0950000146 Taitung M 25 166.5 Pisces <100 accompanying-butler Success is the ability to go from one failure to another with no loss of enthusiasm.
 HARPER-BRITT M Makeup Instagram Martial-Arts Marvel Walking 0950000147 Taitung M 27 176.3 Pisces 100-300 Professional-Organizer Getting out of bed in winter is one of life’s hardest mission.
 COLEMAN-LEVY M Running Travel Language-exchange Movies Gym 0950000148 Taitung M 29 186.6 Scorpio 300-500 Ski-coach The future is scary but you can’t just run to the past cause it’s familiar.

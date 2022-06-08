@@ -184,7 +184,7 @@ typedef struct data{
     </tr>
   </table>  
 
-<img src="Taiwan_all.png">
+<img src="picture/Taiwan_all.png">
 
 ### 昱人的小空間
 * fileIO.c 
@@ -223,7 +223,7 @@ typedef struct data{
     * 把Data person移到全域了，用qsort比較方便
     * 我沒有用linked list，因為一開始用陣列存就是連續記憶體了，覺得沒必要用到
     
-    <img src="relationship.jpg">
+    <img src="picture/relationship.jpg">
 
   * 1.0.2
     * 小小修改
