@@ -50,13 +50,13 @@ int main(){
     data_amount = read_file();
     printf("%d\n", data_amount);                            // 看讀到的人數對不對
     printf("%lf\n", (double)clock() / CLOCKS_PER_SEC);      // 讀檔時間(/s)
-    add_account(&data_amount);
-    //print_data(data_amount);
+    //add_account(&data_amount);
+    print_data(data_amount);
 }
 
 int read_file(){
     int i = 0;                                    // 檔名要記得改自己txt的名字喔
-    const char *filename = "nefertari.txt";
+    const char *filename = "cool.txt";
     FILE *input_file = fopen(filename, "r");
     if (!input_file){
         exit(EXIT_FAILURE);
