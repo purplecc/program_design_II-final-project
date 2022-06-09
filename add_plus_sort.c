@@ -96,7 +96,7 @@ int main(){
 
 int read_file(){
     int i = 0;                                    // 檔名要記得改自己txt的名字喔
-    const char *filename = "nefertari.txt";
+    const char *filename = "all.txt";
     FILE *input_file = fopen(filename, "r");
     if (!input_file){
         exit(EXIT_FAILURE);
@@ -245,7 +245,7 @@ void add_account(int *data_amount){
     while(search_duplicates(*data_amount) || (person[*data_amount].phone_number[0]!='0' || person[*data_amount].phone_number[1] !='9') || strlen(person[*data_amount].phone_number)!=10 || invalid == true){
         system("cls");
         if(search_duplicates(*data_amount)){
-            printf("The phone number is already exist, please enter another phone number: ");
+            printf(B_I_BA_red"The phone number is already exist, please enter another phone number: "finish);
             scanf("%s", person[*data_amount].phone_number);
             invalid = false;
             str = person[*data_amount].phone_number;
@@ -259,7 +259,7 @@ void add_account(int *data_amount){
             }
         }
         else if((person[*data_amount].phone_number[0]!='0' || person[*data_amount].phone_number[1] !='9') || strlen(person[*data_amount].phone_number)!=10 || invalid == true){
-            printf("The phone number format is invalid! Please ensure your input are correct:\n");
+            printf(B_I_BA_red"The phone number format is invalid! \nPlease ensure your input are correct:\n"finish);
             printf("Enter your phone number again: ");
             scanf("%s", person[*data_amount].phone_number);
             invalid = false;
@@ -274,7 +274,7 @@ void add_account(int *data_amount){
             }
         }
     }
-    printf("Next, please enter your age. We have to make sure you are of age: ");
+    printf("Next, please enter your age :");
     char temp_a[5];
     str = temp_a;
     scanf("%s", temp_a);
@@ -290,13 +290,12 @@ void add_account(int *data_amount){
         }
         system("cls");
         if(atoi(temp_a) < 18 && atoi(temp_a)>0 && invalid == false){
-            printf("You are too young to register an account, please enter again\n");
-            printf("Please renter your age: ");
+            printf(B_I_BA_red"You are too young to register an account, please enter again :\n"finish);
             scanf("%s", temp_a);
             continue;
         }
         else if(atoi(temp_a)==0 || atoi(temp_a)>120 || invalid == true){
-            printf("Invalid input! Please ensure your input are real age and must be an integer\n");
+            printf(B_I_BA_red"Invalid input! Please ensure your input are real age and must be an integer\n"finish);
             printf("Please renter your age: ");
             scanf("%s", temp_a);
             continue;
@@ -515,7 +514,7 @@ void add_account(int *data_amount){
         int count_hobby = 0;
         while(1){
             system("cls");
-            printf("\nAfter filling out the basic information, let's Choose 5 hobby from the following list:\n\n");
+            printf("\nAfter filling out the basic information, let's Choose 5 hobbies from the following list:\n\n");
             char key;
             for (int i = 0; i<6; i++){
                 for (int j = 0; j < 5; j++){
@@ -618,7 +617,7 @@ void preference(int *times1,int *times2,int *times3,float *left,float *right,int
     int x_zodiac = 0,y_zodiac = 0;
     system("cls");
     while(1){
-        printf("\nDo You have preferred characteristic?\n");
+        printf("\nDo You have preferred characteristic?\n\n");
         for(int i = 0; i < 1 ;i++){
             for(int j = 0; j < 4 ;j++){
                 if(i == x && j == y)
@@ -817,7 +816,7 @@ void height(int *times2,int *x1,int *x2,float *left,float *right){
         }
     }
     *times2 = 1;
-    printf(B_BLUE"\nPrefered height :\n%.2lf ~ %.2lf\nPress enter to continue..."finish,*left,*right);
+    printf(B_BLUE"\nPreferred height :\n%.2lf ~ %.2lf\nPress enter to continue..."finish,*left,*right);
     getchar();
 }
 
