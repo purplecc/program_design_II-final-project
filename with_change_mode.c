@@ -567,6 +567,7 @@ void display(int *data_amount){
     }
 }
 
+// 邱
 void choose(int i, int like_people){     //存喜歡的人 
     cur =(NODE *) malloc(sizeof(NODE));
     strcpy(cur->name, correct_person[i].name);
@@ -622,7 +623,7 @@ void match(int *data_amount){
     //     }
     //     printf("%s\n", first2->name);
     //     first2 = head;
-        /*cur2 =malloc(sizeof(PAIR)); //這邊應該是用不到啦
+        /*cur2 =malloc(sizeof(PAIR)); // 這邊應該是用不到啦
         strcpy(cur2->name, first2->name);
         cur2->gender = first2->gender;
         for(int i = 0; i < 5; i++){
