@@ -70,7 +70,7 @@ char *trim(char *s){
 bool check_height(char *str);
 bool check_boundary(int x, int y, int row, int col);
 void add(int *data_amount);
-int read_file();//選檔案?
+int read_file(char *file);//
 bool search_duplicates(int data_amount);
 
 void print_data(int *data_amount);//all
@@ -100,7 +100,7 @@ int main(){
     int mode;
     data_amount = 0;
     init();
-    data_amount = read_file();
+    data_amount = read_file("all.txt");
     while (1){
         mode = login(&data_amount);
         if (mode == -1) break;
@@ -192,10 +192,10 @@ regist:
     return 0;
 }
 
-int read_file(){
+int read_file(char *file){
     int i = 0;                                    // 檔名要記得改自己txt的名字喔
-    const char *filename = "nefertari.txt";
-    FILE *input_file = fopen(filename, "r");
+    
+    FILE *input_file = fopen(file, "r");
     if (!input_file){
         exit(EXIT_FAILURE);
     }
@@ -314,9 +314,12 @@ void administrator(int *data_amount){
         } else if(strcmp(namePtr, "sort") == 0){
             printf("Enter the target you want to sort\n");
             sort(data_amount);
-        }/* else if(strcmp(namePtr, "input") == 0){
-            *data_amount = read_file();
-        }*/ else if(strcmp(namePtr, "output") == 0){
+        } else if(strcmp(namePtr, "input") == 0){
+            printf("Enter the filename you want to input\n");
+            char buf[4096];
+            scanf("%s", buf);
+            *data_amount = read_file(buf);
+        } else if(strcmp(namePtr, "output") == 0){
             //write_file(data_amount);
         }
         else {
