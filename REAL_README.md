@@ -1,7 +1,7 @@
 # A DATING APP WITHOUT PHOTOS &#x1F48F; &#x1F46C; &#x1F46D;
 
 ## Instruction
-    When it starts, we can choose our identity, a user or an administrator.
+  When it starts, we can choose our identity, a user or an administrator.
 
 ### `Administrator`
   💛 If I am an administrator, just enter my password then I can do everything to the database.
@@ -26,4 +26,4 @@
   💛 Start to find your soulmate!
   <img src="picture/pc7.jpg">
 
-  
+
