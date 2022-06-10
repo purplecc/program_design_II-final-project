@@ -83,6 +83,7 @@ int search(int pnum, int *data_amount);
 void administrator(int *data_amount);
 void user(int *data_amount);
 void print(int id);//single
+void write_file(int *data_amount);
 int cmp_gender(const void *a, const void *b);
 int cmp_phone(const void *a, const void *b);
 int cmp_area(const void *a, const void *b);
@@ -109,6 +110,7 @@ int main(){
         else 
             user(&data_amount);
     }
+    write_file(data_amount);//
     return 0;
 }
 int login(int *data_amount){
@@ -884,8 +886,8 @@ bool check_height(char *str){
     return true;
 }
 
-/*
-void write_file(data_amount){
+
+void write_file(int *data_amount){
     FILE *output_file = fopen("output.txt", "w");
     for (int i = 0; i < *data_amount; i++){
          fprintf(output_file, "%s %c %s %s %s %s %s %s %s %c %d %.1f %s %s %s\n%s\n"
@@ -909,4 +911,3 @@ void write_file(data_amount){
     fclose(output_file);
     return;
 }
-*/
