@@ -263,7 +263,7 @@ void add_account(int *data_amount){
             system("cls");
         }
         else if((person[*data_amount].phone_number[0]!='0' || person[*data_amount].phone_number[1] !='9') || strlen(person[*data_amount].phone_number)!=10 || invalid == true){
-            printf(B_I_BA_red"The phone number format is invalid! \nPlease ensure your input are correct:\n"finish);
+            printf(B_I_BA_red"The phone number format is invalid! Please ensure your input are correct:\n"finish);
             printf("Enter your phone number again: ");
             scanf("%s", person[*data_amount].phone_number);
             invalid = false;
@@ -295,7 +295,8 @@ void add_account(int *data_amount){
         }
         system("cls");
         if(atoi(temp_a) < 18 && atoi(temp_a)>0 && invalid == false){
-            printf(B_I_BA_red"You are too young to register an account, please enter again :\n"finish);
+            printf(B_I_BA_red"You are too young to register an account\n"finish);
+            printf("Please re-enter your age: ");
             scanf("%s", temp_a);
             continue;
         }
@@ -368,7 +369,7 @@ void add_account(int *data_amount){
             }else{
                 printf("Height: %.1f\n", person[*data_amount].height);
             }
-            if(check_height(temp_h) == false){
+            if(check_height(temp_h) == false || atof(temp_h) > 250){
                 system("cls");
                 printf(B_I_BA_red"Invalid input !!! Please enter again\n"finish);
                 continue;
