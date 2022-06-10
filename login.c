@@ -83,7 +83,7 @@ int search(int pnum, int *data_amount);
 void administrator(int *data_amount);
 void user(int *data_amount);
 void print(int id);//single
-void write_file(int *data_amount);
+void write_file(int *data_amount, char *s);
 int cmp_gender(const void *a, const void *b);
 int cmp_phone(const void *a, const void *b);
 int cmp_area(const void *a, const void *b);
@@ -110,7 +110,7 @@ int main(){
         else 
             user(&data_amount);
     }
-    write_file(data_amount);//
+    write_file(data_amount, "all.txt");//
     return 0;
 }
 int login(int *data_amount){
@@ -322,7 +322,10 @@ void administrator(int *data_amount){
             scanf("%s", buf);
             *data_amount = read_file(buf);
         } else if(strcmp(namePtr, "output") == 0){
-            //write_file(data_amount);
+            char buf[1024];
+            printf("Enter the 'filename.txt' you want to output\n");
+            scanf("%s", buf);
+            write_file(data_amount, buf);
         }
         else {
             printf("error\n");
@@ -887,8 +890,8 @@ bool check_height(char *str){
 }
 
 
-void write_file(int *data_amount){
-    FILE *output_file = fopen("output.txt", "w");
+void write_file(int *data_amount, char *s){
+    FILE *output_file = fopen(s, "w");
     for (int i = 0; i < *data_amount; i++){
          fprintf(output_file, "%s %c %s %s %s %s %s %s %s %c %d %.1f %s %s %s\n%s\n"
          , person[i].name
