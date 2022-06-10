@@ -110,15 +110,15 @@ int main(){
         else 
             user(&data_amount);
     }
-    write_file(data_amount, "all.txt");//
+    write_file(&data_amount, "all.txt");//
     return 0;
 }
 int login(int *data_amount){
     char *namePtr;
     char *Ptr;
     char buffer[1024];
+    char buffer1[1024];
     int ret;
-    int usad;//0: user, 1:admin
     char w;
 
 cmod:
@@ -162,18 +162,17 @@ adminlogin:
     //}
 userlogin:
     printf("enter your name, enter 'BACK' to go back, enter 'REGIST' to regist\n");
-    namePtr = fgets(buffer, 1024, stdin);    
+    fgets(buffer, 1024, stdin);    
     //將字串前後的非ASCII的符號去掉
-    namePtr = trim(namePtr);
-
+    namePtr = trim(buffer);
     if (strcmp(namePtr,"BACK") == 0)
         goto cmod;
     if (strcmp(namePtr,"REGIST") == 0)
         goto regist;
 
-    printf("phonenumber: ");
-    fgets(buffer, 1024, stdin);
-    Ptr = trim(Ptr);
+    printf("phonenumber: \n");
+    fgets(buffer1, 1024, stdin);
+    Ptr = trim(buffer1);
 
     //查詢這個使用者是否在資料庫系統中
     ret = search_user(namePtr, Ptr, data_amount);
@@ -262,15 +261,21 @@ int search_admin(char *s){
     return 0;
 }
 int search_user(char *us, char *pn, int *data_amount){
-    int d = search(atoi(pn), data_amount);
+    int d = search(atoi(pn) , data_amount);
+    //printf("|person[%d].name|%s|\n", d, person[d].name);
+    //printf("|%s|%s|\n",us, pn);
     if (d == -1){
         return 0;
     }
     else {
-        if (strcmp(person[d].name, us) == 0)
+        if (strcmp(person[d].name, us) == 0){
             return 1;
-        else
+        }
+        else{
+            
+            //printf("%s\n%s",person[d].name,us);
             return -1;
+        }
     }
 }
 void administrator(int *data_amount){
@@ -786,23 +791,23 @@ void sort(int *data_amount){
     income
     */
     char temp[10];
-    scanf("%s", temp);
+    scanf("%s ", temp);
         if (strcmp(temp, "gender") == 0)
-            qsort(person, *data_amount, sizeof(person), cmp_gender);
+            qsort(person, *data_amount, sizeof(*person), cmp_gender);
         else if (strcmp(temp, "phone") == 0)
-            qsort(person, *data_amount, sizeof(person), cmp_phone);
+            qsort(person, *data_amount, sizeof(*person), cmp_phone);
         else if (strcmp(temp, "area") == 0)
-            qsort(person, *data_amount, sizeof(person), cmp_area);
+            qsort(person, *data_amount, sizeof(*person), cmp_area);
         else if (strcmp(temp, "target") == 0)
-            qsort(person, *data_amount, sizeof(person), cmp_target);
+            qsort(person, *data_amount, sizeof(*person), cmp_target);
         else if (strcmp(temp, "height") == 0)
-            qsort(person, *data_amount, sizeof(person), cmp_height);
+            qsort(person, *data_amount, sizeof(*person), cmp_height);
         else if (strcmp(temp, "age") == 0)
-            qsort(person, *data_amount, sizeof(person), cmp_age);
+            qsort(person, *data_amount, sizeof(*person), cmp_age);
         else if (strcmp(temp, "zodiac") == 0)
-            qsort(person, *data_amount, sizeof(person), cmp_zodiac);
+            qsort(person, *data_amount, sizeof(*person), cmp_zodiac);
         else if (strcmp(temp, "income") == 0)
-            qsort(person, *data_amount, sizeof(person), cmp_income);
+            qsort(person, *data_amount, sizeof(*person), cmp_income);
         else {
             printf("error\n");
             return;
@@ -888,7 +893,6 @@ bool check_height(char *str){
     }
     return true;
 }
-
 
 void write_file(int *data_amount, char *s){
     FILE *output_file = fopen(s, "w");
