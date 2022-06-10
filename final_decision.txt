@@ -10,4 +10,6 @@ Phone Numbers    :0910000076
 Self introduction :
   just broke up 
 
+// 有時候配對完會找不到user info!!!
+
 
