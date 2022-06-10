@@ -860,8 +860,8 @@ void age(int *times3,int *l_age,int *r_age){
         }
     }
     char c;
-    printf(B_BLUE"Please enter your preferred soulmate's age :\n"finish);
-    printf(B_BLUE"Ex:18-25\n"finish);
+    printf("Please enter your preferred soulmate's age :\n");
+    printf("Ex:18-25\n");
     scanf("%d%c%d",l_age,&c,r_age);
 
     printf(B_BLUE"\nPreferred age: %d ~ %d.\nPress enter to continue...\n"finish,*l_age,*r_age);
