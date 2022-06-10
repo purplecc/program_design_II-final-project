@@ -41,7 +41,7 @@ typedef struct data{
 
 typedef struct {
     char id[21];
-    char pw[21]
+    char pw[21];
 } ad;
 
 void swap(Data *a, Data *b){
@@ -50,8 +50,7 @@ void swap(Data *a, Data *b){
     *b = temp;
 }
 
-bool check_height(char *str);
-bool check_boundary(int x, int y, int row, int col);
+
 char *ltrim(char *s){
     while(isspace(*s)) s++;
     return s;
@@ -67,10 +66,14 @@ char *rtrim(char *s){
 char *trim(char *s){
     return rtrim(ltrim(s));
 }
+
+bool check_height(char *str);
+bool check_boundary(int x, int y, int row, int col);
 void add(int *data_amount);
-int read_file();
-void print_data(int *data_amount);//all
+int read_file();//選檔案?
 bool search_duplicates(int data_amount);
+
+void print_data(int *data_amount);//all
 void sort(int *data_amount);
 void init();
 int login(int *data_amount);
@@ -97,6 +100,7 @@ int main(){
     int mode;
     data_amount = 0;
     init();
+    data_amount = read_file();
     while (1){
         mode = login(&data_amount);
         if (mode == -1) break;
@@ -126,10 +130,11 @@ cmod:
         goto adminlogin;
     }
     else {
+
         return -1;
     }
 adminlogin:
-    printf("enter your name, enter 'BACK' to go back\n");
+    printf("enter your github id, enter 'BACK' to go back\n");
     namePtr = fgets(buffer, 1024, stdin);    
     //將字串前後的非ASCII的符號去掉
     namePtr = trim(namePtr);
@@ -154,7 +159,7 @@ adminlogin:
     //    goto adminlogin;
     //}
 userlogin:
-    printf("enter your name, enter 'BACK' to go back, enter REGIST to regist\n");
+    printf("enter your name, enter 'BACK' to go back, enter 'REGIST' to regist\n");
     namePtr = fgets(buffer, 1024, stdin);    
     //將字串前後的非ASCII的符號去掉
     namePtr = trim(namePtr);
@@ -183,7 +188,7 @@ userlogin:
     } else
         return 0;
 regist:
-//add
+    add(data_amount);
     return 0;
 }
 
@@ -269,7 +274,7 @@ int search_user(char *us, char *pn, int *data_amount){
 void administrator(int *data_amount){
     char *namePtr;
     char buffer[1024];
-    printf("administrator interface\n");
+    printf("administrator interface: \n");
     while (1){
         printf("enter 'exit' to exit\n");
         namePtr = fgets(buffer, 1024, stdin);    
@@ -307,10 +312,16 @@ void administrator(int *data_amount){
             else
                 printf("Not exist\n");
         } else if(strcmp(namePtr, "sort") == 0){
-            //
+            printf("Enter the target you want to sort\n");
+            sort(data_amount);
         }/* else if(strcmp(namePtr, "input") == 0){
-            //data_amount = read_file();
-        }*/
+            *data_amount = read_file();
+        }*/ else if(strcmp(namePtr, "output") == 0){
+            //write_file(data_amount);
+        }
+        else {
+            printf("error\n");
+        }
     }
     return;
 }
@@ -755,7 +766,7 @@ bool search_duplicates(int data_amount){
 }
 
 void sort(int *data_amount){
-    printf("Enter the attribute you want to sort\n");//
+    //
     /*    
     gender
     phone_number
@@ -770,21 +781,24 @@ void sort(int *data_amount){
     scanf("%s", temp);
         if (strcmp(temp, "gender") == 0)
             qsort(person, *data_amount, sizeof(person), cmp_gender);
-        if (strcmp(temp, "phone") == 0)
+        else if (strcmp(temp, "phone") == 0)
             qsort(person, *data_amount, sizeof(person), cmp_phone);
-        if (strcmp(temp, "area") == 0)
+        else if (strcmp(temp, "area") == 0)
             qsort(person, *data_amount, sizeof(person), cmp_area);
-        if (strcmp(temp, "target") == 0)
+        else if (strcmp(temp, "target") == 0)
             qsort(person, *data_amount, sizeof(person), cmp_target);
-        if (strcmp(temp, "height") == 0)
+        else if (strcmp(temp, "height") == 0)
             qsort(person, *data_amount, sizeof(person), cmp_height);
-        if (strcmp(temp, "age") == 0)
+        else if (strcmp(temp, "age") == 0)
             qsort(person, *data_amount, sizeof(person), cmp_age);
-        if (strcmp(temp, "zodiac") == 0)
+        else if (strcmp(temp, "zodiac") == 0)
             qsort(person, *data_amount, sizeof(person), cmp_zodiac);
-        if (strcmp(temp, "income") == 0)
+        else if (strcmp(temp, "income") == 0)
             qsort(person, *data_amount, sizeof(person), cmp_income);
-
+        else {
+            printf("error\n");
+            return;
+        }
         print_data(data_amount);
 }
 int cmp_gender(const void *a, const void *b){
@@ -819,11 +833,11 @@ int cmp_age(const void *a, const void *b){
 }
 int cmp_zodiac(const void *a, const void *b){
     char zo[12][30] = {"Capricorn","Aquarius","Pisces","Aries","Taurus","Gemini","Cancer","Leo","Virgo","Libra","Scorpio","Sagittarius"};
-     char* c = ((Data *)a)->zodiac;
+    char* c = ((Data *)a)->zodiac;
     char* d = ((Data *)b)->zodiac;
     int e;
     int f;
-    for (int i = 0; i < 4; i++){
+    for (int i = 0; i < 12; i++){
         if (strcmp(c, zo[i]) == 0)
             e = i;
         if (strcmp(d, zo[i]) == 0) 
@@ -866,3 +880,30 @@ bool check_height(char *str){
     }
     return true;
 }
+
+/*
+void write_file(data_amount){
+    FILE *output_file = fopen("output.txt", "w");
+    for (int i = 0; i < *data_amount; i++){
+         fprintf(output_file, "%s %c %s %s %s %s %s %s %s %c %d %.1f %s %s %s\n%s\n"
+         , person[i].name
+         , person[i].gender
+         , person[i].hobby[0]
+         , person[i].hobby[1]
+         , person[i].hobby[2]
+         , person[i].hobby[3]
+         , person[i].hobby[4]
+         , person[i].phone_number
+         , person[i].area
+         , person[i].target
+         , person[i].age
+         , person[i].height
+         , person[i].zodiac
+         , person[i].income
+         , person[i].job
+         , person[i].self_introduction);
+    } 
+    fclose(output_file);
+    return;
+}
+*/
