@@ -8,7 +8,8 @@
 
 ### `User`
 
-  💛 If I am a user, as a normal dating app, I should enter my phone number to register. (Remember that the same phone number can't be registered again)
+  💛 If I am a user, as a normal dating app, I should enter my phone number to register. 
+  (Remember that the same phone number can't be registered again)
 
   Next, enter your age honestly 🔞, it will check whether you can register or not.
 
