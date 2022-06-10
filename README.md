@@ -256,3 +256,9 @@ typedef struct data{
     * 把add_plus_sort2加上換模式
     * 但是選擇繼續配對的話會跳出一樣的人，等等再改
     * user最喜歡的人的資料會被output到final_decision.txt
+
+* aps1.0.6_with_mode
+  * 1.0.1
+    * 把add_plus_sort 1.0.6加上配對和換模式（mac版本）
+    * 交出20人之後，重新進去display的時候還是會顯示一樣的人，看不出問題在哪><
+    * '\r'的部分都用'\t'代替了，因為mac讀不了\r，統整的時候再改回來
