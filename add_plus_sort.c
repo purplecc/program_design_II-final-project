@@ -89,7 +89,7 @@ int main(){
     preference(&times1,&times2,&times3,&left,&right,&l_age,&r_age);
     calculate_score(&times1,&times2,&times3,&left,&right,&l_age,&r_age,&person[data_amount-1],&data_amount);
     qsort(person,data_amount,sizeof(Data),comp);
-    print_data(data_amount);
+    // print_data(data_amount);
     display(&data_amount);
 }
 
@@ -1077,7 +1077,7 @@ void display(int *data_amount){
             system("cls");
             if(correct_person[i].flag == 0 && like_people <= 20){
                 while(1){
-                    printf("\n%d\n",correct_person[i].score);
+                    // printf("\n%d\n",correct_person[i].score);
                     printf(BACK_YELLOW"\nFIND YOUR SOULMATE!\n\n"finish);
                     printf(B_U_I_yellow"***************************************************************************\n\n"finish); 
                     int space = (70 - strlen(correct_person[i].name))/2;
