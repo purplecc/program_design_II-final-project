@@ -82,7 +82,6 @@ int main(){
     float left,right;
 
     data_amount = read_file();
-    printf("%d\n", data_amount);                            // 看讀到的人數對不對
     printf("%lf\n", (double)clock() / CLOCKS_PER_SEC);      // 讀檔時間(/s)
     //print_data(data_amount);
     add_account(&data_amount);
@@ -91,7 +90,6 @@ int main(){
     qsort(person,data_amount,sizeof(Data),comp);
     print_data(data_amount);
     display(&data_amount);
-    printf("%d\n", data_amount);
 }
 
 int read_file(){
@@ -214,12 +212,16 @@ void print_data(int data_amount){
 }
 
 void add_account(int *data_amount){
-    char hobbies[6][5][13] = {{{"Writing"}, {"Reading"}, {"Singing"}, {"Photography"}, {"Gardening"}},
+    char hobbies[10][5][13] = {{{"Writing"}, {"Reading"}, {"Singing"}, {"Photography"}, {"Gardening"}},
                             {{"Cooking"}, {"Baking"}, {"Jogging"}, {"Swimming"}, {"Working-out"}},
                             {{"badminton"}, {"Tennis"}, {"Basketball"}, {"Volleyball"},{"Cycling"}},
-                            {{"Dancing"}, {"Films"}, {"Fashion"}, {"Collecting"}, {"Music"}},
+                            {{"Dancing"}, {"Films"}, {"Fashion"}, {"Collecting"}, {"violin"}},
                             {{"Anime"}, {"Delicacy"}, {"Shopping"}, {"Yoga"}, {"Memes"}},
-                            {{"Diving"},{"Sunbathing"},{"Piano"},{"Guitar"},{"Makeup"}}};
+                            {{"Diving"},{"Sunbathing"},{"Piano"},{"Guitar"},{"Makeup"}},
+                            {{"Choir"},{"Baseball"},{"Comedy"},{"Skincare"},{"Korean-Drama"}},
+                            {{"Pop-music"},{"Astrology"},{"Meditation"},{"Surfing"},{"Motorcycles"}},
+                            {{"Camping"},{"Picnicking"},{"knitting"},{"Cosplay"},{"Fishing"}},
+                            {{"Podcasts"},{"Fencing"},{"Climbing"},{"Hiking"},{"Travel"}}};
     char decision[2][27] = {"Yes", "No(enter my profile again)"};
     char cities[4][5][11] = {{{"Keelung"}, {"New-Taipei"}, {"Taipei"}, {"Taoyuan"}, {"Hsinchu"}},
                             {{"Miaoli"}, {"Taichung"}, {"Changhua"}, {"Nantou"}, {"Yunlin"}},
@@ -229,7 +231,7 @@ void add_account(int *data_amount){
                             {{"Taurus"}, {"Gemini"}, {"Cancer"}, {"Leo"}},
                             {{"Virgo"}, {"Libra"}, {"Scorpio"}, {"Sagittarius"}}};
     char Income[4][8] = {{"<100"}, {"100~300"}, {"300~500"}, {">500"}};
-    bool hobbies_flag[6][5];
+    bool hobbies_flag[10][5];
     printf("Welecome to omni, please enter your mobile number to register before you start: ");
     scanf("%s", person[*data_amount].phone_number);
     char *str = person[*data_amount].phone_number;
@@ -245,7 +247,7 @@ void add_account(int *data_amount){
     while(search_duplicates(*data_amount) || (person[*data_amount].phone_number[0]!='0' || person[*data_amount].phone_number[1] !='9') || strlen(person[*data_amount].phone_number)!=10 || invalid == true){
         system("cls");
         if(search_duplicates(*data_amount)){
-            printf(B_I_BA_red"The phone number is already exist, please enter another phone number: "finish);
+            printf(B_I_BA_red"The phone number is already exist, please enter another phone number:\n"finish);
             scanf("%s", person[*data_amount].phone_number);
             invalid = false;
             str = person[*data_amount].phone_number;
@@ -257,6 +259,7 @@ void add_account(int *data_amount){
                     str+=1;
                 }
             }
+            system("cls");
         }
         else if((person[*data_amount].phone_number[0]!='0' || person[*data_amount].phone_number[1] !='9') || strlen(person[*data_amount].phone_number)!=10 || invalid == true){
             printf(B_I_BA_red"The phone number format is invalid! \nPlease ensure your input are correct:\n"finish);
@@ -272,6 +275,7 @@ void add_account(int *data_amount){
                     str+=1;
                 }
             }
+            system("cls");
         }
     }
     printf("Next, please enter your age :");
@@ -294,17 +298,17 @@ void add_account(int *data_amount){
             scanf("%s", temp_a);
             continue;
         }
-        else if(atoi(temp_a)==0 || atoi(temp_a)>120 || invalid == true){
+        else if(atoi(temp_a)==0 || atoi(temp_a)>120 || invalid == true || atoi(temp_a)<0){
             printf(B_I_BA_red"Invalid input! Please ensure your input are real age and must be an integer\n"finish);
             printf("Please renter your age: ");
             scanf("%s", temp_a);
             continue;
         }
     }
+    system("cls");
     person[*data_amount].age = atoi(temp_a);
     printf("Great! Let's create your personal profile!\n");
     Sleep(2000);
-    system("cls");
     while(1){
         memset(hobbies_flag, false, sizeof(hobbies_flag));
         int print_to_where = 0;
@@ -516,7 +520,8 @@ void add_account(int *data_amount){
             system("cls");
             printf("\nAfter filling out the basic information, let's Choose 5 hobbies from the following list:\n\n");
             char key;
-            for (int i = 0; i<6; i++){
+            for (int i = 0; i < 10; i++){
+                printf("%d.\t", i + 1);
                 for (int j = 0; j < 5; j++){
                     if(i==x && j==y){
                         printf(B_U_I_yellow"%s    \t"finish, hobbies[i][j]);
@@ -528,19 +533,19 @@ void add_account(int *data_amount){
                         printf("%s    \t", hobbies[i][j]);
                     }
                 }
-                printf("\n");
+                printf("\n\n");
             }
             key = getch();
-            if((key == 'W' || key =='w' || key == 72) && check_boundary(x-1,y,6,5)){
+            if((key == 'W' || key =='w' || key == 72) && check_boundary(x-1,y,10,5)){
                 x -= 1;
             }
-            else if((key == 'A' || key =='a' || key == 75) && check_boundary(x,y-1,6,5)){
+            else if((key == 'A' || key =='a' || key == 75) && check_boundary(x,y-1,10,5)){
                 y -= 1;
             }
-            else if((key == 'S' || key =='s' || key == 80) && check_boundary(x+1,y,6,5)){
+            else if((key == 'S' || key =='s' || key == 80) && check_boundary(x+1,y,10,5)){
                 x += 1;
             }
-            else if((key == 'D' || key =='d' || key== 77) && check_boundary(x,y+1,6,5)){
+            else if((key == 'D' || key =='d' || key== 77) && check_boundary(x,y+1,10,5)){
                 y += 1;
             }
             else if(key == '\r' && hobbies_flag[x][y] == false){
@@ -606,8 +611,26 @@ void add_account(int *data_amount){
         }
         system("cls");
     }
+    FILE *output_file = fopen("all.txt", "a");
+    fprintf(output_file,"%s %c %s %s %s %s %s %s %s %c %d %.1f %s %s %s %s"
+    , person[*data_amount].name
+    , person[*data_amount].gender
+    , person[*data_amount].hobby[0]
+    , person[*data_amount].hobby[1]
+    , person[*data_amount].hobby[2]
+    , person[*data_amount].hobby[3]
+    , person[*data_amount].hobby[4]
+    , person[*data_amount].phone_number
+    , person[*data_amount].area
+    , person[*data_amount].target
+    , person[*data_amount].age
+    , person[*data_amount].height
+    , person[*data_amount].zodiac
+    , person[*data_amount].income
+    , person[*data_amount].job
+    , person[*data_amount].self_introduction);
+    fclose(output_file);
     (*data_amount)+=1;
-    printf("%d\n", *data_amount);
 }
 
 void preference(int *times1,int *times2,int *times3,float *left,float *right,int *l_age,int *r_age){ 
@@ -855,7 +878,7 @@ bool search_duplicates(int data_amount){
 }
 
 bool check_boundary(int x, int y, int row, int col){
-    if(x<0 || x>5 || y<0 || y>4){
+    if(x<0 || x>row-1 || y<0 || y>col-1){
         return false;
     }
     return true;
