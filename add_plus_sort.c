@@ -83,6 +83,7 @@ int main(){
 
     data_amount = read_file();
     printf("%lf\n", (double)clock() / CLOCKS_PER_SEC);      // 讀檔時間(/s)
+    //printf("%d\n", data_amount);
     //print_data(data_amount);
     add_account(&data_amount);
     preference(&times1,&times2,&times3,&left,&right,&l_age,&r_age);
@@ -300,7 +301,7 @@ void add_account(int *data_amount){
         }
         else if(atoi(temp_a)==0 || atoi(temp_a)>120 || invalid == true || atoi(temp_a)<0){
             printf(B_I_BA_red"Invalid input! Please ensure your input are real age and must be an integer\n"finish);
-            printf("Please renter your age: ");
+            printf("Please re-enter your age: ");
             scanf("%s", temp_a);
             continue;
         }
