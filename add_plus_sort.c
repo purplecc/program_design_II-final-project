@@ -206,10 +206,10 @@ void print_data(int data_amount){
 //         , person[i].job
 //         , person[i].self_introduction);
 //     }
-    for (int i = 0; i < data_amount - 1;i++){
-        printf("%d\n", person[i].index_of_area);
+    // for (int i = 0; i < data_amount - 1;i++){
+    //     printf("%d\n", person[i].index_of_area);
         
-    }
+    // }
 }
 
 void add_account(int *data_amount){
