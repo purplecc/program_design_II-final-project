@@ -567,6 +567,7 @@ void display(int *data_amount){
     }
 }
 
+// 邱
 void choose(int i, int like_people){     //存喜歡的人 
     cur =(NODE *) malloc(sizeof(NODE));
     strcpy(cur->name, correct_person[i].name);

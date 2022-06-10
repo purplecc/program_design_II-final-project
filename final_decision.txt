@@ -1,13 +1,13 @@
-Name   :Xiang
+Name   :
 Gender :M
-Age    :31
-Height :176.7
-Zodiac :Pisces
-Area   :Hsinchu
-Hobbies:    
-Job    :Freelancer
-Phone Numbers    :0910000066
+Age    :30
+Height :170.2
+Zodiac :Libra
+Area   :New-Taipei
+Hobbies:  Comedy  
+Job    :Sales
+Phone Numbers    :0910000076
 Self introduction :
-  Netflix and chill 
+  just broke up 
 
 
