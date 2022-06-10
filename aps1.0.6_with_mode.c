@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
-//#include <stdbool.h>
+#include <stdbool.h>
 #include <string.h>
 #include <time.h>
 #include <ctype.h>
 #include <unistd.h>
 #include <termios.h>
-typedef int bool;
-#define false 0
-#define true 1
+// typedef int bool;
+// #define false 0
+// #define true 1
 
 #define finish          "\033[0m"
 #define light           "\033[01m"
@@ -47,6 +47,7 @@ typedef struct data{
     char self_introduction[151];
     int score;
     int flag;                                          // 是否被喜歡過
+    int id;
 } Data;
 
 typedef struct like{ // 存喜歡的人
@@ -143,7 +144,7 @@ int main(){
 
 int read_file(){
     int i = 0;                                    // 檔名要記得改自己txt的名字喔
-    const char *filename = "celeste.txt";
+    const char *filename = "all.txt";
     FILE *input_file = fopen(filename, "r");
     if (!input_file){
         exit(EXIT_FAILURE);
@@ -1090,15 +1091,16 @@ void display(int *data_amount){
     char yes_no[1][2][6] = {{{ " YES " },{ " NO " }}};
     int correct = 0;
     for(int i = 0;i < *data_amount;i++){
-        if(person[i].score >= 1500){
+        if(person[i].score >= 1500 && person[i].flag == 0){
             correct_person[correct] = person[i];            // 對的人才會印，縮短判斷的時間
+            correct_person[correct].id = i;
             correct++;
         }
     }
     while(like_people <= 20){
         for(int i = 0;i < correct;i++){
             system("clear");
-            if(correct_person[i].flag == 0 && like_people <= 20){
+             if (like_people <= 20){
                 while(1){
                     // printf("\n%d\n",correct_person[i].score);
                     printf(BACK_YELLOW"\nFIND YOUR SOULMATE!\n\n"finish);
@@ -1137,7 +1139,7 @@ void display(int *data_amount){
                         y+=1;
                     }
                     else if(key == '\t' && !strcmp(yes_no[x][y]," YES ")){
-                        correct_person[i].flag = 1;
+                        person[correct_person[i].id].flag = 1;
                         choose(i , like_people);
                         like_people++;
                         break;
@@ -1172,7 +1174,11 @@ void choose(int i, int like_people){     //存喜歡的人
     cur =(Like *) malloc(sizeof(Like));
     strcpy(cur->name, correct_person[i].name);
     cur->gender = correct_person[i].gender;
-    strcpy(cur->hobby[i], correct_person[i].hobby[i]);
+    strcpy(cur->hobby[0], correct_person[i].hobby[0]);
+    strcpy(cur->hobby[1], correct_person[i].hobby[1]);
+    strcpy(cur->hobby[2], correct_person[i].hobby[2]);
+    strcpy(cur->hobby[3], correct_person[i].hobby[3]);
+    strcpy(cur->hobby[4], correct_person[i].hobby[4]);
     strcpy(cur->phone_number, correct_person[i].phone_number);
     strcpy(cur->area, correct_person[i].area);
     cur->target = correct_person[i].target;
@@ -1243,8 +1249,8 @@ void matching_success (int loca[] , int *data_amount) {
         matched[j] = first2;
         first2 = head;
     }
-    system("clear");
-    delete_like();           
+    //system("clear");
+    //delete_like();           
     printf(B_white"\n\nTake good use of the phone numbers and get to know each others!\n"finish);
     printf(B_white"Who do you like the most?\n"finish);
     printf(B_white"[1]%s [2]%s [3]%s [4]%s [5]%s [6]None : "finish , matched[0]->name , matched[1]->name , matched[2]->name , matched[3]->name , matched[4]->name);
@@ -1255,9 +1261,10 @@ void matching_success (int loca[] , int *data_amount) {
         scanf("%d" , &choice);
         if (choice == 1) {          // pairing
             printf(B_B_red"Please wait for a seconds\n"finish);
-            sleep(3);
+            sleep(2);
             printf("\n\n");
             printf(B_white"Welcome! It's a whole new day.\n"finish);
+            sleep(1);
             return;
         }
         else 
