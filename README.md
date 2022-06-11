@@ -215,6 +215,9 @@ typedef struct data{
   * 1.0.7
     * 創好的帳號會輸出到txt裡面
     * 興趣改成50個 基本上我的部分好了 🐬🐬🐬🐬🐬🐬🐬🐬🐬🐬
+* windows.c 
+  * 1.0.0 
+    * apple的code的還沒在裡面
 
 ### 柯的
 * fileIO.c
