@@ -670,7 +670,7 @@ void regist_account(int *data_amount){
         }
         system("cls");
     }
-    FILE *output_file = fopen("all.txt", "a");
+    FILE *output_file = fopen("output.txt", "a");
     fprintf(output_file,"%s %c %s %s %s %s %s %s %s %c %d %.1f %s %s %s %s"
     , person[*data_amount].name
     , person[*data_amount].gender
