@@ -1250,16 +1250,18 @@ void matching_success (int loca[] , int *data_amount) {
         first2 = head;
     }
     //system("clear");
-    //delete_like();           
+              
     printf(B_white"\n\nTake good use of the phone numbers and get to know each others!\n"finish);
     printf(B_white"Who do you like the most?\n"finish);
     printf(B_white"[1]%s [2]%s [3]%s [4]%s [5]%s [6]None : "finish , matched[0]->name , matched[1]->name , matched[2]->name , matched[3]->name , matched[4]->name);
     scanf("%d" , &choice);
+    system("clear");
     if (choice == 6) {                  // doesn't like anyone
         printf(B_white"Do you want to keep pairing or exiting the app?\n"finish);
         printf(B_white"[1]Pairing [2]exit : "finish);
         scanf("%d" , &choice);
         if (choice == 1) {          // pairing
+            delete_like(); 
             printf(B_B_red"Please wait for a seconds\n"finish);
             sleep(2);
             printf("\n\n");
@@ -1288,6 +1290,7 @@ void matching_success (int loca[] , int *data_amount) {
         fprintf(output_file , "Phone Numbers    :%s\n" , matched[choice - 1] -> phone_number);
         fprintf(output_file , "Self introduction :\n  %s\n\n" , matched[choice - 1] -> self_introduction);
         fclose(output_file);
+        system("clear");
         exit(0);
     }
 }

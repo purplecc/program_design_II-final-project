@@ -70,9 +70,10 @@ char *trim(char *s){
 bool check_height(char *str);
 bool check_boundary(int x, int y, int row, int col);
 void add(int *data_amount);
-int read_file();//選檔案?
+int read_file(char *file);//
 bool search_duplicates(int data_amount);
 
+void addusr(int *data_amount);
 void print_data(int *data_amount);//all
 void sort(int *data_amount);
 void init();
@@ -83,6 +84,7 @@ int search(int pnum, int *data_amount);
 void administrator(int *data_amount);
 void user(int *data_amount);
 void print(int id);//single
+void write_file(int *data_amount, char *s);
 int cmp_gender(const void *a, const void *b);
 int cmp_phone(const void *a, const void *b);
 int cmp_area(const void *a, const void *b);
@@ -100,7 +102,7 @@ int main(){
     int mode;
     data_amount = 0;
     init();
-    data_amount = read_file();
+    data_amount = read_file("all.txt");
     while (1){
         mode = login(&data_amount);
         if (mode == -1) break;
@@ -109,14 +111,15 @@ int main(){
         else 
             user(&data_amount);
     }
+    write_file(&data_amount, "all.txt");//
     return 0;
 }
 int login(int *data_amount){
     char *namePtr;
     char *Ptr;
     char buffer[1024];
+    char buffer1[1024];
     int ret;
-    int usad;//0: user, 1:admin
     char w;
 
 cmod:
@@ -160,18 +163,17 @@ adminlogin:
     //}
 userlogin:
     printf("enter your name, enter 'BACK' to go back, enter 'REGIST' to regist\n");
-    namePtr = fgets(buffer, 1024, stdin);    
+    fgets(buffer, 1024, stdin);    
     //將字串前後的非ASCII的符號去掉
-    namePtr = trim(namePtr);
-
+    namePtr = trim(buffer);
     if (strcmp(namePtr,"BACK") == 0)
         goto cmod;
     if (strcmp(namePtr,"REGIST") == 0)
         goto regist;
 
-    printf("phonenumber: ");
-    fgets(buffer, 1024, stdin);
-    Ptr = trim(Ptr);
+    printf("phonenumber: \n");
+    fgets(buffer1, 1024, stdin);
+    Ptr = trim(buffer1);
 
     //查詢這個使用者是否在資料庫系統中
     ret = search_user(namePtr, Ptr, data_amount);
@@ -192,10 +194,10 @@ regist:
     return 0;
 }
 
-int read_file(){
+int read_file(char *file){
     int i = 0;                                    // 檔名要記得改自己txt的名字喔
-    const char *filename = "nefertari.txt";
-    FILE *input_file = fopen(filename, "r");
+    
+    FILE *input_file = fopen(file, "r");
     if (!input_file){
         exit(EXIT_FAILURE);
     }
@@ -260,15 +262,21 @@ int search_admin(char *s){
     return 0;
 }
 int search_user(char *us, char *pn, int *data_amount){
-    int d = search(atoi(pn), data_amount);
+    int d = search(atoi(pn) , data_amount);
+    //printf("|person[%d].name|%s|\n", d, person[d].name);
+    //printf("|%s|%s|\n",us, pn);
     if (d == -1){
         return 0;
     }
     else {
-        if (strcmp(person[d].name, us) == 0)
+        if (strcmp(person[d].name, us) == 0){
             return 1;
-        else
+        }
+        else{
+            
+            //printf("%s\n%s",person[d].name,us);
             return -1;
+        }
     }
 }
 void administrator(int *data_amount){
@@ -286,12 +294,13 @@ void administrator(int *data_amount){
 	    if (strcmp(namePtr, "exit") == 0){
             break;
         } else if(strcmp(namePtr, "add") == 0){
-            add(data_amount);
+            addusr(data_amount);
         } else if(strcmp(namePtr, "delete") == 0){
             int pnum;
             int k;
             printf("enter phonenumber");
             scanf("%d", &pnum);
+            getchar();
             k = search(pnum, data_amount);
             if (k != -1){
                 swap(&person[k], &person[*data_amount]);
@@ -306,6 +315,7 @@ void administrator(int *data_amount){
             int k;
             printf("enter phonenumber");
             scanf("%d", &pnum);
+            getchar();
             k = search(pnum, data_amount);
             if (k != -1)
                 print(k);
@@ -314,14 +324,21 @@ void administrator(int *data_amount){
         } else if(strcmp(namePtr, "sort") == 0){
             printf("Enter the target you want to sort\n");
             sort(data_amount);
-        }/* else if(strcmp(namePtr, "input") == 0){
-            *data_amount = read_file();
-        }*/ else if(strcmp(namePtr, "output") == 0){
-            //write_file(data_amount);
+        } else if(strcmp(namePtr, "input") == 0){
+            printf("Enter the filename you want to input\n");
+            char buf[4096];
+            scanf("%s ", buf);
+            *data_amount = read_file(buf);
+        } else if(strcmp(namePtr, "output") == 0){
+            char buf[1024];
+            printf("Enter the 'filename.txt' you want to output\n");
+            scanf("%s ", buf);
+            write_file(data_amount, buf);
         }
         else {
             printf("error\n");
         }
+        
     }
     return;
 }
@@ -779,22 +796,23 @@ void sort(int *data_amount){
     */
     char temp[10];
     scanf("%s", temp);
+    getchar();
         if (strcmp(temp, "gender") == 0)
-            qsort(person, *data_amount, sizeof(person), cmp_gender);
+            qsort(person, *data_amount, sizeof(*person), cmp_gender);
         else if (strcmp(temp, "phone") == 0)
-            qsort(person, *data_amount, sizeof(person), cmp_phone);
+            qsort(person, *data_amount, sizeof(*person), cmp_phone);
         else if (strcmp(temp, "area") == 0)
-            qsort(person, *data_amount, sizeof(person), cmp_area);
+            qsort(person, *data_amount, sizeof(*person), cmp_area);
         else if (strcmp(temp, "target") == 0)
-            qsort(person, *data_amount, sizeof(person), cmp_target);
+            qsort(person, *data_amount, sizeof(*person), cmp_target);
         else if (strcmp(temp, "height") == 0)
-            qsort(person, *data_amount, sizeof(person), cmp_height);
+            qsort(person, *data_amount, sizeof(*person), cmp_height);
         else if (strcmp(temp, "age") == 0)
-            qsort(person, *data_amount, sizeof(person), cmp_age);
+            qsort(person, *data_amount, sizeof(*person), cmp_age);
         else if (strcmp(temp, "zodiac") == 0)
-            qsort(person, *data_amount, sizeof(person), cmp_zodiac);
+            qsort(person, *data_amount, sizeof(*person), cmp_zodiac);
         else if (strcmp(temp, "income") == 0)
-            qsort(person, *data_amount, sizeof(person), cmp_income);
+            qsort(person, *data_amount, sizeof(*person), cmp_income);
         else {
             printf("error\n");
             return;
@@ -881,9 +899,8 @@ bool check_height(char *str){
     return true;
 }
 
-/*
-void write_file(data_amount){
-    FILE *output_file = fopen("output.txt", "w");
+void write_file(int *data_amount, char *s){
+    FILE *output_file = fopen(s, "w");
     for (int i = 0; i < *data_amount; i++){
          fprintf(output_file, "%s %c %s %s %s %s %s %s %s %c %d %.1f %s %s %s\n%s\n"
          , person[i].name
@@ -906,4 +923,25 @@ void write_file(data_amount){
     fclose(output_file);
     return;
 }
-*/
+
+void addusr(int *data_amount){
+    
+    scanf("%s %c %s %s %s %s %s %s %s %c %d %f %s %s %s "
+    , person[*data_amount].name
+    , &person[*data_amount].gender
+    , person[*data_amount].hobby[0]
+    , person[*data_amount].hobby[1]
+    , person[*data_amount].hobby[2]
+    , person[*data_amount].hobby[3]
+    , person[*data_amount].hobby[4]
+    , person[*data_amount].phone_number
+    , person[*data_amount].area
+    , &person[*data_amount].target
+    , &person[*data_amount].age
+    , &person[*data_amount].height
+    , person[*data_amount].zodiac
+    , person[*data_amount].income
+    , person[*data_amount].job);
+    fgets(person[*data_amount].self_introduction, 151, stdin);
+    *data_amount++;
+}
