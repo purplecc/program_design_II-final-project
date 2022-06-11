@@ -73,6 +73,7 @@ void add(int *data_amount);
 int read_file(char *file);//
 bool search_duplicates(int data_amount);
 
+void addusr(int *data_amount);
 void print_data(int *data_amount);//all
 void sort(int *data_amount);
 void init();
@@ -293,12 +294,13 @@ void administrator(int *data_amount){
 	    if (strcmp(namePtr, "exit") == 0){
             break;
         } else if(strcmp(namePtr, "add") == 0){
-            add(data_amount);
+            addusr(data_amount);
         } else if(strcmp(namePtr, "delete") == 0){
             int pnum;
             int k;
             printf("enter phonenumber");
             scanf("%d", &pnum);
+            getchar();
             k = search(pnum, data_amount);
             if (k != -1){
                 swap(&person[k], &person[*data_amount]);
@@ -313,6 +315,7 @@ void administrator(int *data_amount){
             int k;
             printf("enter phonenumber");
             scanf("%d", &pnum);
+            getchar();
             k = search(pnum, data_amount);
             if (k != -1)
                 print(k);
@@ -324,17 +327,18 @@ void administrator(int *data_amount){
         } else if(strcmp(namePtr, "input") == 0){
             printf("Enter the filename you want to input\n");
             char buf[4096];
-            scanf("%s", buf);
+            scanf("%s ", buf);
             *data_amount = read_file(buf);
         } else if(strcmp(namePtr, "output") == 0){
             char buf[1024];
             printf("Enter the 'filename.txt' you want to output\n");
-            scanf("%s", buf);
+            scanf("%s ", buf);
             write_file(data_amount, buf);
         }
         else {
             printf("error\n");
         }
+        
     }
     return;
 }
@@ -791,7 +795,8 @@ void sort(int *data_amount){
     income
     */
     char temp[10];
-    scanf("%s ", temp);
+    scanf("%s", temp);
+    getchar();
         if (strcmp(temp, "gender") == 0)
             qsort(person, *data_amount, sizeof(*person), cmp_gender);
         else if (strcmp(temp, "phone") == 0)
@@ -917,4 +922,26 @@ void write_file(int *data_amount, char *s){
     } 
     fclose(output_file);
     return;
+}
+
+void addusr(int *data_amount){
+    
+    scanf("%s %c %s %s %s %s %s %s %s %c %d %f %s %s %s "
+    , person[*data_amount].name
+    , &person[*data_amount].gender
+    , person[*data_amount].hobby[0]
+    , person[*data_amount].hobby[1]
+    , person[*data_amount].hobby[2]
+    , person[*data_amount].hobby[3]
+    , person[*data_amount].hobby[4]
+    , person[*data_amount].phone_number
+    , person[*data_amount].area
+    , &person[*data_amount].target
+    , &person[*data_amount].age
+    , &person[*data_amount].height
+    , person[*data_amount].zodiac
+    , person[*data_amount].income
+    , person[*data_amount].job);
+    fgets(person[*data_amount].self_introduction, 151, stdin);
+    *data_amount++;
 }
