@@ -27,7 +27,7 @@
   ✨ Start to find your soulmate!
   <img src="picture/pc7.jpg">
   
-  ✨ Interested in 20 people is the upper limit. If you see the messages below appear, you must make decision. To delete up to three people and continue the pairing mode, or directly send out your final decision (these 20 people) and see if there are someone also interested in you.
+  ✨ Interested in 20 people is the upper limit. If you see the list below appear, you can finally check whether these 20 people are your choices, if some of them aren't (You regretted to choose he/she), you can delete up to three people and then send it out, or directly send out your final decision (these 20 people) and see if there are someone also interested in you.
   
   ✨ Delete someone you've chosen.
   
