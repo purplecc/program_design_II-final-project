@@ -1704,7 +1704,8 @@ cmod:
         goto adminlogin;
     }
     else if(!strcmp(word,"Exit")){
-        printf("Bye!\n");
+        system("cls");
+        printf("Bye! See ya :)\n");
         return -1;
     }
 
