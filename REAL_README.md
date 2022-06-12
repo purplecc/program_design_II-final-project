@@ -6,6 +6,11 @@
 ### `Administrator`
   ✨ If I am an administrator, just enter my password then I can do everything to the database.
 
+  <img src="picture/pc12.jpg">
+  
+  <img src="picture/pc13.jpg">
+  <img src="picture/pc14.jpg">
+
 ### `User`
 
   ✨ If I am a user, as a normal dating app, I should enter my phone number to register. 
@@ -29,11 +34,20 @@
   
   ✨ Interested in 20 people is the upper limit. If you see the list below appear, you can finally check whether these 20 people are your choices, if some of them aren't (You regretted to choose he/she), you can delete up to three people and then send it out, or directly send out your final decision (these 20 people) and see if there are someone also interested in you.
   
-  ✨ Delete someone you've chosen.
   
+
+  <img src="picture/pc8.jpg">
+
+  ✨ Delete *Kuo* you've chosen.
+
+  <img src="picture/pc9.jpg">
+  <img src="picture/pc10.jpg">
+
   ✨ You may be lucky(or not), in these 20 people, there are some of them also like you! Now you get important detailed information! Afrer getting their `income`, you can consider whether you two are compatible or not. The most important information is their `phone number`! It means that you can contact with each other in real life, and know if you can get along well.
 
   ✨ After you finish matching, if there is no `SOULMATE` in your choice, you can get back to pairing mode to choose a new match. On the contrary, you can end the program and manage your love.💛
+
+  <img src="picture/pc11.jpg">
 
 
  
