@@ -100,9 +100,6 @@ void prefer_height_score(int *times2,int data_amount,float *left,float *right);
 int comp(const void *p, const void *q);
 void display(int data_amount);
 
-char *ltrim(char *s);
-char *rtrim(char *s);
-char *trim(char *s);
 void sort(int *data_amount);
 void init();
 int login(int *data_amount);
@@ -296,7 +293,7 @@ void regist_account(int *data_amount){
                             {{"Virgo"}, {"Libra"}, {"Scorpio"}, {"Sagittarius"}}};
     char Income[4][8] = {{"<100"}, {"100~300"}, {"300~500"}, {">500"}};
     bool hobbies_flag[10][5];
-    printf("Welecome to omni, please enter your mobile number to register before you start: ");
+    printf("Welecome to Pretty Babe, please enter your mobile number to register before you start: ");
     scanf("%s", person[*data_amount].phone_number);
     char *str = person[*data_amount].phone_number;
     bool invalid = false;
@@ -311,7 +308,7 @@ void regist_account(int *data_amount){
     while(search_duplicates(*data_amount) || (person[*data_amount].phone_number[0]!='0' || person[*data_amount].phone_number[1] !='9') || strlen(person[*data_amount].phone_number)!=10 || invalid == true){
         system("cls");
         if(search_duplicates(*data_amount)){
-            printf(B_I_BA_red"The phone number is already exist!!!\n"finish);
+            printf(B_I_BA_red"The phone number that already exists!!!\n"finish);
             printf("Enter another phone number again: ");
             scanf("%s", person[*data_amount].phone_number);
             invalid = false;
@@ -735,20 +732,9 @@ void add_account(int *data_amount){
     while(search_duplicates(*data_amount) || (person[*data_amount].phone_number[0]!='0' || person[*data_amount].phone_number[1] !='9') || strlen(person[*data_amount].phone_number)!=10 || invalid == true){
         system("cls");
         if(search_duplicates(*data_amount)){
-            printf(B_I_BA_red"The phone number is already exist\n"finish);
-            printf("Enter the phone number again: ");
-            scanf("%s", person[*data_amount].phone_number);
-            invalid = false;
-            str = person[*data_amount].phone_number;
-            while((*str)!='\0'){
-                if(isdigit(*str)==0){
-                    invalid = true;
-                    break;
-                }else{
-                    str+=1;
-                }
-            }
-            system("cls");
+            printf(red"The phone number that already exists\n\n"finish);
+            Sleep(2000);
+            return;
         }
         else if((person[*data_amount].phone_number[0]!='0' || person[*data_amount].phone_number[1] !='9') || strlen(person[*data_amount].phone_number)!=10 || invalid == true){
             printf(B_I_BA_red"The phone number format is invalid!\n"finish);
@@ -1073,7 +1059,7 @@ void add_account(int *data_amount){
             printf(B_U_I_yellow"Self introduction:\n"finish);
             printf(B_I_green"*******************************************************************\n"finish);
             printf(B_cyan"%s\n"finish, person[*data_amount].self_introduction);
-            printf(B_white"Confirm Submission\n");
+            printf(B_white"[Confirm Submission]\n");
             char key;
             for (int i = 0; i < 2;i++){
                 if(i == yes_no_position){
@@ -1120,6 +1106,9 @@ void add_account(int *data_amount){
     , person[*data_amount].self_introduction);
     fclose(output_file);
     (*data_amount)+=1;
+    system("cls");
+    printf(B_yellow"successfully added !\n\n"finish);
+    Sleep(2000);
 }
 
 void preference(int *times1,int *times2,int *times3,float *left,float *right,int *l_age,int *r_age){ 
@@ -1644,22 +1633,6 @@ bool check_height(char *str){
     return true;
 }
 
-char *ltrim(char *s){
-    while(isspace(*s)) s++;
-    return s;
-}
-
-char *rtrim(char *s){
-    char* back = s + strlen(s);
-    while(isspace(*--back));
-    *(back+1) = '\0';
-    return s;
-}
-
-char *trim(char *s){
-    return rtrim(ltrim(s));
-}
-
 int login(int *data_amount){
     int x = 0;
     int ret;
@@ -1684,7 +1657,7 @@ cmod:
             }
             printf("\t");
         }
-        printf("\n");
+        printf("\n\n");
         key = getch();
         if((key == 'A' || key =='a' || key == 75) && (x-1) > -1){
             x -= 1;
@@ -1713,7 +1686,7 @@ adminlogin:
     x = 0;
     while(1){
         system("cls");
-        printf("Action:\n");
+        printf("Admin:\n");
         printf("*************************************\n");
         for (int i = 0; i < 2; i++){
             if(i == x){
@@ -1749,7 +1722,7 @@ adminlogin:
         ret = search_admin(word, word2);
     }
     if (ret == 0) {
-        printf(red"Incorrect username or password. Try again\n"finish);
+        printf(red"Incorrect username or password. Try again\n\n"finish);
         Sleep(2000);
         goto adminlogin;
     }else{
@@ -1760,7 +1733,7 @@ userlogin:
     x = 0;
     while(1){
         system("cls");
-        printf("Action:\n");
+        printf("User:\n");
         printf("******************************************\n");
         for (int i = 0; i < 3; i++){
             if(i == x){
@@ -1797,11 +1770,11 @@ userlogin:
         ret = search_user(word, word2, data_amount);
     }
     if (ret == 0) {
-        printf(red"The phone number entered may be wrong\n"finish);
+        printf(red"The phone number entered may be wrong\n\n"finish);
         Sleep(2000);
         goto userlogin;
     } else if (ret == -1) {
-        printf(red"Incorrect user's name, please try again.\n"finish);
+        printf(red"Incorrect user's name, please try again.\n\n"finish);
         Sleep(2000);
         goto userlogin;
     } else
@@ -1910,9 +1883,13 @@ void administrator(int *data_amount){
                 }
                 (*data_amount)--;
                 write_file(data_amount);
+                system("cls");
+                printf(B_yellow"successfully deleted !\n\n"finish);
+                Sleep(2000);
             }
             else{
-                printf(red"Not exist\n"finish);
+                system("cls");
+                printf(red"Not exist\n\n"finish);
                 Sleep(2000);
             }
         }
@@ -1954,7 +1931,8 @@ void administrator(int *data_amount){
                 getchar();
             }
             else{
-                printf(red"Not exist\n"finish);
+                system("cls");
+                printf(red"Not exist\n\n"finish);
                 Sleep(2000);
             }
         }
@@ -2121,6 +2099,9 @@ void sort(int *data_amount){
     else if (!strcmp(temp, "Income"))
         qsort(person, *data_amount, sizeof(Data), cmp_income);
     write_file(data_amount);
+    system("cls");
+    printf(B_yellow"successfully sorted !\n\n"finish);
+    Sleep(2000);
 }
 
 int cmp_gender(const void *a, const void *b){
