@@ -2536,7 +2536,3 @@ void matching_success (int loca[] , int *data_amount){
         exit(0);
     }
 }
-
-void change_password(){
-
-}
