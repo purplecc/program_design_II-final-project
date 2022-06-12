@@ -90,12 +90,12 @@
 
   <img src="picture/18.jpg">
   <br/>
-  <br/>
+
   <img src="picture/19.jpg">
   <br/>
-  <br/>
+
   <img src="picture/20.jpg">
   <br/>
-  <br/>
+
 
   ***`And go back to Start to find your soulmate!`***

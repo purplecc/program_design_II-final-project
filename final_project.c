@@ -2025,7 +2025,7 @@ void administrator(int *data_amount){
     return;
 }
 
-void traverse(data_amount){
+void traverse(int data_amount){
     char operation[3][6] = {{"Next"}, {"Prior"}, {"Exit"}};
     int position = 0;
     int now = 0;
