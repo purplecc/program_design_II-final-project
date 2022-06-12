@@ -253,6 +253,10 @@ typedef struct data{
 * 然後因為不是window系統，我把conio.h windows.h換成別的函式庫，裡面有小改一點，但功能一樣
 * 抱歉檔名取的很懶
 
+* fffinal
+  * 1.0.0
+    * 
+
 ### 婕
 * with_change_mode
   * 1.0.0
