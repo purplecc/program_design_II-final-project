@@ -31,6 +31,8 @@
 #define Move_the_cursor_up_one      "\e[1A"
 #define Move_the_cursor_right_14    "\e[14C"
 #define Move_the_cursor_right_11    "\e[11C"
+#define Move_the_cursor_left_1      "\e[1D"
+#define Clear_one_word              "\e[K"
 
 typedef struct data{
     char name[21];
@@ -308,7 +310,7 @@ void regist_account(int *data_amount){
     while(search_duplicates(*data_amount) || (person[*data_amount].phone_number[0]!='0' || person[*data_amount].phone_number[1] !='9') || strlen(person[*data_amount].phone_number)!=10 || invalid == true){
         system("cls");
         if(search_duplicates(*data_amount)){
-            printf(B_I_BA_red"The phone number that already exists!!!\n"finish);
+            printf(red"The phone number that already exists!!!\n"finish);
             printf("Enter another phone number again: ");
             scanf("%s", person[*data_amount].phone_number);
             invalid = false;
@@ -324,7 +326,7 @@ void regist_account(int *data_amount){
             system("cls");
         }
         else if((person[*data_amount].phone_number[0]!='0' || person[*data_amount].phone_number[1] !='9') || strlen(person[*data_amount].phone_number)!=10 || invalid == true){
-            printf(B_I_BA_red"The phone number format is invalid!\n"finish);
+            printf(red"The phone number format is invalid!\n"finish);
             printf("Enter correct phone number again: ");
             scanf("%s", person[*data_amount].phone_number);
             invalid = false;
@@ -356,13 +358,13 @@ void regist_account(int *data_amount){
         }
         system("cls");
         if(atoi(temp_a) < 18 && atoi(temp_a)>0 && invalid == false){
-            printf(B_I_BA_red"You are too young to register an account\n"finish);
+            printf(red"You are too young to register an account\n"finish);
             printf("Please re-enter your age: ");
             scanf("%s", temp_a);
             continue;
         }
         else if(atoi(temp_a)==0 || atoi(temp_a)>120 || invalid == true || atoi(temp_a)<0){
-            printf(B_I_BA_red"Invalid input! Please ensure your input are real age and must be an integer\n"finish);
+            printf(red"Invalid input! Please ensure your input are real age and must be an integer\n"finish);
             printf("Please re-enter your age: ");
             scanf("%s", temp_a);
             continue;
@@ -394,7 +396,7 @@ void regist_account(int *data_amount){
             }
             if(person[*data_amount].gender != 'M' && person[*data_amount].gender != 'F'){
                 system("cls");
-                printf(B_I_BA_red"Invalid input !!! Please enter again\n"finish);
+                printf(red"Invalid input !!! Please enter again\n"finish);
                 continue;
             }else{
                 if(count==0){
@@ -412,7 +414,7 @@ void regist_account(int *data_amount){
             }
             if(person[*data_amount].target != 'M' && person[*data_amount].target != 'F' && person[*data_amount].target != 'B'){
                 system("cls");
-                printf(B_I_BA_red"Invalid input !!! Please enter again\n"finish);
+                printf(red"Invalid input !!! Please enter again\n"finish);
                 continue;
             }else{
                 if(count==1){
@@ -431,7 +433,7 @@ void regist_account(int *data_amount){
             }
             if(check_height(temp_h) == false || atof(temp_h) > 250 || atof(temp_h) < 75){
                 system("cls");
-                printf(B_I_BA_red"Invalid input !!! Please enter again\n"finish);
+                printf(red"Invalid input !!! Please enter again\n"finish);
                 continue;
             }else{
                 if(count==2){
@@ -737,7 +739,7 @@ void add_account(int *data_amount){
             return;
         }
         else if((person[*data_amount].phone_number[0]!='0' || person[*data_amount].phone_number[1] !='9') || strlen(person[*data_amount].phone_number)!=10 || invalid == true){
-            printf(B_I_BA_red"The phone number format is invalid!\n"finish);
+            printf(red"The phone number format is invalid!\n"finish);
             printf("Enter the phone number again: ");
             scanf("%s", person[*data_amount].phone_number);
             invalid = false;
@@ -769,13 +771,13 @@ void add_account(int *data_amount){
         }
         system("cls");
         if(atoi(temp_a) < 18 && atoi(temp_a)>0 && invalid == false){
-            printf(B_I_BA_red"The age is too young\n"finish);
+            printf(red"The age is too young\n"finish);
             printf("Please re-enter your age: ");
             scanf("%s", temp_a);
             continue;
         }
         else if(atoi(temp_a)==0 || atoi(temp_a)>120 || invalid == true || atoi(temp_a)<0){
-            printf(B_I_BA_red"Invalid input! Your input must be real age and is integer\n"finish);
+            printf(red"Invalid input! Your input must be real age and is integer\n"finish);
             printf("Please re-enter your age: ");
             scanf("%s", temp_a);
             continue;
@@ -807,7 +809,7 @@ void add_account(int *data_amount){
             }
             if(person[*data_amount].gender != 'M' && person[*data_amount].gender != 'F'){
                 system("cls");
-                printf(B_I_BA_red"Invalid input !!! Please enter again\n"finish);
+                printf(red"Invalid input !!! Please enter again\n"finish);
                 continue;
             }else{
                 if(count==0){
@@ -825,7 +827,7 @@ void add_account(int *data_amount){
             }
             if(person[*data_amount].target != 'M' && person[*data_amount].target != 'F' && person[*data_amount].target != 'B'){
                 system("cls");
-                printf(B_I_BA_red"Invalid input !!! Please enter again\n"finish);
+                printf(red"Invalid input !!! Please enter again\n"finish);
                 continue;
             }else{
                 if(count==1){
@@ -844,7 +846,7 @@ void add_account(int *data_amount){
             }
             if(check_height(temp_h) == false || atof(temp_h) > 250 || atof(temp_h) < 75){
                 system("cls");
-                printf(B_I_BA_red"Invalid input !!! Please enter again\n"finish);
+                printf(red"Invalid input !!! Please enter again\n"finish);
                 continue;
             }else{
                 if(count==2){
@@ -1713,16 +1715,56 @@ adminlogin:
         goto cmod;
     }
     else if(!strcmp(word,"[Log in]")){
+        int i = 0;
+        char c;
         printf("Github ID: \n");
         printf("Password : ");
         printf(Move_the_cursor_up_one "" finish);
-        scanf("%s", word);
+        while((c = getch()) != '\r'){
+            if(c =='\b' && i > 0){
+                i--;
+                printf(Move_the_cursor_left_1""finish);
+                printf(Clear_one_word""finish);
+            }
+            else if(c =='\b' && i == 0){
+                continue;
+            }
+            else if(i == 20){
+                continue;
+            }
+            else{
+                word[i] = c;
+                printf("%c", word[i]);
+                i++;
+            }
+        }
+        word[i] = '\0';
+        printf("\n");
         printf(Move_the_cursor_right_11 "" finish);
-        scanf("%s", word2);
+        i = 0;
+        while((c = getch()) != '\r'){
+            if(c =='\b' && i > 0){
+                i--;
+                printf(Move_the_cursor_left_1""finish);
+                printf(Clear_one_word""finish);
+            }
+            else if(c =='\b' && i == 0){
+                continue;
+            }
+            else if(i == 20){
+                continue;
+            }
+            else{
+                word2[i] = c;
+                printf("*");
+                i++;
+            }
+        }
+        word2[i] = '\0';
         ret = search_admin(word, word2);
     }
     if (ret == 0) {
-        printf(red"Incorrect username or password. Try again\n\n"finish);
+        printf(red"\nIncorrect username or password. Try again\n\n"finish);
         Sleep(2000);
         goto adminlogin;
     }else{
@@ -1761,20 +1803,60 @@ userlogin:
     else if(!strcmp(word,"[Regist]"))
         goto regist;
     else if(!strcmp(word,"[Log in]")){
+        int i = 0;
+        char c;
         printf("Account Name: \n");
         printf("Phone Number: ");
         printf(Move_the_cursor_up_one "" finish);
-        scanf("%s", word);
+        while((c = getch()) != '\r'){
+            if(c =='\b' && i > 0){
+                i--;
+                printf(Move_the_cursor_left_1""finish);
+                printf(Clear_one_word""finish);
+            }
+            else if(c =='\b' && i == 0){
+                continue;
+            }
+            else if(i == 20){
+                continue;
+            }
+            else{
+                word[i] = c;
+                printf("%c", word[i]);
+                i++;
+            }
+        }
+        word[i] = '\0';
+        printf("\n");
         printf(Move_the_cursor_right_14 "" finish);
-        scanf("%s", word2);
+        i = 0;
+        while((c = getch()) != '\r'){
+            if(c =='\b' && i > 0){
+                i--;
+                printf(Move_the_cursor_left_1""finish);
+                printf(Clear_one_word""finish);
+            }
+            else if(c =='\b' && i == 0){
+                continue;
+            }
+            else if(i == 10){
+                continue;
+            }
+            else{
+                word2[i] = c;
+                printf("%c",word2[i]);
+                i++;
+            }
+        }
+        word2[i] = '\0';
         ret = search_user(word, word2, data_amount);
     }
     if (ret == 0) {
-        printf(red"The phone number entered may be wrong\n\n"finish);
+        printf(red"\nThe phone number entered may be wrong\n\n"finish);
         Sleep(2000);
         goto userlogin;
     } else if (ret == -1) {
-        printf(red"Incorrect user's name, please try again.\n\n"finish);
+        printf(red"\nIncorrect user's name, please try again.\n\n"finish);
         Sleep(2000);
         goto userlogin;
     } else
@@ -2453,4 +2535,8 @@ void matching_success (int loca[] , int *data_amount){
         fclose(output_file);
         exit(0);
     }
+}
+
+void change_password(){
+
 }
