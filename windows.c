@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include <time.h>
+#include <ctype.h>
 #include <conio.h>
 #include <windows.h>
 
@@ -30,6 +31,8 @@
 #define Move_the_cursor_up_one      "\e[1A"
 #define Move_the_cursor_right_14    "\e[14C"
 #define Move_the_cursor_right_11    "\e[11C"
+#define Move_the_cursor_left_1      "\e[1D"
+#define Clear_one_word              "\e[K"
 
 typedef struct data{
     char name[21];
@@ -50,6 +53,26 @@ typedef struct data{
     int id;
 } Data;
 
+typedef struct like{ // 存喜歡的人
+    char name[21];
+    char gender;
+    char hobby[5][36];
+    char phone_number[11];
+    char area[16];
+    char target;
+    int age;
+    float height;
+    char zodiac[21];
+    char income[11];
+    char job[41];
+    int index_of_area;
+    char self_introduction[151];
+    int score;
+    int flag;
+    int dest;      // 喜歡user
+    struct like *next;
+} Like;
+
 typedef struct {
     char id[21];
     char pw[21];
@@ -68,20 +91,17 @@ void zodiac_choice(int *times,int *x_zodiac,int *y_zodiac);
 bool check_height(char *str);
 
 void calculate_score(int *times1,int *times2,int *times3,float *left,float *right,\
-int *l_age,int *r_age,Data *User,int *data_amount);
+int *l_age,int *r_age,Data *User,int data_amount);
 int judge_mode(Data *User);                            // 回傳使用者性向狀況
-void sexuality_score(Data *User,int *data_amount);
-void age_score(int *times3,int *l_age,int *r_age,Data *User,int *data_amount);
-void area_score(Data *User,int *data_amount);
-void hobby_score(Data *User,int *data_amount);
-void prefer_zodiac_score(int *times1,int *data_amount);
-void prefer_height_score(int *times2,int *data_amount,float *left,float *right);
+void sexuality_score(Data *User,int data_amount);
+void age_score(int *times3,int *l_age,int *r_age,Data *User,int data_amount);
+void area_score(Data *User,int data_amount);
+void hobby_score(Data *User,int data_amount);
+void prefer_zodiac_score(int *times1,int data_amount);
+void prefer_height_score(int *times2,int data_amount,float *left,float *right);
 int comp(const void *p, const void *q);
-void display(int *data_amount);
+void display(int data_amount);
 
-char *ltrim(char *s);
-char *rtrim(char *s);
-char *trim(char *s);
 void sort(int *data_amount);
 void init();
 int login(int *data_amount);
@@ -102,13 +122,21 @@ int cmp_income(const void *a, const void *b);
 void traverse(int data_amount);
 void write_file(int *data_amount);
 
-char twelve_zodiac[2][6][15] = {{{"Capricorn"},{"Aquarius"},{"Pisces"},{"Aries"},{"Taurus"},{"Gemini"}},
-                                {{"Cancer"},{"Leo"},{"Virgo"},{"Libra"},{"Scorpio"},{"Sagittarius"}}};
-int zodiac_flag[2][6] = {{0,0,0,0,0,0,},{0,0,0,0,0,0,}};
+void choose (int , int);
+void match(int*, int like_people);
+void delete_like();
+void matching_success();
+void very_cool(int like_people, int x, int y, char yes_no[1][2][6], char send[6], int *data_amount);
+void relike(int g, int like_people);
+bool check_boundary2(int x);
+
 char prefer_zodiac[3][15];
 Data person[1000];
 Data correct_person[500];
 ad m[5];
+int loca[5] = {0};
+char like[20][100];
+Like *pre, *cur, *head;
 
 int main(){
     int data_amount = 0;
@@ -118,42 +146,38 @@ int main(){
     int mode;
     init();
     data_amount = read_file();
-    printf("%lf\n", (double)clock() / CLOCKS_PER_SEC);      // 讀檔時間(/s)
     while (1){
         mode = login(&data_amount);
         if (mode == -1){        //* 選Exit
             break;
         }
-        if(mode == 0){          //* User 註冊
+        if(mode == 0){          //* User 註冊 然後配對
             system("cls");
             regist_account(&data_amount);
             preference(&times1, &times2, &times3, &left, &right, &l_age, &r_age);
-            calculate_score(&times1, &times2, &times3, &left, &right, &l_age, &r_age, &person[data_amount - 1], &data_amount);
+            calculate_score(&times1, &times2, &times3, &left, &right, &l_age, &r_age, &person[data_amount - 1], data_amount-1);
             qsort(person, data_amount, sizeof(Data), comp);
-            display(&data_amount);
+            while(1){
+                display(data_amount);
+            }
         }
         else if (mode == 1){    //* Admin operation
             administrator(&data_amount);
         }
         else if(mode == 2){     //* User login and match
-            printf("1\n");
-            break;
+            preference(&times1, &times2, &times3, &left, &right, &l_age, &r_age);
+            calculate_score(&times1, &times2, &times3, &left, &right, &l_age, &r_age, &person[data_amount - 1], data_amount-1);
+            qsort(person, data_amount, sizeof(Data), comp);
+            while(1){
+                display(data_amount);
+            }
         }
     }
-    //printf("%d\n", data_amount);
-    //print_data(data_amount);
-    regist_account(&data_amount);
-    preference(&times1,&times2,&times3,&left,&right,&l_age,&r_age);
-    calculate_score(&times1,&times2,&times3,&left,&right,&l_age,&r_age,&person[data_amount-1],&data_amount);
-    qsort(person,data_amount,sizeof(Data),comp);
-    //print_data(data_amount);
-    display(&data_amount);
-    print_data(data_amount);
 }
 
 int read_file(){
     int i = 0;                                    // 檔名要記得改自己txt的名字喔
-    const char *filename = "all.txt";
+    const char *filename = "output.txt";
     FILE *input_file = fopen(filename, "r");
     if (!input_file){
         exit(EXIT_FAILURE);
@@ -245,25 +269,6 @@ int read_file(){
 }
 
 void print_data(int data_amount){
-//     for (int i = 0; i < data_amount; i++){
-//         printf("%s %c %s %s %s %s %s %s %s %c %d %.1f %s %s %s\n%s\n"
-//         , person[i].name
-//         , person[i].gender
-//         , person[i].hobby[0]
-//         , person[i].hobby[1]
-//         , person[i].hobby[2]
-//         , person[i].hobby[3]
-//         , person[i].hobby[4]
-//         , person[i].phone_number
-//         , person[i].area
-//         , person[i].target
-//         , person[i].age
-//         , person[i].height
-//         , person[i].zodiac
-//         , person[i].income
-//         , person[i].job
-//         , person[i].self_introduction);
-//     }
     for (int i = 0; i < data_amount;i++){
         printf("%d\n", person[i].flag);
     }
@@ -290,7 +295,7 @@ void regist_account(int *data_amount){
                             {{"Virgo"}, {"Libra"}, {"Scorpio"}, {"Sagittarius"}}};
     char Income[4][8] = {{"<100"}, {"100~300"}, {"300~500"}, {">500"}};
     bool hobbies_flag[10][5];
-    printf("Welecome to omni, please enter your mobile number to register before you start: ");
+    printf("Welecome to Pretty Babe, please enter your mobile number to register before you start: ");
     scanf("%s", person[*data_amount].phone_number);
     char *str = person[*data_amount].phone_number;
     bool invalid = false;
@@ -305,7 +310,7 @@ void regist_account(int *data_amount){
     while(search_duplicates(*data_amount) || (person[*data_amount].phone_number[0]!='0' || person[*data_amount].phone_number[1] !='9') || strlen(person[*data_amount].phone_number)!=10 || invalid == true){
         system("cls");
         if(search_duplicates(*data_amount)){
-            printf(B_I_BA_red"The phone number is already exist!!!\n"finish);
+            printf(red"The phone number that already exists!!!\n"finish);
             printf("Enter another phone number again: ");
             scanf("%s", person[*data_amount].phone_number);
             invalid = false;
@@ -321,7 +326,7 @@ void regist_account(int *data_amount){
             system("cls");
         }
         else if((person[*data_amount].phone_number[0]!='0' || person[*data_amount].phone_number[1] !='9') || strlen(person[*data_amount].phone_number)!=10 || invalid == true){
-            printf(B_I_BA_red"The phone number format is invalid!\n"finish);
+            printf(red"The phone number format is invalid!\n"finish);
             printf("Enter correct phone number again: ");
             scanf("%s", person[*data_amount].phone_number);
             invalid = false;
@@ -353,13 +358,13 @@ void regist_account(int *data_amount){
         }
         system("cls");
         if(atoi(temp_a) < 18 && atoi(temp_a)>0 && invalid == false){
-            printf(B_I_BA_red"You are too young to register an account\n"finish);
+            printf(red"You are too young to register an account\n"finish);
             printf("Please re-enter your age: ");
             scanf("%s", temp_a);
             continue;
         }
         else if(atoi(temp_a)==0 || atoi(temp_a)>120 || invalid == true || atoi(temp_a)<0){
-            printf(B_I_BA_red"Invalid input! Please ensure your input are real age and must be an integer\n"finish);
+            printf(red"Invalid input! Please ensure your input are real age and must be an integer\n"finish);
             printf("Please re-enter your age: ");
             scanf("%s", temp_a);
             continue;
@@ -391,7 +396,7 @@ void regist_account(int *data_amount){
             }
             if(person[*data_amount].gender != 'M' && person[*data_amount].gender != 'F'){
                 system("cls");
-                printf(B_I_BA_red"Invalid input !!! Please enter again\n"finish);
+                printf(red"Invalid input !!! Please enter again\n"finish);
                 continue;
             }else{
                 if(count==0){
@@ -409,7 +414,7 @@ void regist_account(int *data_amount){
             }
             if(person[*data_amount].target != 'M' && person[*data_amount].target != 'F' && person[*data_amount].target != 'B'){
                 system("cls");
-                printf(B_I_BA_red"Invalid input !!! Please enter again\n"finish);
+                printf(red"Invalid input !!! Please enter again\n"finish);
                 continue;
             }else{
                 if(count==1){
@@ -428,7 +433,7 @@ void regist_account(int *data_amount){
             }
             if(check_height(temp_h) == false || atof(temp_h) > 250 || atof(temp_h) < 75){
                 system("cls");
-                printf(B_I_BA_red"Invalid input !!! Please enter again\n"finish);
+                printf(red"Invalid input !!! Please enter again\n"finish);
                 continue;
             }else{
                 if(count==2){
@@ -666,6 +671,7 @@ void regist_account(int *data_amount){
             }
         }
         if(yes_no_position==0){
+            person[*data_amount].flag = 1;
             break;
         }
         system("cls");
@@ -728,23 +734,12 @@ void add_account(int *data_amount){
     while(search_duplicates(*data_amount) || (person[*data_amount].phone_number[0]!='0' || person[*data_amount].phone_number[1] !='9') || strlen(person[*data_amount].phone_number)!=10 || invalid == true){
         system("cls");
         if(search_duplicates(*data_amount)){
-            printf(B_I_BA_red"The phone number is already exist\n"finish);
-            printf("Enter the phone number again: ");
-            scanf("%s", person[*data_amount].phone_number);
-            invalid = false;
-            str = person[*data_amount].phone_number;
-            while((*str)!='\0'){
-                if(isdigit(*str)==0){
-                    invalid = true;
-                    break;
-                }else{
-                    str+=1;
-                }
-            }
-            system("cls");
+            printf(red"The phone number that already exists\n\n"finish);
+            Sleep(2000);
+            return;
         }
         else if((person[*data_amount].phone_number[0]!='0' || person[*data_amount].phone_number[1] !='9') || strlen(person[*data_amount].phone_number)!=10 || invalid == true){
-            printf(B_I_BA_red"The phone number format is invalid!\n"finish);
+            printf(red"The phone number format is invalid!\n"finish);
             printf("Enter the phone number again: ");
             scanf("%s", person[*data_amount].phone_number);
             invalid = false;
@@ -776,13 +771,13 @@ void add_account(int *data_amount){
         }
         system("cls");
         if(atoi(temp_a) < 18 && atoi(temp_a)>0 && invalid == false){
-            printf(B_I_BA_red"The age is too young\n"finish);
+            printf(red"The age is too young\n"finish);
             printf("Please re-enter your age: ");
             scanf("%s", temp_a);
             continue;
         }
         else if(atoi(temp_a)==0 || atoi(temp_a)>120 || invalid == true || atoi(temp_a)<0){
-            printf(B_I_BA_red"Invalid input! Your input must be real age and is integer\n"finish);
+            printf(red"Invalid input! Your input must be real age and is integer\n"finish);
             printf("Please re-enter your age: ");
             scanf("%s", temp_a);
             continue;
@@ -814,7 +809,7 @@ void add_account(int *data_amount){
             }
             if(person[*data_amount].gender != 'M' && person[*data_amount].gender != 'F'){
                 system("cls");
-                printf(B_I_BA_red"Invalid input !!! Please enter again\n"finish);
+                printf(red"Invalid input !!! Please enter again\n"finish);
                 continue;
             }else{
                 if(count==0){
@@ -832,7 +827,7 @@ void add_account(int *data_amount){
             }
             if(person[*data_amount].target != 'M' && person[*data_amount].target != 'F' && person[*data_amount].target != 'B'){
                 system("cls");
-                printf(B_I_BA_red"Invalid input !!! Please enter again\n"finish);
+                printf(red"Invalid input !!! Please enter again\n"finish);
                 continue;
             }else{
                 if(count==1){
@@ -851,7 +846,7 @@ void add_account(int *data_amount){
             }
             if(check_height(temp_h) == false || atof(temp_h) > 250 || atof(temp_h) < 75){
                 system("cls");
-                printf(B_I_BA_red"Invalid input !!! Please enter again\n"finish);
+                printf(red"Invalid input !!! Please enter again\n"finish);
                 continue;
             }else{
                 if(count==2){
@@ -1066,7 +1061,7 @@ void add_account(int *data_amount){
             printf(B_U_I_yellow"Self introduction:\n"finish);
             printf(B_I_green"*******************************************************************\n"finish);
             printf(B_cyan"%s\n"finish, person[*data_amount].self_introduction);
-            printf(B_white"Confirm Submission\n");
+            printf(B_white"[Confirm Submission]\n");
             char key;
             for (int i = 0; i < 2;i++){
                 if(i == yes_no_position){
@@ -1088,6 +1083,7 @@ void add_account(int *data_amount){
             }
         }
         if(yes_no_position==0){
+            person[*data_amount].flag = 1;
             break;
         }
         system("cls");
@@ -1112,6 +1108,9 @@ void add_account(int *data_amount){
     , person[*data_amount].self_introduction);
     fclose(output_file);
     (*data_amount)+=1;
+    system("cls");
+    printf(B_yellow"successfully added !\n\n"finish);
+    Sleep(2000);
 }
 
 void preference(int *times1,int *times2,int *times3,float *left,float *right,int *l_age,int *r_age){ 
@@ -1155,6 +1154,9 @@ void preference(int *times1,int *times2,int *times3,float *left,float *right,int
 }
 
 void zodiac_choice(int *times1,int *x_zodiac,int *y_zodiac){
+    char twelve_zodiac[2][6][15] = {{{"Capricorn"},{"Aquarius"},{"Pisces"},{"Aries"},{"Taurus"},{"Gemini"}},
+                                {{"Cancer"},{"Leo"},{"Virgo"},{"Libra"},{"Scorpio"},{"Sagittarius"}}};
+    int zodiac_flag[2][6] = {{0,0,0,0,0,0,},{0,0,0,0,0,0,}};
     if(*times1 == 3){
         printf("\nDo you want to modify your chioces?\n(Enter Y or N)\n");
         char ch = getchar();
@@ -1364,8 +1366,8 @@ bool check_boundary(int x, int y, int row, int col){
     }
     return true;
 }
-//* 柯的
-void calculate_score(int *times1,int *times2,int *times3,float *left,float *right,int *l_age,int *r_age,Data *User,int *data_amount){
+
+void calculate_score(int *times1,int *times2,int *times3,float *left,float *right,int *l_age,int *r_age,Data *User,int data_amount){
     sexuality_score(User,data_amount);
     age_score(times3,l_age,r_age,User,data_amount); 
     area_score(User,data_amount);
@@ -1394,11 +1396,11 @@ int judge_mode(Data *User){
     return -1;
 }
 
-void sexuality_score(Data *User,int *data_amount){     // 性向對了+1500
+void sexuality_score(Data *User,int data_amount){     // 性向對了+1500
     int mode = judge_mode(User);
     int i = 0;
     if(mode == 1){
-        for (i = 0; i < *data_amount; i++){
+        for (i = 0; i < data_amount; i++){
             if((person + i)->gender == 'M' && (person + i)->target == 'F'){
                 (person + i)->score += 1500;                  
             }
@@ -1409,7 +1411,7 @@ void sexuality_score(Data *User,int *data_amount){     // 性向對了+1500
         }
     }
     else if(mode == 2){
-        for (i = 0; i < *data_amount; i++){
+        for (i = 0; i < data_amount; i++){
             if((person + i)->gender == 'F'){
                 if((person + i)->target == 'F' || (person + i)->target == 'B')
                     (person + i)->score += 1500;
@@ -1421,7 +1423,7 @@ void sexuality_score(Data *User,int *data_amount){     // 性向對了+1500
         }
     }
     else if(mode == 3){
-        for (i = 0; i < *data_amount; i++){
+        for (i = 0; i < data_amount; i++){
             if((person + i)->target == 'F' || (person + i)->target == 'B')
                 (person + i)->score += 1500;
             else{
@@ -1431,7 +1433,7 @@ void sexuality_score(Data *User,int *data_amount){     // 性向對了+1500
         }
     }
     else if(mode == 4){
-        for (i = 0; i < *data_amount; i++){
+        for (i = 0; i < data_amount; i++){
             if((person + i)->gender == 'F' && (person + i)->target == 'M'){
                 (person + i)->score += 1500;
             }
@@ -1442,7 +1444,7 @@ void sexuality_score(Data *User,int *data_amount){     // 性向對了+1500
         }
     }
     else if(mode == 5){
-        for (i = 0; i < *data_amount; i++){
+        for (i = 0; i < data_amount; i++){
             if((person + i)->gender == 'M'){
                 if((person + i)->target == 'M' || (person + i)->target == 'B')
                     (person + i)->score += 1500;
@@ -1454,7 +1456,7 @@ void sexuality_score(Data *User,int *data_amount){     // 性向對了+1500
         }
     }
     else if(mode == 6){
-        for(i = 0 ; i < *data_amount ; i++){
+        for(i = 0 ; i < data_amount ; i++){
             if((person + i)->target == 'M' || (person + i)->target == 'B')
                 (person + i)->score += 1500;
             else
@@ -1464,16 +1466,16 @@ void sexuality_score(Data *User,int *data_amount){     // 性向對了+1500
     }
 }
 
-void age_score(int *times3,int *l_age,int *r_age,Data *User,int *data_amount){           // 沒有偏好的情況下，和使用者年齡相差超過10就沒局囉
+void age_score(int *times3,int *l_age,int *r_age,Data *User,int data_amount){           // 沒有偏好的情況下，和使用者年齡相差超過10就沒局囉
     if(*times3 == 0){
-        for(int i = 0;i < *data_amount;i++){
+        for(int i = 0;i < data_amount;i++){
             if(abs(((person + i)->age)- (User->age)) > 10){
                 (person + i)->score = 0;
             }
         }
     }
     else{
-        for(int i = 0;i < *data_amount;i++){
+        for(int i = 0;i < data_amount;i++){
             if((*l_age <= (person + i)->age) && ((person + i)->age <= *r_age)){              // 有偏好的情況下，對了 +500
                 (person + i)->score += 500;
             }
@@ -1483,8 +1485,8 @@ void age_score(int *times3,int *l_age,int *r_age,Data *User,int *data_amount){  
     }
 }
 
-void area_score(Data *User,int *data_amount){          // 距離差0加100,差1加90,差2加80...10以上不加了
-    for(int i = 0;i < *data_amount;i++){
+void area_score(Data *User,int data_amount){          // 距離差0加100,差1加90,差2加80...10以上不加了
+    for(int i = 0;i < data_amount;i++){
         int ans = abs(((person + i)->index_of_area)- (User->index_of_area));
         if(ans == 0){
             (person + i)->score += 100;
@@ -1495,9 +1497,9 @@ void area_score(Data *User,int *data_amount){          // 距離差0加100,差1�
     }
 }
 
-void hobby_score(Data *User,int *data_amount){         //每對一個+20
+void hobby_score(Data *User,int data_amount){         //每對一個+20
     for(int i = 0;i < 5;i++){       
-        for(int j = 0;j < *data_amount;j++){
+        for(int j = 0;j < data_amount;j++){
             for(int k = 0;k < 5;k++){
                 if(!strcasecmp(User->hobby[i],(person + j)->hobby[k])){
                     (person + j)->score += 20;
@@ -1507,9 +1509,9 @@ void hobby_score(Data *User,int *data_amount){         //每對一個+20
     }
 }
 
-void prefer_zodiac_score(int *times1,int *data_amount){
+void prefer_zodiac_score(int *times1,int data_amount){
     if(*times1 == 3){
-        for(int i = 0;i < *data_amount;i++){
+        for(int i = 0;i < data_amount;i++){
             for(int j = 0;j < 3;j++){
                 if(!strcasecmp((person+i)->zodiac,prefer_zodiac[j])){
                     (person+i)->score += 300;
@@ -1521,9 +1523,9 @@ void prefer_zodiac_score(int *times1,int *data_amount){
         return;
 }
 
-void prefer_height_score(int *times2,int *data_amount,float *left,float *right){
+void prefer_height_score(int *times2,int data_amount,float *left,float *right){
     if(*times2 == 1){
-        for(int i = 0;i < *data_amount;i++){
+        for(int i = 0;i < data_amount;i++){
             if((*left <= (person+i)->height) && ((person+i)->height <= *right)){
                 (person+i)->score += 300;
             }
@@ -1540,22 +1542,24 @@ int comp(const void *p,const void *q){
     return (((Data *)q)->score - ((Data *)p)->score);
 }
 
-void display(int *data_amount){
+void display(int data_amount){
     int x = 0,y = 0;
+    int right = 0;
     int like_people = 0;
     char yes_no[1][2][6] = {{{ " YES " },{ " NO " }}};
+    char send[6] = {"SEND"};
     int correct = 0;
-    for(int i = 0;i < *data_amount;i++){
-        if(person[i].score >= 1500 && person[i].flag==0){
+    for(int i = 0; i < data_amount; i++){
+        if(person[i].score >= 1500 && person[i].flag == 0){
             correct_person[correct] = person[i];            // 對的人才會印，縮短判斷的時間
             correct_person[correct].id = i;
             correct++;
         }
     }
-    while(like_people <= 20){
+    while(like_people < 20){
         for(int i = 0;i < correct;i++){
             system("cls");
-            if(like_people <= 20){
+            if(like_people < 20){
                 while(1){
                     // printf("\n%d\n",correct_person[i].score);
                     printf(BACK_YELLOW"\nFIND YOUR SOULMATE!\n\n"finish);
@@ -1595,6 +1599,8 @@ void display(int *data_amount){
                     }
                     else if(key == '\r' && !strcmp(yes_no[x][y]," YES ")){
                         person[correct_person[i].id].flag = 1;
+                        choose(right, like_people);
+                        right++;
                         like_people++;
                         break;
                     }
@@ -1604,7 +1610,12 @@ void display(int *data_amount){
                     system("cls");
                 }
             }
+            if(like_people==20){
+                system("cls");
+                break;
+            }
         }
+        very_cool(like_people, x,  y,  yes_no, send , &data_amount);
     }
 }
 
@@ -1622,22 +1633,6 @@ bool check_height(char *str){
         }
     }
     return true;
-}
-
-char *ltrim(char *s){
-    while(isspace(*s)) s++;
-    return s;
-}
-
-char *rtrim(char *s){
-    char* back = s + strlen(s);
-    while(isspace(*--back));
-    *(back+1) = '\0';
-    return s;
-}
-
-char *trim(char *s){
-    return rtrim(ltrim(s));
 }
 
 int login(int *data_amount){
@@ -1664,7 +1659,7 @@ cmod:
             }
             printf("\t");
         }
-        printf("\n");
+        printf("\n\n");
         key = getch();
         if((key == 'A' || key =='a' || key == 75) && (x-1) > -1){
             x -= 1;
@@ -1684,7 +1679,8 @@ cmod:
         goto adminlogin;
     }
     else if(!strcmp(word,"Exit")){
-        printf("Bye!\n");
+        system("cls");
+        printf("Bye! See ya :)\n");
         return -1;
     }
 
@@ -1692,7 +1688,7 @@ adminlogin:
     x = 0;
     while(1){
         system("cls");
-        printf("Action:\n");
+        printf("Admin:\n");
         printf("*************************************\n");
         for (int i = 0; i < 2; i++){
             if(i == x){
@@ -1719,16 +1715,56 @@ adminlogin:
         goto cmod;
     }
     else if(!strcmp(word,"[Log in]")){
+        int i = 0;
+        char c;
         printf("Github ID: \n");
         printf("Password : ");
         printf(Move_the_cursor_up_one "" finish);
-        scanf("%s", word);
+        while((c = getch()) != '\r'){
+            if(c =='\b' && i > 0){
+                i--;
+                printf(Move_the_cursor_left_1""finish);
+                printf(Clear_one_word""finish);
+            }
+            else if(c =='\b' && i == 0){
+                continue;
+            }
+            else if(i == 20){
+                continue;
+            }
+            else{
+                word[i] = c;
+                printf("%c", word[i]);
+                i++;
+            }
+        }
+        word[i] = '\0';
+        printf("\n");
         printf(Move_the_cursor_right_11 "" finish);
-        scanf("%s", word2);
+        i = 0;
+        while((c = getch()) != '\r'){
+            if(c =='\b' && i > 0){
+                i--;
+                printf(Move_the_cursor_left_1""finish);
+                printf(Clear_one_word""finish);
+            }
+            else if(c =='\b' && i == 0){
+                continue;
+            }
+            else if(i == 20){
+                continue;
+            }
+            else{
+                word2[i] = c;
+                printf("*");
+                i++;
+            }
+        }
+        word2[i] = '\0';
         ret = search_admin(word, word2);
     }
     if (ret == 0) {
-        printf(red"Incorrect username or password. Try again\n"finish);
+        printf(red"\nIncorrect username or password. Try again\n\n"finish);
         Sleep(2000);
         goto adminlogin;
     }else{
@@ -1739,8 +1775,8 @@ userlogin:
     x = 0;
     while(1){
         system("cls");
-        printf("Action:\n");
-        printf("*************************************\n");
+        printf("User:\n");
+        printf("******************************************\n");
         for (int i = 0; i < 3; i++){
             if(i == x){
                 printf(B_yellow"%s"finish, user[i]);
@@ -1767,20 +1803,60 @@ userlogin:
     else if(!strcmp(word,"[Regist]"))
         goto regist;
     else if(!strcmp(word,"[Log in]")){
+        int i = 0;
+        char c;
         printf("Account Name: \n");
         printf("Phone Number: ");
         printf(Move_the_cursor_up_one "" finish);
-        scanf("%s", word);
+        while((c = getch()) != '\r'){
+            if(c =='\b' && i > 0){
+                i--;
+                printf(Move_the_cursor_left_1""finish);
+                printf(Clear_one_word""finish);
+            }
+            else if(c =='\b' && i == 0){
+                continue;
+            }
+            else if(i == 20){
+                continue;
+            }
+            else{
+                word[i] = c;
+                printf("%c", word[i]);
+                i++;
+            }
+        }
+        word[i] = '\0';
+        printf("\n");
         printf(Move_the_cursor_right_14 "" finish);
-        scanf("%s", word2);
+        i = 0;
+        while((c = getch()) != '\r'){
+            if(c =='\b' && i > 0){
+                i--;
+                printf(Move_the_cursor_left_1""finish);
+                printf(Clear_one_word""finish);
+            }
+            else if(c =='\b' && i == 0){
+                continue;
+            }
+            else if(i == 10){
+                continue;
+            }
+            else{
+                word2[i] = c;
+                printf("%c",word2[i]);
+                i++;
+            }
+        }
+        word2[i] = '\0';
         ret = search_user(word, word2, data_amount);
     }
     if (ret == 0) {
-        printf(red"The phone number entered may be wrong\n"finish);
+        printf(red"\nThe phone number entered may be wrong\n\n"finish);
         Sleep(2000);
         goto userlogin;
     } else if (ret == -1) {
-        printf(red"Incorrect user's name, please try again.\n"finish);
+        printf(red"\nIncorrect user's name, please try again.\n\n"finish);
         Sleep(2000);
         goto userlogin;
     } else
@@ -1795,7 +1871,7 @@ void init(){
     strcpy(m[0].pw, "apex");
 
     strcpy(m[1].id, "nefertariii");
-    strcpy(m[1].pw, "1234567890");
+    strcpy(m[1].pw, "allpass");
 
     strcpy(m[2].id, "ChiuYiHsien");
     strcpy(m[2].pw, "1234567890");
@@ -1889,9 +1965,13 @@ void administrator(int *data_amount){
                 }
                 (*data_amount)--;
                 write_file(data_amount);
+                system("cls");
+                printf(B_yellow"successfully deleted !\n\n"finish);
+                Sleep(2000);
             }
             else{
-                printf(red"Not exist\n"finish);
+                system("cls");
+                printf(red"Not exist\n\n"finish);
                 Sleep(2000);
             }
         }
@@ -1933,7 +2013,8 @@ void administrator(int *data_amount){
                 getchar();
             }
             else{
-                printf(red"Not exist\n"finish);
+                system("cls");
+                printf(red"Not exist\n\n"finish);
                 Sleep(2000);
             }
         }
@@ -2100,6 +2181,9 @@ void sort(int *data_amount){
     else if (!strcmp(temp, "Income"))
         qsort(person, *data_amount, sizeof(Data), cmp_income);
     write_file(data_amount);
+    system("cls");
+    printf(B_yellow"successfully sorted !\n\n"finish);
+    Sleep(2000);
 }
 
 int cmp_gender(const void *a, const void *b){
@@ -2192,4 +2276,263 @@ void write_file(int *data_amount){
     } 
     fclose(output_file);
     return;
+}
+
+void very_cool(int like_people, int x, int y, char yes_no[1][2][6], char send[6], int *data_amount){
+    int g = 0;
+    int count_del=0;
+    while(1){
+        if(count_del >= 3){
+            printf(B_U_I_yellow"You cannot delete more people today!\n\n"finish);
+            printf(B_U_I_yellow"Please push the 'SEND' button\n\n"finish);
+        }
+        else{
+            printf(B_U_I_yellow"You can delete at most 3 people today!\n\n"finish);
+        }
+        for (int i = 0; i < like_people; i++){
+            if(i==g){
+                printf(B_U_I_yellow"%s    \t"finish, like[i]);
+            }
+            else{
+                printf(DBLUE"%d."finish, i+1);
+                printf("%s    \t", like[i]);
+            }
+            printf("\n");
+        }
+        if(g == like_people){
+            printf(B_U_I_yellow"%s    \t"finish, send);
+        }
+        else{
+            printf("%s    \t", send);
+        }
+        char k;
+        k = getch();
+        if((k == 'W' || k =='w' || k == 72) && check_boundary2(g-1)){
+            g -= 1;
+        }
+        else if((k == 'S' || k =='s' || k == 80) && check_boundary2(g+1+count_del)){
+            g += 1;
+        }
+        else if(k == '\r' && g == like_people){
+            system("cls");
+            printf("Waiting for the resault......\n");
+            Sleep(3000);
+            system("cls");
+            break;
+        }
+        else if(k == '\r' && count_del < 3){
+            system("cls");
+            Like *first = head;
+            for(int i = 0; i < g; i++){
+                    first = first->next;
+                }
+            while(1){
+                printf("\n\n");
+                printf(PURPLE"%s\n"finish , first->name);
+                printf("\n\n");
+                printf(B_purple"__________________________________________________\n\n\n"finish);
+                printf(B_white"Gender :%c\n"finish , first->gender);
+                printf(B_white"Age    :%d\n"finish , first->age);
+                printf(B_white"Height :%.1f\n"finish , first->height);
+                printf(B_white"Zodiac :%s\n"finish , first->zodiac);
+                printf(B_white"Area   :%s\n"finish , first->area);
+                printf(B_white"Hobbies:%s %s %s %s %s\n"finish , first->hobby[0] , first->hobby[1] , first->hobby[2] , first->hobby[3] , first->hobby[4]);
+                printf(B_white"Job    :%s\n"finish , first->job);
+                printf(B_white"Phone Numbers    :%s\n"finish , first->phone_number);
+                printf(B_white"Self introduction :\n  %s\n"finish , first->self_introduction);
+                printf(B_purple"__________________________________________________\n\n\n"finish);
+                printf("\n\nAre you sure to delete her/him?: ");
+                for(int i = 0;i < 1;i++){
+                    for(int j = 0;j < 2;j++){
+                        if(i == x && j == y ){
+                            if(y == 0)printf(B_I_BA_green"\t%s"finish,yes_no[i][j]);
+                            else if(y == 1)printf(B_I_BA_red"\t%s"finish,yes_no[i][j]);
+                        }
+                        else
+                            printf("\t%s",yes_no[i][j]);
+                    }
+                }
+                printf("\n\n");
+                char key;
+                key = getch();
+                if((key == 'A' || key == 'a' || key == 75) && ((y - 1) >= 0)){
+                    y-=1;
+                }
+                else if((key == 'D' || key =='d' || key == 77) && ((y + 1) <= 1)){
+                    y+=1;
+                }
+                else if(key == '\r' && !strcmp(yes_no[x][y]," YES ")){
+                    count_del++;
+                    like_people--;
+                    relike(g, like_people);
+                    break;
+                }
+                else if(key == '\r' && !strcmp(yes_no[x][y]," NO ")){
+                    break;
+                }
+                system("cls");
+            }
+        }
+        system("cls");
+    }
+    match(data_amount, like_people);
+}
+
+void relike(int g, int like_people){ //刪除節點並且把後面接好
+    int find = g-1;
+    Like *ptr = head, *del, *cool;
+    if(head == NULL){
+        printf("Nothing\n");
+    }
+    if(find == -1){
+        del = head;
+        head = head->next;
+        cool = head;
+    }
+    else{
+        while(find--){
+            ptr = ptr->next;
+        }
+        del = ptr->next;
+        ptr->next = ptr->next->next;
+    }
+    free(del);
+    memset(like,0,sizeof(like));
+    cool = head;
+    for(int i = 0; i < like_people; i++){// 重新把like陣列搞好
+        strcpy(like[i], cool->name);
+        cool = cool->next;
+    }
+}
+
+void choose(int i, int like_people){     //存喜歡的人 
+    cur =(Like *) malloc(sizeof(Like));
+    strcpy(cur->name, correct_person[i].name);
+    strcpy(like[i], correct_person[i].name); // 喜歡的人存到like陣列裡面ㄛ
+    cur->gender = correct_person[i].gender;
+    strcpy(cur->hobby[0], correct_person[i].hobby[0]);
+    strcpy(cur->hobby[1], correct_person[i].hobby[1]);
+    strcpy(cur->hobby[2], correct_person[i].hobby[2]);
+    strcpy(cur->hobby[3], correct_person[i].hobby[3]);
+    strcpy(cur->hobby[4], correct_person[i].hobby[4]);
+    strcpy(cur->phone_number, correct_person[i].phone_number);
+    strcpy(cur->area, correct_person[i].area);
+    cur->target = correct_person[i].target;
+    cur->age = correct_person[i].age;
+    cur->height = correct_person[i].height;
+    strcpy(cur->zodiac, correct_person[i].zodiac);
+    strcpy(cur->income, correct_person[i].income);
+    strcpy(cur->job, correct_person[i].job);
+    strcpy(cur->self_introduction, correct_person[i].self_introduction);
+    if(like_people == 0){
+        head = cur;
+    }
+    else{
+        pre -> next = cur;
+    }
+    cur -> next = NULL;
+    pre = cur;
+}
+
+void match(int *data_amount, int like_people){
+    srand(time(NULL));
+    int i, n , counter[like_people];
+    for(int i = 0; i < like_people; i++){
+        counter[i]=0;
+    }
+    for(i = 0; i < 5 ; i++){  // 隨機選5個不重複數字
+        do{
+            n = rand()%like_people;
+            loca[i] = n;
+        }while(counter[n-1]!= 0);
+        counter[n-1]++;
+    }
+    matching_success(loca , data_amount);
+}
+
+void delete_like(){ // 清空整個list
+    Like *temp=head, *del ;
+    while(temp->next!=NULL){
+    del = temp;
+    temp = temp->next;
+    free(del);
+    }
+};
+
+bool check_boundary2(int x){
+    if(x<0 || x>20){
+        return false;
+    }
+    return true;
+}
+
+void matching_success (int loca[] , int *data_amount){
+    int choice = 0;
+    Like *first2 = head;
+    Like *matched[10];
+    printf(B_white"Congrats on the matches!!! Here are their information.\n\n"finish);
+    for(int j = 0; j < 5; j++) {
+        for(int i = 0; i < loca[j]; i++)
+            first2 = first2->next;
+        printf(B_white"%s\n"finish , first2 -> name);
+        printf(B_white"Gender :%c\n"finish , first2 -> gender);
+        printf(B_white"Age    :%d\n"finish , first2 -> age);
+        printf(B_white"Height :%.1f\n"finish , first2 -> height);
+        printf(B_white"Zodiac :%s\n"finish , first2 -> zodiac);
+        printf(B_white"Area   :%s\n"finish , first2 -> area);
+        printf(B_white"Hobbies:%s %s %s %s %s\n"finish , first2 -> hobby[0] , first2 -> hobby[1] , first2 -> hobby[2] , first2 -> hobby[3] , first2 -> hobby[4]);
+        printf(B_white"Job    :%s\n"finish , first2 -> job);
+        printf(B_white"Income :%s\n"finish , first2 -> income);
+        printf(B_white"Phone Numbers    :%s\n"finish , first2 -> phone_number);
+        printf(B_white"Self introduction :\n  %s\n"finish , first2 -> self_introduction);
+        printf(B_purple"__________________________________________________\n\n\n"finish);
+        matched[j] = first2;
+        first2 = head;
+    }
+    printf(B_white"\n\nTake good use of the phone numbers and get to know each others!\n"finish);
+    printf(B_white"Who do you like the most?\n"finish);
+    printf(B_white"[1]%s [2]%s [3]%s [4]%s [5]%s [6]None : "finish , matched[0]->name , matched[1]->name , matched[2]->name , matched[3]->name , matched[4]->name);
+    scanf("%d" , &choice);
+    system("cls");
+    if (choice == 6) {                  // doesn't like anyone
+        printf(B_white"Do you want to keep pairing or exiting the app?\n"finish);
+        printf(B_white"[1]Pairing [2]exit : "finish);
+        scanf("%d" , &choice);
+        if (choice == 1) {          // pairing
+            delete_like();
+            printf(B_B_red"Please wait for a seconds\n"finish);
+            Sleep(2000);
+            printf("\n\n");
+            system("cls");
+            printf(B_white"Welcome! It's a whole new day.\n"finish);
+            Sleep(2000);
+            return;
+        }
+        else{
+            system("cls");
+            printf(B_white"Bye Bye! See ya next time!\n"finish);
+            exit(0);
+        }
+    }
+    else {             // like someone
+        printf(B_white"Bye Bye! See ya next time!\n"finish);
+        const char *filename = "final_decision.txt";
+        FILE *output_file = fopen(filename, "w");
+        if (!output_file){
+            exit(EXIT_FAILURE);
+        }
+        fprintf(output_file , "Name   :%s\n" , matched[choice - 1] -> name);
+        fprintf(output_file , "Gender :%c\n" , matched[choice - 1] -> gender);
+        fprintf(output_file , "Age    :%d\n" , matched[choice - 1] -> age);
+        fprintf(output_file , "Height :%.1f\n" , matched[choice - 1] -> height);
+        fprintf(output_file , "Zodiac :%s\n" , matched[choice - 1] -> zodiac);
+        fprintf(output_file , "Area   :%s\n" , matched[choice - 1] -> area);
+        fprintf(output_file , "Hobbies:%s %s %s %s %s\n" , matched[choice - 1] -> hobby[0] , matched[choice - 1] -> hobby[1] , matched[choice - 1] -> hobby[2] , matched[choice - 1] -> hobby[3] , matched[choice - 1] -> hobby[4]);
+        fprintf(output_file , "Job    :%s\n" , matched[choice - 1] -> job);
+        fprintf(output_file , "Income:%s\n", matched[choice - 1]->income);
+        fprintf(output_file , "Phone Numbers: %s\n" , matched[choice - 1] -> phone_number);
+        fprintf(output_file , "Self introduction :\n  %s\n\n" , matched[choice - 1] -> self_introduction);
+        fclose(output_file);
+        exit(0);
+    }
 }
