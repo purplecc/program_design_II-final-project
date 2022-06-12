@@ -1789,7 +1789,7 @@ void init(){
     strcpy(m[0].pw, "apex");
 
     strcpy(m[1].id, "nefertariii");
-    strcpy(m[1].pw, "allpass");
+    strcpy(m[1].pw, "all-pass");
 
     strcpy(m[2].id, "ChiuYiHsien");
     strcpy(m[2].pw, "1234567890");
