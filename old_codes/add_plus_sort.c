@@ -43,6 +43,7 @@ typedef struct data{
     char self_introduction[151];
     int score;
     int flag;                                          // 是否被喜歡過
+    int id;
 } Data;
 
 int read_file();
@@ -91,6 +92,7 @@ int main(){
     qsort(person,data_amount,sizeof(Data),comp);
     // print_data(data_amount);
     display(&data_amount);
+    print_data(data_amount);
 }
 
 int read_file(){
@@ -206,10 +208,9 @@ void print_data(int data_amount){
 //         , person[i].job
 //         , person[i].self_introduction);
 //     }
-    // for (int i = 0; i < data_amount - 1;i++){
-    //     printf("%d\n", person[i].index_of_area);
-        
-    // }
+    for (int i = 0; i < data_amount; i++){
+        printf("%d\n", person[i].flag);
+    }
 }
 
 void add_account(int *data_amount){
@@ -249,6 +250,7 @@ void add_account(int *data_amount){
         system("cls");
         if(search_duplicates(*data_amount)){
             printf(B_I_BA_red"The phone number is already exist, please enter another phone number:\n"finish);
+            printf("Enter your phone number again: ");
             scanf("%s", person[*data_amount].phone_number);
             invalid = false;
             str = person[*data_amount].phone_number;
@@ -860,8 +862,8 @@ void age(int *times3,int *l_age,int *r_age){
         }
     }
     char c;
-    printf(B_BLUE"Please enter your preferred soulmate's age :\n"finish);
-    printf(B_BLUE"Ex:18-25\n"finish);
+    printf("Please enter your preferred soulmate's age :\n");
+    printf("Ex:18-25\n");
     scanf("%d%c%d",l_age,&c,r_age);
 
     printf(B_BLUE"\nPreferred age: %d ~ %d.\nPress enter to continue...\n"finish,*l_age,*r_age);
@@ -1067,15 +1069,16 @@ void display(int *data_amount){
     char yes_no[1][2][6] = {{{ " YES " },{ " NO " }}};
     int correct = 0;
     for(int i = 0;i < *data_amount;i++){
-        if(person[i].score >= 1500){
+        if(person[i].score >= 1500 && person[i].flag==0){
             correct_person[correct] = person[i];            // 對的人才會印，縮短判斷的時間
+            correct_person[correct].id = i;
             correct++;
         }
     }
     while(like_people <= 20){
         for(int i = 0;i < correct;i++){
             system("cls");
-            if(correct_person[i].flag == 0 && like_people <= 20){
+            if(like_people <= 20){
                 while(1){
                     // printf("\n%d\n",correct_person[i].score);
                     printf(BACK_YELLOW"\nFIND YOUR SOULMATE!\n\n"finish);
@@ -1114,7 +1117,7 @@ void display(int *data_amount){
                         y+=1;
                     }
                     else if(key == '\r' && !strcmp(yes_no[x][y]," YES ")){
-                        correct_person[i].flag = 1;
+                        person[correct_person[i].id].flag = 1;
                         like_people++;
                         break;
                     }
