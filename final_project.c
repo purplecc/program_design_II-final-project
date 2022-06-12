@@ -296,7 +296,7 @@ void regist_account(int *data_amount){
                             {{"Virgo"}, {"Libra"}, {"Scorpio"}, {"Sagittarius"}}};
     char Income[4][8] = {{"<100"}, {"100~300"}, {"300~500"}, {">500"}};
     bool hobbies_flag[10][5];
-    printf("Welecome to omni, please enter your mobile number to register before you start: ");
+    printf("Welecome to Pretty Babe, please enter your mobile number to register before you start: ");
     scanf("%s", person[*data_amount].phone_number);
     char *str = person[*data_amount].phone_number;
     bool invalid = false;
