@@ -122,20 +122,18 @@ int cmp_income(const void *a, const void *b);
 void traverse(int data_amount);
 void write_file(int *data_amount);
 
-void choose (int , int);
+void choose(int , int, char like[20][100]);
 void match(int*, int like_people);
 void delete_like();
 void matching_success();
-void very_cool(int like_people, int x, int y, char yes_no[1][2][6], char send[6], int *data_amount);
-void relike(int g, int like_people);
+void very_cool(int like_people, int x, int y, char yes_no[1][2][6], char send[6], int *data_amount, char like[20][100]);
+void relike(int g, int like_people, char like[20][100]);
 bool check_boundary2(int x);
 
 char prefer_zodiac[3][15];
 Data person[1000];
 Data correct_person[500];
 ad m[5];
-int loca[5] = {0};
-char like[20][100];
 Like *pre, *cur, *head;
 
 int main(){
@@ -1543,6 +1541,7 @@ int comp(const void *p,const void *q){
 }
 
 void display(int data_amount){
+    char like[20][100];
     int x = 0,y = 0;
     int right = 0;
     int like_people = 0;
@@ -1599,7 +1598,7 @@ void display(int data_amount){
                     }
                     else if(key == '\r' && !strcmp(yes_no[x][y]," YES ")){
                         person[correct_person[i].id].flag = 1;
-                        choose(right, like_people);
+                        choose(right, like_people, like);
                         right++;
                         like_people++;
                         break;
@@ -1615,7 +1614,7 @@ void display(int data_amount){
                 break;
             }
         }
-        very_cool(like_people, x,  y,  yes_no, send , &data_amount);
+        very_cool(like_people, x,  y,  yes_no, send , &data_amount, like);
     }
 }
 
@@ -2278,7 +2277,7 @@ void write_file(int *data_amount){
     return;
 }
 
-void very_cool(int like_people, int x, int y, char yes_no[1][2][6], char send[6], int *data_amount){
+void very_cool(int like_people, int x, int y, char yes_no[1][2][6], char send[6], int *data_amount, char like[20][100]){
     int g = 0;
     int count_del=0;
     while(1){
@@ -2364,7 +2363,7 @@ void very_cool(int like_people, int x, int y, char yes_no[1][2][6], char send[6]
                 else if(key == '\r' && !strcmp(yes_no[x][y]," YES ")){
                     count_del++;
                     like_people--;
-                    relike(g, like_people);
+                    relike(g, like_people, like);
                     break;
                 }
                 else if(key == '\r' && !strcmp(yes_no[x][y]," NO ")){
@@ -2378,7 +2377,7 @@ void very_cool(int like_people, int x, int y, char yes_no[1][2][6], char send[6]
     match(data_amount, like_people);
 }
 
-void relike(int g, int like_people){ //刪除節點並且把後面接好
+void relike(int g, int like_people, char like[20][100]){ //刪除節點並且把後面接好
     int find = g-1;
     Like *ptr = head, *del, *cool;
     if(head == NULL){
@@ -2397,7 +2396,7 @@ void relike(int g, int like_people){ //刪除節點並且把後面接好
         ptr->next = ptr->next->next;
     }
     free(del);
-    memset(like,0,sizeof(like));
+    memset(like, 0, sizeof(&like));
     cool = head;
     for(int i = 0; i < like_people; i++){// 重新把like陣列搞好
         strcpy(like[i], cool->name);
@@ -2405,7 +2404,7 @@ void relike(int g, int like_people){ //刪除節點並且把後面接好
     }
 }
 
-void choose(int i, int like_people){     //存喜歡的人 
+void choose(int i, int like_people, char like[20][100]){     //存喜歡的人 
     cur =(Like *) malloc(sizeof(Like));
     strcpy(cur->name, correct_person[i].name);
     strcpy(like[i], correct_person[i].name); // 喜歡的人存到like陣列裡面ㄛ
@@ -2435,6 +2434,7 @@ void choose(int i, int like_people){     //存喜歡的人
 }
 
 void match(int *data_amount, int like_people){
+    int loca[5]={0};
     srand(time(NULL));
     int i, n , counter[like_people];
     for(int i = 0; i < like_people; i++){
