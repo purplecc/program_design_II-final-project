@@ -125,7 +125,7 @@ void delete_like();
 void matching_success(int loca[] , int *data_amount);
 void very_cool(int like_people, int x, int y, char yes_no[1][2][6], char send[6], int *data_amount, char like[20][100]);
 void relike(int g, int like_people, char like[20][100]);
-bool check_boundary2(int x);
+bool check_boundary2(int x, int like_people);
 
 char prefer_zodiac[3][15];
 Data person[1000];
@@ -2272,10 +2272,10 @@ void very_cool(int like_people, int x, int y, char yes_no[1][2][6], char send[6]
         }
         char k;
         k = getch();
-        if((k == 'W' || k =='w' || k == 72) && check_boundary2(g-1)){
+        if((k == 'W' || k =='w' || k == 72) && check_boundary2(g-1, like_people)){
             g -= 1;
         }
-        else if((k == 'S' || k =='s' || k == 80) && check_boundary2(g+1+count_del)){
+        else if((k == 'S' || k =='s' || k == 80) && check_boundary2(g + 1 + count_del, like_people)){
             g += 1;
         }
         else if(k == '\r' && g == like_people){
@@ -2425,8 +2425,8 @@ void delete_like(){ // 清空整個list
     }
 }
 
-bool check_boundary2(int x){
-    if(x<0 || x>20){
+bool check_boundary2(int x, int like_people){
+    if(x < 0 || x > like_people){
         return false;
     }
     return true;
