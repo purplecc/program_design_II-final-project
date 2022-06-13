@@ -264,7 +264,7 @@ int read_file(){
 }
 
 void regist_account(int *data_amount){
-        char hobbies[10][5][13] = {{{"Writing"}, {"Reading"}, {"Singing"}, {"Photography"}, {"Gardening"}},
+    char hobbies[10][5][13] = {{{"Writing"}, {"Reading"}, {"Singing"}, {"Photography"}, {"Gardening"}},
                             {{"Cooking"}, {"Baking"}, {"Jogging"}, {"Swimming"}, {"Working-out"}},
                             {{"badminton"}, {"Tennis"}, {"Basketball"}, {"Volleyball"},{"Cycling"}},
                             {{"Dancing"}, {"Films"}, {"Fashion"}, {"Collecting"}, {"violin"}},
@@ -2419,11 +2419,11 @@ void match(int *data_amount, int like_people){
 void delete_like(){ // 清空整個list
     Like *temp=head, *del ;
     while(temp->next!=NULL){
-    del = temp;
-    temp = temp->next;
-    free(del);
+        del = temp;
+        temp = temp->next;
+        free(del);
     }
-};
+}
 
 bool check_boundary2(int x){
     if(x<0 || x>20){
