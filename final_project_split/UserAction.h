@@ -40,6 +40,6 @@ void very_cool(int like_people, int x, int y, char yes_no[1][2][6], char send[6]
 
 void relike(int g, int like_people, char like[20][100]);
 
-bool check_boundary2(int x);
+bool check_boundary2(int x, int like_people);
 
 #endif

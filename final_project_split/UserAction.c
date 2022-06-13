@@ -218,7 +218,7 @@ void very_cool(int like_people, int x, int y, char yes_no[1][2][6], char send[6]
         }
         for (int i = 0; i < like_people; i++){
             if(i==g){
-                printf(B_U_I_yellow"%s    \t"finish, like[i]);
+                printf(B_U_I_yellow"%d.%s    \t"finish, i+1, like[i]);
             }
             else{
                 printf(DBLUE"%d."finish, i+1);
@@ -234,10 +234,10 @@ void very_cool(int like_people, int x, int y, char yes_no[1][2][6], char send[6]
         }
         char k;
         k = getch();
-        if((k == 'W' || k =='w' || k == 72) && check_boundary2(g-1)){
+        if((k == 'W' || k =='w' || k == 72) && check_boundary2(g - 1, like_people)){
             g -= 1;
         }
-        else if((k == 'S' || k =='s' || k == 80) && check_boundary2(g+1+count_del)){
+        else if((k == 'S' || k =='s' || k == 80) && check_boundary2(g + 1, like_people)){
             g += 1;
         }
         else if(k == '\r' && g == like_people){
@@ -332,8 +332,8 @@ void relike(int g, int like_people, char like[20][100]){
     }
 }
 
-bool check_boundary2(int x){
-    if(x<0 || x>20){
+bool check_boundary2(int x, int like_people){
+    if(x < 0 || x > like_people){
         return false;
     }
     return true;
