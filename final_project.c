@@ -86,7 +86,6 @@ void height(int *times,int *x1,int *x2,float *left,float *right);
 void age(int *times3,int *l_age,int *r_age);
 bool search_duplicates(int data_amount);
 bool check_boundary(int x, int y, int row, int col);
-void print_data(int data_amount);
 void zodiac_choice(int *times,int *x_zodiac,int *y_zodiac);
 bool check_height(char *str);
 
@@ -109,8 +108,6 @@ int search_user(char *us, char *pn, int *data_amounts);
 int search_admin(char *s, char *s1);
 int search(char *pnum, int *data_amount);
 void administrator(int *data_amount);
-void user(int *data_amount);
-void print(int id);//single
 int cmp_gender(const void *a, const void *b);
 int cmp_phone(const void *a, const void *b);
 int cmp_area(const void *a, const void *b);
@@ -264,12 +261,6 @@ int read_file(){
     }
     fclose(input_file);
     return i;
-}
-
-void print_data(int data_amount){
-    for (int i = 0; i < data_amount;i++){
-        printf("%d\n", person[i].flag);
-    }
 }
 
 void regist_account(int *data_amount){
@@ -2089,11 +2080,6 @@ void traverse(int data_amount){
     }
 }
 
-void user(int *data_amount){
-    printf("user interface\n");
-    return;
-}
-
 int search(char *pnum, int *data_amount){
     for (int i = 0; i < *data_amount; i++){
         if (!strcmp(pnum,person[i].phone_number)){
@@ -2101,26 +2087,6 @@ int search(char *pnum, int *data_amount){
         }
     }
     return -1;
-}
-
-void print(int id){
-    printf("%s %c %s %s %s %s %s %s %s %c %d %.1f %s %s %s\n%s\n"
-        , person[id].name
-        , person[id].gender
-        , person[id].hobby[0]
-        , person[id].hobby[1]
-        , person[id].hobby[2]
-        , person[id].hobby[3]
-        , person[id].hobby[4]
-        , person[id].phone_number
-        , person[id].area
-        , person[id].target
-        , person[id].age
-        , person[id].height
-        , person[id].zodiac
-        , person[id].income
-        , person[id].job
-        , person[id].self_introduction);
 }
 
 void sort(int *data_amount){
