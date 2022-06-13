@@ -82,11 +82,11 @@ int read_file();
 void add_account(int *data_amount);
 void regist_account(int *data_amount);
 void preference(int *times1,int *times2,int *times3,float *left,float *right,int *l_age,int *r_age);
-void height(int *times,int *x1,int *x2,float *left,float *right);
+void height(int *times2,int *x1,int *x2,float *left,float *right);
 void age(int *times3,int *l_age,int *r_age);
 bool search_duplicates(int data_amount);
 bool check_boundary(int x, int y, int row, int col);
-void zodiac_choice(int *times,int *x_zodiac,int *y_zodiac);
+void zodiac_choice(int *times1,int *x_zodiac,int *y_zodiac);
 bool check_height(char *str);
 
 void calculate_score(int *times1,int *times2,int *times3,float *left,float *right,\
@@ -104,7 +104,7 @@ void display(int data_amount);
 void sort(int *data_amount);
 void init();
 int login(int *data_amount);
-int search_user(char *us, char *pn, int *data_amounts);
+int search_user(char *us, char *pn, int *data_amount);
 int search_admin(char *s, char *s1);
 int search(char *pnum, int *data_amount);
 void administrator(int *data_amount);
@@ -119,10 +119,10 @@ int cmp_income(const void *a, const void *b);
 void traverse(int data_amount);
 void write_file(int *data_amount);
 
-void choose(int , int, char like[20][100]);
-void match(int*, int like_people);
+void choose(int i, int like_people, char like[20][100]);
+void match(int *data_amount, int like_people);
 void delete_like();
-void matching_success();
+void matching_success(int loca[] , int *data_amount);
 void very_cool(int like_people, int x, int y, char yes_no[1][2][6], char send[6], int *data_amount, char like[20][100]);
 void relike(int g, int like_people, char like[20][100]);
 bool check_boundary2(int x);
@@ -2432,7 +2432,7 @@ bool check_boundary2(int x){
     return true;
 }
 
-void matching_success (int loca[] , int *data_amount){
+void matching_success(int loca[], int *data_amount){
     int choice = 0;
     Like *first2 = head;
     Like *matched[10];
