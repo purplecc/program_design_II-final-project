@@ -90,6 +90,7 @@ bool search_duplicates(int data_amount);
 bool check_boundary(int x, int y, int row, int col);
 void zodiac_choice(int *times1,int *x_zodiac,int *y_zodiac);
 bool check_height(char *str);
+void initial_score_and_flag(int data_amount, int *times1, int *times2, int *times3);
 
 void calculate_score(int *times1,int *times2,int *times3,float *left,float *right,\
 int *l_age,int *r_age,Data *User,int data_amount);
@@ -101,7 +102,7 @@ void hobby_score(Data *User,int data_amount);
 void prefer_zodiac_score(int *times1,int data_amount);
 void prefer_height_score(int *times2,int data_amount,float *left,float *right);
 int comp(const void *p, const void *q);
-void display(int data_amount);
+int display(int data_amount);
 
 void sort(int *data_amount);
 void init();
@@ -153,9 +154,16 @@ int main(){
             regist_account(&data_amount);
             preference(&times1, &times2, &times3, &left, &right, &l_age, &r_age);
             calculate_score(&times1, &times2, &times3, &left, &right, &l_age, &r_age, &person[data_amount - 1], data_amount-1);
-            qsort(person, data_amount, sizeof(Data), comp);
+            qsort(person, data_amount-1, sizeof(Data), comp);
+            int a = 0;
             while(1){
-                display(data_amount);
+                if(a==1){
+                    initial_score_and_flag(data_amount, &times1, &times2, &times3);
+                    preference(&times1, &times2, &times3, &left, &right, &l_age, &r_age);
+                    calculate_score(&times1, &times2, &times3, &left, &right, &l_age, &r_age, &person[data_amount - 1], data_amount-1);
+                    qsort(person, data_amount-1, sizeof(Data), comp);
+                }
+                a = display(data_amount);
             }
         }
         else if (mode == 1){    //* Admin operation
@@ -164,9 +172,16 @@ int main(){
         else if(mode == 2){     //* User login and match
             preference(&times1, &times2, &times3, &left, &right, &l_age, &r_age);
             calculate_score(&times1, &times2, &times3, &left, &right, &l_age, &r_age, &person[data_amount - 1], data_amount-1);
-            qsort(person, data_amount, sizeof(Data), comp);
+            qsort(person, data_amount-1, sizeof(Data), comp);
+            int a = 0;
             while(1){
-                display(data_amount);
+                if(a==1){
+                    initial_score_and_flag(data_amount, &times1, &times2, &times3);
+                    preference(&times1, &times2, &times3, &left, &right, &l_age, &r_age);
+                    calculate_score(&times1, &times2, &times3, &left, &right, &l_age, &r_age, &person[data_amount - 1], data_amount-1);
+                    qsort(person, data_amount-1, sizeof(Data), comp);
+                }
+                a = display(data_amount);
             }
         }
     }
@@ -1225,7 +1240,7 @@ void height(int *times2,int *x1,int *x2,float *left,float *right){
         }
     }
     int num[6] = {160,165,170,175,180,185};
-    char line[49] = "------------------------------------------> (cm)";                                                         
+    char line[49] = "---------------------------------------+++> (cm)";                                                         
     while(1){
         system("cls");
         printf("Set the range of your soulmate's height!\n");
@@ -1310,12 +1325,16 @@ void height(int *times2,int *x1,int *x2,float *left,float *right){
             else if(*x2 == 31) *right = 180;
             else if(*x2 > 31 && *x2 < 38) *right = 182.5;
             else if(*x2 == 38) *right = 185;
-            else *right = 187.5;        
+            else *right = 205;        
             break;
         }
     }
     *times2 = 1;
-    printf(B_BLUE"\nPreferred height :\n%.2lf ~ %.2lf\nPress enter to continue..."finish,*left,*right);
+    if(*right>185){
+        printf(B_BLUE"\nPreferred height :\n%.2lf ~ 185+\nPress enter to continue..."finish,*left);
+    }else{
+        printf(B_BLUE"\nPreferred height :\n%.2lf ~ %.2lf\nPress enter to continue..."finish,*left,*right);
+    }
     getchar();
 }
 
@@ -1536,11 +1555,10 @@ int comp(const void *p,const void *q){
     return (((Data *)q)->score - ((Data *)p)->score);
 }
 
-void display(int data_amount){
+int display(int data_amount){
     char like[20][100];
     memset(like, '\0', sizeof(like));
-    int x = 0,y = 0;
-    int total = 0;
+    int x = 0, y = 0;
     int right = 0;
     int like_people = 0;
     char yes_no[1][2][6] = {{{ " YES " },{ " NO " }}};
@@ -1554,9 +1572,16 @@ void display(int data_amount){
         }
     }
     if(correct == 0){
+        int k;
+        system("cls");
         setlocale(LC_CTYPE,setlocale(LC_ALL,""));
-        printf(red "No one else matches your criteria, we're sorry about that you can't find a companion here, Bye ");
-        wprintf(L"可憐 這麼挑" finish);
+        wprintf(red L"可憐吶 這麼挑 沒人符合你的條件了 你要重新選條件嗎\n" finish);
+        printf(B_white "[1] Yes [2] No ==> " finish);
+        scanf("%d", &k);
+        if(k==1){
+            return 1;
+        }
+        printf("So sad :(  Bye...");
         exit(0);
     }
     for(int i = 0;i < correct;i++){
@@ -1612,17 +1637,27 @@ void display(int data_amount){
                 system("cls");
             }
         }
-        total++;
         if(like_people == 20){
             system("cls");
             break;
         }
-        else if(like_people > 20 && total == correct){
-            system("cls");
-            break;
+    }
+    system("cls");
+    if(like_people == 0){
+        int k;
+        system("cls");
+        setlocale(LC_CTYPE,setlocale(LC_ALL,""));
+        wprintf(red L"可憐吶 這麼挑 沒人符合你的條件了 你要重新選條件嗎\n" finish);
+        printf(B_white "[1] Yes [2] No ==> " finish);
+        scanf("%d", &k);
+        if(k == 1){
+            return 1;
         }
+        printf("So sad :(  Bye...");
+        exit(0);
     }
     very_cool(like_people, x,  y,  yes_no, send , &data_amount, like);
+    return 0;
 }
 
 bool check_height(char *str){
@@ -2296,7 +2331,7 @@ void very_cool(int like_people, int x, int y, char yes_no[1][2][6], char send[6]
         }
         else if(k == '\r' && g == like_people){
             system("cls");
-            printf("Waiting for the resault......\n");
+            printf("Waiting for the result......\n");
             Sleep(3000);
             system("cls");
             break;
@@ -2517,4 +2552,14 @@ void matching_success(int loca[], int *data_amount){
         fclose(output_file);
         exit(0);
     }
+}
+
+void initial_score_and_flag(int data_amount, int *times1, int *times2, int *times3){
+    for(int i=0; i<data_amount; i++){
+        person[i].flag = 0;
+        person[i].score = 0;
+    }
+    *times1 = 0;
+    *times2 = 0;
+    *times3 = 0;
 }
