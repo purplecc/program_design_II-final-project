@@ -1613,7 +1613,11 @@ void display(int data_amount){
             }
         }
         total++;
-        if(like_people == 20 || total == correct){
+        if(like_people == 20){
+            system("cls");
+            break;
+        }
+        else if(like_people > 20 && total == correct){
             system("cls");
             break;
         }
