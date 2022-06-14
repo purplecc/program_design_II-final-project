@@ -62,30 +62,34 @@
   <img src="picture/pc7.jpg">
   <br/>
   <br/>
-  ✨ Interested in 20 people is the upper limit. If you don't like anyone but the display has ended, the following message will pop up.
-  <img src="picture/pc7.jpg"> //未改
+  ✨ Interested in 20 people is the upper limit. If you don't like anyone but the display has ended, the following message will pop up. It will ask you if you want to re-enter your preference. Press "Yes", the program will go to the part which ask you to choose your preference. Otherwise, you can press "No" and get some special messages.
+  <img src="picture/n1.jpg"> 
   <br/>
   <br/>
-  If you like less than 20 people but the display is over, the program will ask you the following questions. If you press "Yes", then you can check whether these people on the list are your chioces, if some of them aren't, you can delete up to three people and send it out, or directly send out your final decision (these people) and see if there are someone also interested in you.
-  <img src="picture/pc7.jpg"> // 未改
+  <img src="picture/n2.jpg"> 
   <br/>
   <br/>
-  If you see the list below appear, it means that you've chosen 20 people. You also need to check whether they are your final choices, make decision and send it out.
-  <img src="picture/pc7.jpg"> // 未改
+  ✨ If you like less than 20 people but the display is over, the program will directly send these people to a delete list. You can check whether these people on the list are your chioces, if some of them aren't, you can delete up to three people and send it out, or directly send out your final decision (these people) and see if there are someone also interested in you.
+
+  <img src="picture/n3.jpg">
   <br/>
   <br/>
-  <img src="picture/pc8.jpg">
+
+  ✨ Delete *Cooper* you've chosen.
+
+  <img src="picture/n4.jpg">
   <br/>
   <br/>
-  ✨ Delete *Kuo* you've chosen.
+  <img src="picture/n5.jpg">
   <br/>
   <br/>
-  <img src="picture/pc9.jpg">
+
+  ✨ If you see the list below appear, it means that you've chosen 20 people. You also need to check whether they are your final choices, then make decision and send it out as we mentioned above.
+
+  <img src="picture/n6.jpg">
   <br/>
   <br/>
-  <img src="picture/pc10.jpg">
-  <br/>
-  <br/>
+
   ✨ You may be lucky(or not), in these 20 people, there are some of them also like you! Now you get important detailed information! Afrer getting their `income`, you can consider whether you two are compatible or not. The most important information is their `phone number`! It means that you can contact with each other in real life, and know if you can get along well.
 
   ✨ After you finish matching, if there is no `SOULMATE` in your choice, you can get back to pairing mode to choose a new match. On the contrary, you can end the program and manage your love.💛
@@ -93,9 +97,9 @@
   <br/>
   <img src="picture/pc11.jpg">
 
-  ✨ If you have choose a person you like the most, the program will termination
+  ✨ If you've chosen a person you like the most, the program will terminate.
 
-  ✨ Otherwise, you can choose None and exit program or wait a day and re-select 20 people you like
+  ✨ Otherwise, you can choose None and exit program or wait a day and re-select 20 people you like.
 
   <img src="picture/18.jpg">
   <br/>
