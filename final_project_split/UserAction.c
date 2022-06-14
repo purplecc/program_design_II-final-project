@@ -3,7 +3,9 @@
 
 void display(int data_amount){
     char like[20][100];
+    memset(like, '\0', sizeof(like));
     int x = 0,y = 0;
+    int total = 0;
     int right = 0;
     int like_people = 0;
     char yes_no[1][2][6] = {{{ " YES " },{ " NO " }}};
@@ -16,67 +18,76 @@ void display(int data_amount){
             correct++;
         }
     }
-    while(like_people < 20){
-        for(int i = 0;i < correct;i++){
-            system("cls");
-            if(like_people < 20){
-                while(1){
-                    // printf("\n%d\n",correct_person[i].score);
-                    printf(BACK_YELLOW"\nFIND YOUR SOULMATE!\n\n"finish);
-                    printf(B_U_I_yellow"***************************************************************************\n\n"finish); 
-                    int space = (70 - strlen(correct_person[i].name))/2;
-                    for(int j = 0;j < space;j++){
-                        printf(" ");
-                    }
-                    printf(B_BLUE"%s\n"finish,correct_person[i].name);
-                    printf(B_BLUE"Gender :%c\n"finish,correct_person[i].gender);
-                    printf(B_BLUE"Age    :%d\n"finish,correct_person[i].age);
-                    printf(B_BLUE"Height :%.1f\n"finish,correct_person[i].height);
-                    printf(B_BLUE"Zodiac :%s\n"finish,correct_person[i].zodiac);
-                    printf(B_BLUE"Area   :%s\n"finish,correct_person[i].area);
-                    printf(B_BLUE"Hobbies:%s %s %s %s %s\n"finish,correct_person[i].hobby[0],correct_person[i].hobby[1],correct_person[i].hobby[2],correct_person[i].hobby[3],correct_person[i].hobby[4]);
-                    printf(B_BLUE"Job    :%s\n"finish,correct_person[i].job);
-                    printf(B_PURPLE"Self introduction :\n  %s\n\n"finish,correct_person[i].self_introduction);  
-                    for(int i = 0;i < 1;i++){
-                        for(int j = 0;j < 2;j++){
-                            if(i == x && j == y ){
-                                if(y == 0)printf(B_I_BA_green"\t\t\t%s"finish,yes_no[i][j]);
-                                else if(y == 1)printf(B_I_BA_red"\t\t\t%s"finish,yes_no[i][j]);
-                            }
-                            else
-                                printf("\t\t\t%s",yes_no[i][j]);
-                        }
-                    }
-                    printf("\n\n");
-                    printf(B_U_I_yellow"***************************************************************************\n\n"finish);
-                    char key;
-                    key = getch();
-                    if((key == 'A' || key == 'a' || key == 75) && ((y - 1) >= 0)){
-                        y-=1;
-                    }
-                    else if((key == 'D' || key =='d' || key == 77) && ((y + 1) <= 1)){
-                        y+=1;
-                    }
-                    else if(key == '\r' && !strcmp(yes_no[x][y]," YES ")){
-                        person[correct_person[i].id].flag = 1;
-                        choose(right, like_people, like);
-                        right++;
-                        like_people++;
-                        break;
-                    }
-                    else if(key == '\r' && !strcmp(yes_no[x][y]," NO ")){
-                        break;
-                    }
-                    system("cls");
+    if(correct == 0){
+        setlocale(LC_CTYPE,setlocale(LC_ALL,""));
+        printf(red "No one else matches your criteria, we're sorry about that you can't find a companion here, Bye ");
+        wprintf(L"可憐 這麼挑" finish);
+        exit(0);
+    }
+    for(int i = 0;i < correct;i++){
+        system("cls");
+        if(like_people < 20){
+            while(1){
+                // printf("\n%d\n",correct_person[i].score);
+                printf(BACK_YELLOW"\nFIND YOUR SOULMATE!\n\n"finish);
+                printf(B_U_I_yellow"***************************************************************************\n\n"finish); 
+                int space = (70 - strlen(correct_person[i].name))/2;
+                for(int j = 0;j < space;j++){
+                    printf(" ");
                 }
-            }
-            if(like_people==20){
+                printf(B_BLUE"%s\n"finish,correct_person[i].name);
+                printf(B_BLUE"Gender :%c\n"finish,correct_person[i].gender);
+                printf(B_BLUE"Age    :%d\n"finish,correct_person[i].age);
+                printf(B_BLUE"Height :%.1f\n"finish,correct_person[i].height);
+                printf(B_BLUE"Zodiac :%s\n"finish,correct_person[i].zodiac);
+                printf(B_BLUE"Area   :%s\n"finish,correct_person[i].area);
+                printf(B_BLUE"Hobbies:%s %s %s %s %s\n"finish,correct_person[i].hobby[0],correct_person[i].hobby[1],correct_person[i].hobby[2],correct_person[i].hobby[3],correct_person[i].hobby[4]);
+                printf(B_BLUE"Job    :%s\n"finish,correct_person[i].job);
+                printf(B_PURPLE"Self introduction :\n  %s\n\n"finish,correct_person[i].self_introduction);  
+                for(int i = 0;i < 1;i++){
+                    for(int j = 0;j < 2;j++){
+                        if(i == x && j == y ){
+                            if(y == 0)printf(B_I_BA_green"\t\t\t%s"finish,yes_no[i][j]);
+                            else if(y == 1)printf(B_I_BA_red"\t\t\t%s"finish,yes_no[i][j]);
+                        }
+                        else
+                            printf("\t\t\t%s",yes_no[i][j]);
+                    }
+                }
+                printf("\n\n");
+                printf(B_U_I_yellow"***************************************************************************\n\n"finish);
+                char key;
+                key = getch();
+                if((key == 'A' || key == 'a' || key == 75) && ((y - 1) >= 0)){
+                    y-=1;
+                }
+                else if((key == 'D' || key =='d' || key == 77) && ((y + 1) <= 1)){
+                    y+=1;
+                }
+                else if(key == '\r' && !strcmp(yes_no[x][y]," YES ")){
+                    person[correct_person[i].id].flag = 1;
+                    choose(right, like_people, like);
+                    right++;
+                    like_people++;
+                    break;
+                }
+                else if(key == '\r' && !strcmp(yes_no[x][y]," NO ")){
+                    break;
+                }
                 system("cls");
-                break;
             }
         }
-        very_cool(like_people, x,  y,  yes_no, send , &data_amount, like);
+        total++;
+        if(like_people == 20){
+            system("cls");
+            break;
+        }
+        else if(like_people > 20 && total == correct){
+            system("cls");
+            break;
+        }
     }
+    very_cool(like_people, x,  y,  yes_no, send , &data_amount, like);
 }
 
 void choose(int i, int like_people, char like[20][100]){

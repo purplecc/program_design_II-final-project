@@ -9,6 +9,8 @@
 #include <ctype.h>
 #include <conio.h>
 #include <windows.h>
+#include <wchar.h>
+#include <locale.h>
 
 #define finish          "\033[0m"
 #define light           "\033[01m"
