@@ -59,16 +59,20 @@
   <img src="picture/pc5.jpg">
 
   ## Start to find your soulmate!
+
   <img src="picture/pc7.jpg">
   <br/>
   <br/>
+
   ✨ Interested in 20 people is the upper limit. If you don't like anyone but the display has ended, the following message will pop up. It will ask you if you want to re-enter your preference. Press "Yes", the program will go to the part which ask you to choose your preference. Otherwise, you can press "No" and get some special messages.
+
   <img src="picture/n1.jpg"> 
   <br/>
   <br/>
   <img src="picture/n2.jpg"> 
   <br/>
   <br/>
+  
   ✨ If you like less than 20 people but the display is over, the program will directly send these people to a delete list. You can check whether these people on the list are your chioces, if some of them aren't, you can delete up to three people and send it out, or directly send out your final decision (these people) and see if there are someone also interested in you.
 
   <img src="picture/n3.jpg">
