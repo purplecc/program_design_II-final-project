@@ -62,7 +62,16 @@
   <img src="picture/pc7.jpg">
   <br/>
   <br/>
-  ✨ Interested in 20 people is the upper limit. If you see the list below appear, you can finally check whether these 20 people are your choices, if some of them aren't (You regretted to choose he/she), you can delete up to three people and then send it out, or directly send out your final decision (these 20 people) and see if there are someone also interested in you.
+  ✨ Interested in 20 people is the upper limit. If you don't like anyone but the display has ended, the following message will pop up.
+  <img src="picture/pc7.jpg"> //未改
+  <br/>
+  <br/>
+  If you like less than 20 people but the display is over, the program will ask you the following questions. If you press "Yes", then you can check whether these people on the list are your chioces, if some of them aren't, you can delete up to three people and send it out, or directly send out your final decision (these people) and see if there are someone also interested in you.
+  <img src="picture/pc7.jpg"> // 未改
+  <br/>
+  <br/>
+  If you see the list below appear, it means that you've chosen 20 people. You also need to check whether they are your final choices, make decision and send it out.
+  <img src="picture/pc7.jpg"> // 未改
   <br/>
   <br/>
   <img src="picture/pc8.jpg">
