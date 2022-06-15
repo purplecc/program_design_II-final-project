@@ -28,6 +28,7 @@
 #define PURPLE          "\x1B[0;35m"
 #define B_PURPLE        "\x1B[1;35m"
 #define B_I_BA_red      "\033[1;3;2;41m"
+#define B_BA_red        "\033[1;2;41m"
 #define B_I_BA_green    "\033[1;3;2;42m"
 #define red             "\033[41m"
 #define Move_the_cursor_up_one      "\e[1A"
@@ -1240,7 +1241,7 @@ void height(int *times2,int *x1,int *x2,float *left,float *right){
         }
     }
     int num[6] = {160,165,170,175,180,185};
-    char line[49] = "---------------------------------------+++> (cm)";                                                         
+    char line[49] = "---|------|------|------|------|------|+++> (cm)";                                                         
     while(1){
         system("cls");
         printf("Set the range of your soulmate's height!\n");
@@ -1252,7 +1253,7 @@ void height(int *times2,int *x1,int *x2,float *left,float *right){
         printf("\n");
         for(int i = 0;i < 50;i++){
             if(i == *x1){
-                printf(B_I_BA_red"%c"finish,line[i]);
+                printf(B_BA_red"%c"finish,line[i]);
             }
             else{
                 printf("%c",line[i]);
@@ -1267,7 +1268,7 @@ void height(int *times2,int *x1,int *x2,float *left,float *right){
             (*x1)+=1;
         }
         else if(key == '\r'){
-            if(*x1 < 3) *left = 157.5;  
+            if(*x1 < 3) *left = 100;
             else if(*x1 == 3) *left = 160;
             else if(*x1 > 3 && *x1 < 10) *left = 162.5;
             else if(*x1 == 10) *left = 165;
@@ -1294,10 +1295,10 @@ void height(int *times2,int *x1,int *x2,float *left,float *right){
         printf("\n");
         for(int i = 0;i < 50 ;i++){
             if(i == *x1){
-                printf(B_I_BA_red"%c"finish,line[i]);
+                printf(B_BA_red"%c"finish,line[i]);
             }
             else if(i == *x2){
-                printf(B_I_BA_red"%c"finish,line[i]);
+                printf(B_BA_red"%c"finish,line[i]);
             }
             else{
                 printf("%c",line[i]);
@@ -1330,9 +1331,16 @@ void height(int *times2,int *x1,int *x2,float *left,float *right){
         }
     }
     *times2 = 1;
-    if(*right>185){
+    if(*right > 185 && *left >= 160){
         printf(B_BLUE"\nPreferred height :\n%.2lf ~ 185+\nPress enter to continue..."finish,*left);
-    }else{
+    }
+    else if(*left < 160 && *right <=185){
+        printf(B_BLUE"\nPreferred height :\n160- ~ %.2lf\nPress enter to continue..."finish ,*right);
+    }
+    else if(*right > 185 && *left < 160){
+        printf(B_BLUE"\nPreferred height :\n160- ~ 185+\nPress enter to continue..."finish);
+    }
+    else{
         printf(B_BLUE"\nPreferred height :\n%.2lf ~ %.2lf\nPress enter to continue..."finish,*left,*right);
     }
     getchar();
