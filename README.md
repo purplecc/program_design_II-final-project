@@ -32,6 +32,9 @@
    
   ```
   You can use them to log in.
+  
+  ID : junhansohandsome
+  Password : 1234567890
 
   ID : AllenWong2002
   Password : apex
