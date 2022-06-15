@@ -134,7 +134,7 @@ bool check_boundary2(int x, int like_people);
 char prefer_zodiac[3][15];
 Data person[1000];
 Data correct_person[500];
-ad m[5];
+ad m[6];
 Like *pre, *cur, *head;
 
 int main(){
@@ -1930,10 +1930,13 @@ void init(){
 
     strcpy(m[4].id, "purplecc");
     strcpy(m[4].pw, "1234567890");
+
+    strcpy(m[5].id, "Jun_Han_so_handsome");
+    strcpy(m[5].pw, "1234567890");
 }
 
 int search_admin(char *s, char *s1){
-    for (int i = 0; i < 5; i++){
+    for (int i = 0; i < 6; i++){
         if (!strcmp(m[i].id, s) && !strcmp(m[i].pw,s1)){
             return 1;
         }
