@@ -42,10 +42,10 @@
 
   **fill in the person's basic information and press "Yes", the data will be added in database.**
 
-  <img src="picture/ad1.jpg">
-  <br/>
-  <br/>
-  <img src="picture/ad2.jpg">
+<img src="picture/ad1.jpg">
+<br/>
+<br/>
+<img src="picture/2.jpg">
 
 <div style="color: goldenrod;">
 
@@ -55,10 +55,10 @@
 
   ***Use phone number to find the person information.***
 
-  <img src="picture/ad3.jpg">
-  <br/>
-  <br/>
-  <img src="picture/ad10.jpg">
+<img src="picture/3.jpg">
+<br/>
+<br/>
+<img src="picture/ad10.jpg">
   
   <div style="color: goldenrod;">
 
@@ -68,10 +68,10 @@
 
   ***Use phone number to find the person, and he/she will be deleted.***
   
-  <img src="picture/ad4.jpg">
+  <img src="picture/4.jpg">
   <br/>
   <br/>
-  <img src="picture/ad5.jpg">
+  <img src="picture/5.jpg">
 
 <div style="color: goldenrod;">
 
@@ -84,7 +84,7 @@
   <img src="picture/ad11.jpg">
   <br/>
   <br/>
-  <img src="picture/ad6.jpg">
+  <img src="picture/6.jpg">
 
 <div style="color: goldenrod;">
 
@@ -94,10 +94,10 @@
 
   ***Use different condition to sort data and change order in the data base. There are eight kinds of condition, like `Gender`, `Phone`, `Area`, `Target`, `Height`, ` Zodiac`, `Age`, `Income`.***
                                 
-  <img src="picture/ad7.jpg">
+  <img src="picture/7.jpg">
   <br/>
   <br/>
-  <img src="picture/ad8.jpg">
+  <img src="picture/8.jpg">
   <br/>
   <br/>
   <img src="picture/ad9.jpg">
