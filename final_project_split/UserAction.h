@@ -26,7 +26,7 @@ typedef struct like{
 Data correct_person[500];
 Like *pre, *cur, *head;
 
-void display(int data_amount);
+int display(int data_amount);
 
 void choose(int i, int like_people, char like[20][100]);
 

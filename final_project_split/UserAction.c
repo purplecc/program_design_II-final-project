@@ -1,11 +1,10 @@
 #include "basic.h"
 #include "UserAction.h"
 
-void display(int data_amount){
+int display(int data_amount){
     char like[20][100];
     memset(like, '\0', sizeof(like));
-    int x = 0,y = 0;
-    int total = 0;
+    int x = 0, y = 0;
     int right = 0;
     int like_people = 0;
     char yes_no[1][2][6] = {{{ " YES " },{ " NO " }}};
@@ -19,9 +18,16 @@ void display(int data_amount){
         }
     }
     if(correct == 0){
+        int k;
+        system("cls");
         setlocale(LC_CTYPE,setlocale(LC_ALL,""));
-        printf(red "No one else matches your criteria, we're sorry about that you can't find a companion here, Bye ");
-        wprintf(L"可憐 這麼挑" finish);
+        wprintf(red L"可憐吶 這麼挑 沒人符合你的條件了 你要重新選條件嗎\n" finish);
+        printf(B_white "[1] Yes [2] No ==> " finish);
+        scanf("%d", &k);
+        if(k==1){
+            return 1;
+        }
+        printf("So sad :(  Bye...");
         exit(0);
     }
     for(int i = 0;i < correct;i++){
@@ -77,17 +83,27 @@ void display(int data_amount){
                 system("cls");
             }
         }
-        total++;
         if(like_people == 20){
             system("cls");
             break;
         }
-        else if(like_people > 20 && total == correct){
-            system("cls");
-            break;
+    }
+    system("cls");
+    if(like_people == 0){
+        int k;
+        system("cls");
+        setlocale(LC_CTYPE,setlocale(LC_ALL,""));
+        wprintf(red L"可憐吶 這麼挑 沒人符合你的條件了 你要重新選條件嗎\n" finish);
+        printf(B_white "[1] Yes [2] No ==> " finish);
+        scanf("%d", &k);
+        if(k == 1){
+            return 1;
         }
+        printf("So sad :(  Bye...");
+        exit(0);
     }
     very_cool(like_people, x,  y,  yes_no, send , &data_amount, like);
+    return 0;
 }
 
 void choose(int i, int like_people, char like[20][100]){
@@ -253,7 +269,7 @@ void very_cool(int like_people, int x, int y, char yes_no[1][2][6], char send[6]
         }
         else if(k == '\r' && g == like_people){
             system("cls");
-            printf("Waiting for the resault......\n");
+            printf("Waiting for the result......\n");
             Sleep(3000);
             system("cls");
             break;

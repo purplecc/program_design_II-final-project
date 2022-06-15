@@ -21,9 +21,16 @@ int main(){
             regist_account(&data_amount);
             preference(&times1, &times2, &times3, &left, &right, &l_age, &r_age);
             calculate_score(&times1, &times2, &times3, &left, &right, &l_age, &r_age, &person[data_amount - 1], data_amount-1);
-            qsort(person, data_amount, sizeof(Data), comp);
+            qsort(person, data_amount-1, sizeof(Data), comp);
+            int a = 0;
             while(1){
-                display(data_amount);
+                if(a==1){
+                    initial_score_and_flag(data_amount, &times1, &times2, &times3);
+                    preference(&times1, &times2, &times3, &left, &right, &l_age, &r_age);
+                    calculate_score(&times1, &times2, &times3, &left, &right, &l_age, &r_age, &person[data_amount - 1], data_amount-1);
+                    qsort(person, data_amount-1, sizeof(Data), comp);
+                }
+                a = display(data_amount);
             }
         }
         else if (mode == 1){    //* Admin operation
@@ -32,9 +39,16 @@ int main(){
         else if(mode == 2){     //* User login and match
             preference(&times1, &times2, &times3, &left, &right, &l_age, &r_age);
             calculate_score(&times1, &times2, &times3, &left, &right, &l_age, &r_age, &person[data_amount - 1], data_amount-1);
-            qsort(person, data_amount, sizeof(Data), comp);
+            qsort(person, data_amount-1, sizeof(Data), comp);
+            int a = 0;
             while(1){
-                display(data_amount);
+                if(a==1){
+                    initial_score_and_flag(data_amount, &times1, &times2, &times3);
+                    preference(&times1, &times2, &times3, &left, &right, &l_age, &r_age);
+                    calculate_score(&times1, &times2, &times3, &left, &right, &l_age, &r_age, &person[data_amount - 1], data_amount-1);
+                    qsort(person, data_amount-1, sizeof(Data), comp);
+                }
+                a = display(data_amount);
             }
         }
     }

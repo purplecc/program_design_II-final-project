@@ -31,6 +31,7 @@
 #define PURPLE          "\x1B[0;35m"
 #define B_PURPLE        "\x1B[1;35m"
 #define B_I_BA_red      "\033[1;3;2;41m"
+#define B_BA_red        "\033[1;2;41m"
 #define B_I_BA_green    "\033[1;3;2;42m"
 #define red             "\033[41m"
 #define Move_the_cursor_up_one      "\e[1A"

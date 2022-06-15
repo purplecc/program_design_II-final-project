@@ -988,7 +988,7 @@ void height(int *times2,int *x1,int *x2,float *left,float *right){
         }
     }
     int num[6] = {160,165,170,175,180,185};
-    char line[49] = "------------------------------------------> (cm)";                                                         
+    char line[49] = "---|------|------|------|------|------|+++> (cm)";                                                         
     while(1){
         system("cls");
         printf("Set the range of your soulmate's height!\n");
@@ -1000,7 +1000,7 @@ void height(int *times2,int *x1,int *x2,float *left,float *right){
         printf("\n");
         for(int i = 0;i < 50;i++){
             if(i == *x1){
-                printf(B_I_BA_red"%c"finish,line[i]);
+                printf(B_BA_red"%c"finish,line[i]);
             }
             else{
                 printf("%c",line[i]);
@@ -1015,7 +1015,7 @@ void height(int *times2,int *x1,int *x2,float *left,float *right){
             (*x1)+=1;
         }
         else if(key == '\r'){
-            if(*x1 < 3) *left = 157.5;  
+            if(*x1 < 3) *left = 100;  
             else if(*x1 == 3) *left = 160;
             else if(*x1 > 3 && *x1 < 10) *left = 162.5;
             else if(*x1 == 10) *left = 165;
@@ -1042,10 +1042,10 @@ void height(int *times2,int *x1,int *x2,float *left,float *right){
         printf("\n");
         for(int i = 0;i < 50 ;i++){
             if(i == *x1){
-                printf(B_I_BA_red"%c"finish,line[i]);
+                printf(B_BA_red"%c"finish,line[i]);
             }
             else if(i == *x2){
-                printf(B_I_BA_red"%c"finish,line[i]);
+                printf(B_BA_red"%c"finish,line[i]);
             }
             else{
                 printf("%c",line[i]);
@@ -1073,12 +1073,23 @@ void height(int *times2,int *x1,int *x2,float *left,float *right){
             else if(*x2 == 31) *right = 180;
             else if(*x2 > 31 && *x2 < 38) *right = 182.5;
             else if(*x2 == 38) *right = 185;
-            else *right = 187.5;        
+            else *right = 205;        
             break;
         }
     }
     *times2 = 1;
-    printf(B_BLUE"\nPreferred height :\n%.2lf ~ %.2lf\nPress enter to continue..."finish,*left,*right);
+    if(*right > 185 && *left >= 160){
+        printf(B_BLUE"\nPreferred height :\n%.2lf ~ 185+\nPress enter to continue..."finish,*left);
+    }
+    else if(*left < 160 && *right <=185){
+        printf(B_BLUE"\nPreferred height :\n160- ~ %.2lf\nPress enter to continue..."finish ,*right);
+    }
+    else if(*right > 185 && *left < 160){
+        printf(B_BLUE"\nPreferred height :\n160- ~ 185+\nPress enter to continue..."finish);
+    }
+    else{
+        printf(B_BLUE"\nPreferred height :\n%.2lf ~ %.2lf\nPress enter to continue..."finish,*left,*right);
+    }
     getchar();
 }
 
@@ -1093,6 +1104,7 @@ void age(int *times3,int *l_age,int *r_age){
             getchar();
         }
         else{
+            getchar();
             return;
         }
     }
@@ -1142,6 +1154,7 @@ void zodiac_choice(int *times1,int *x_zodiac,int *y_zodiac){
             getchar();
         }
         else{
+            getchar();
             return;
         }
     }
@@ -1197,6 +1210,7 @@ bool check_height(char *str){
             return false;
         }
         else{
+            getchar();
             str += 1;
         }
     }
@@ -1655,4 +1669,14 @@ int search(char *pnum, int *data_amount){
         }
     }
     return -1;
+}
+
+void initial_score_and_flag(int data_amount, int *times1, int *times2, int *times3){
+    for(int i=0; i<data_amount; i++){
+        person[i].flag = 0;
+        person[i].score = 0;
+    }
+    *times1 = 0;
+    *times2 = 0;
+    *times3 = 0;
 }

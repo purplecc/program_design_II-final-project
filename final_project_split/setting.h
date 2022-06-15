@@ -79,4 +79,6 @@ int search_admin(char *s, char *s1);
 
 int search(char *pnum, int *data_amount);
 
+void initial_score_and_flag(int data_amount, int *times1, int *times2, int *times3);
+
 #endif
