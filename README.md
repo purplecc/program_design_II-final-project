@@ -33,7 +33,7 @@
   ```
   You can use them to log in.
   
-  ID : junhansohandsome
+  ID : Jun_Han_so_handsome
   Password : 1234567890
 
   ID : AllenWong2002
