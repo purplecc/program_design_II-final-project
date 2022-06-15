@@ -14,8 +14,57 @@
   <img src="picture/pc13.jpg">
   <br/>
   <br/>
+   
+  ✨ There are five operations the administrator can use. All of these results will be printed at `output.txt`.
+
   <img src="picture/pc14.jpg">
 
+  ## Add : fill in the person's basic information and press "Yes", the data will be added in database.
+  <img src="picture/ad1.jpg">
+  <br/>
+  <br/>
+  <img src="picture/ad2.jpg">
+  <br/>
+  <br/>
+
+  ## Search : Use phone number to find the person information.
+  <img src="picture/ad3.jpg">
+  <br/>
+  <br/>
+  <img src="picture/ad10.jpg">
+  <br/>
+  <br/>
+  
+  ## Delete : Use phone number to find the person, and he/she will be deleted.
+  
+  <img src="picture/ad4.jpg">
+  <br/>
+  <br/>
+  <img src="picture/ad5.jpg">
+  <br/>
+  <br/>
+
+  ## Traverse : Display every data on the screen, press "Next" or "Prior" to see another data.
+
+  <img src="picture/ad11.jpg">
+  <br/>
+  <br/>
+  <img src="picture/ad6.jpg">
+  <br/>
+  <br/>
+
+  ## Sort : Use different condition to sort data and change order in the data base. There are eight kinds of condition, like `Gender`, `Phone`, `Area`, `Target`, `Height`, ` Zodiac`, `Age`, `Income`.                
+                                
+  <img src="picture/ad7.jpg">
+  <br/>
+  <br/>
+  <img src="picture/ad8.jpg">
+  <br/>
+  <br/>
+  <img src="picture/ad9.jpg">
+  <br/>
+  <br/>
+  
 ### `User`
 
   <img src="picture/pc15.jpg">
