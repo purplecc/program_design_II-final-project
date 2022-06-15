@@ -1,11 +1,26 @@
+<div style="color: rgb(247, 0, 255);">
+
 # A DATING APP WITHOUT PHOTOS &#x1F48F; &#x1F46C; &#x1F46D;
+
+</div>
+
 ## *The advantage of this app is that it doesn't have a photo can mislead your mind, and you can decide whether to make friends by the way you talk to each other. In the other words, it's the soul that counts.*
-## Instruction
+
+<div style="color: red;">
+
+# Instruction
+
+</div>
+
   When it starts, we can choose our identity, a user or an administrator.
 
   Button can operate by  "WASD"  or  "↑ ↓ ← →"
 
-### `Administrator`
+<div style="color: red;">
+
+# `Administrator`
+
+</div>
   ✨ If I am an administrator, just enter my password then I can do everything to the database.
 
   <img src="picture/pc12.jpg">
@@ -19,41 +34,65 @@
 
   <img src="picture/pc14.jpg">
 
-  ## Add : fill in the person's basic information and press "Yes", the data will be added in database.
+<div style="color: goldenrod;">
+
+  ## Add :
+
+  </div>
+
+  **fill in the person's basic information and press "Yes", the data will be added in database.**
+
   <img src="picture/ad1.jpg">
   <br/>
   <br/>
   <img src="picture/ad2.jpg">
-  <br/>
-  <br/>
 
-  ## Search : Use phone number to find the person information.
+<div style="color: goldenrod;">
+
+  ## Search : 
+
+  </div>
+
+  ***Use phone number to find the person information.***
+
   <img src="picture/ad3.jpg">
   <br/>
   <br/>
   <img src="picture/ad10.jpg">
-  <br/>
-  <br/>
   
-  ## Delete : Use phone number to find the person, and he/she will be deleted.
+  <div style="color: goldenrod;">
+
+  ## Delete :
+
+  </div>
+
+  ***Use phone number to find the person, and he/she will be deleted.***
   
   <img src="picture/ad4.jpg">
   <br/>
   <br/>
   <img src="picture/ad5.jpg">
-  <br/>
-  <br/>
 
-  ## Traverse : Display every data on the screen, press "Next" or "Prior" to see another data.
+<div style="color: goldenrod;">
+
+  ## Traverse : 
+
+  </div>
+
+  ***Display every data on the screen, press "Next" or "Prior" to see another data.***
 
   <img src="picture/ad11.jpg">
   <br/>
   <br/>
   <img src="picture/ad6.jpg">
-  <br/>
-  <br/>
 
-  ## Sort : Use different condition to sort data and change order in the data base. There are eight kinds of condition, like `Gender`, `Phone`, `Area`, `Target`, `Height`, ` Zodiac`, `Age`, `Income`.                
+<div style="color: goldenrod;">
+
+  ## Sort : 
+
+  </div>
+
+  ***Use different condition to sort data and change order in the data base. There are eight kinds of condition, like `Gender`, `Phone`, `Area`, `Target`, `Height`, ` Zodiac`, `Age`, `Income`.***
                                 
   <img src="picture/ad7.jpg">
   <br/>
@@ -62,10 +101,12 @@
   <br/>
   <br/>
   <img src="picture/ad9.jpg">
-  <br/>
-  <br/>
   
-### `User`
+  <div style="color: red;">
+
+# `User`
+
+  </div>
 
   <img src="picture/pc15.jpg">
   <br/>
@@ -92,7 +133,11 @@
 
   <img src="picture/pc1.jpg">
 
+<div style="color: goldenrod;">
+
   ## Choose  Preference
+
+  </div>
 
   ✨ In this part, you can choose which kind of characteristic is your preference. Press `Zodiac`, `Height`, or `Age` to set. The person whose height or age isn't within your preferred range won't appear. In the other words, we ensure that every person displayed on the screen may be your type. 😉Likewise, press `Next` to continue.
 
@@ -107,7 +152,11 @@
   <br/>
   <img src="picture/pc5.jpg">
 
+<div style="color: goldenrod;">
+
   ## Start to find your soulmate!
+
+</div>
 
   <img src="picture/pc7.jpg">
   <br/>
