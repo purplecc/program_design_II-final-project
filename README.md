@@ -30,6 +30,24 @@
   <br/>
   <br/>
    
+  ```
+  You can use them to log in.
+
+  ID : AllenWong2002
+  Password : apex
+
+  ID : nefertariii
+  Password : allpass
+
+  ID : ChiuYiHsien
+  Password : 1234567890
+
+  ID : apin0125
+  Password : 1234567890
+
+  ID : purplecc
+  Password : 1234567890
+  ```
   ✨ There are five operations the administrator can use. All of these results will be printed at `output.txt`.
 
   <img src="picture/pc14.jpg">
