@@ -6,6 +6,8 @@
 #include <ctype.h>
 #include <conio.h>
 #include <windows.h>
+#include <wchar.h>
+#include <locale.h>
 
 #define finish          "\033[0m"
 #define light           "\033[01m"
@@ -88,6 +90,7 @@ bool search_duplicates(int data_amount);
 bool check_boundary(int x, int y, int row, int col);
 void zodiac_choice(int *times1,int *x_zodiac,int *y_zodiac);
 bool check_height(char *str);
+void initial_score_and_flag(int data_amount, int *times1, int *times2, int *times3);
 
 void calculate_score(int *times1,int *times2,int *times3,float *left,float *right,\
 int *l_age,int *r_age,Data *User,int data_amount);
@@ -99,7 +102,7 @@ void hobby_score(Data *User,int data_amount);
 void prefer_zodiac_score(int *times1,int data_amount);
 void prefer_height_score(int *times2,int data_amount,float *left,float *right);
 int comp(const void *p, const void *q);
-void display(int data_amount);
+int display(int data_amount);
 
 void sort(int *data_amount);
 void init();
@@ -125,7 +128,7 @@ void delete_like();
 void matching_success(int loca[] , int *data_amount);
 void very_cool(int like_people, int x, int y, char yes_no[1][2][6], char send[6], int *data_amount, char like[20][100]);
 void relike(int g, int like_people, char like[20][100]);
-bool check_boundary2(int x);
+bool check_boundary2(int x, int like_people);
 
 char prefer_zodiac[3][15];
 Data person[1000];
@@ -151,9 +154,16 @@ int main(){
             regist_account(&data_amount);
             preference(&times1, &times2, &times3, &left, &right, &l_age, &r_age);
             calculate_score(&times1, &times2, &times3, &left, &right, &l_age, &r_age, &person[data_amount - 1], data_amount-1);
-            qsort(person, data_amount, sizeof(Data), comp);
+            qsort(person, data_amount-1, sizeof(Data), comp);
+            int a = 0;
             while(1){
-                display(data_amount);
+                if(a==1){
+                    initial_score_and_flag(data_amount, &times1, &times2, &times3);
+                    preference(&times1, &times2, &times3, &left, &right, &l_age, &r_age);
+                    calculate_score(&times1, &times2, &times3, &left, &right, &l_age, &r_age, &person[data_amount - 1], data_amount-1);
+                    qsort(person, data_amount-1, sizeof(Data), comp);
+                }
+                a = display(data_amount);
             }
         }
         else if (mode == 1){    //* Admin operation
@@ -162,9 +172,16 @@ int main(){
         else if(mode == 2){     //* User login and match
             preference(&times1, &times2, &times3, &left, &right, &l_age, &r_age);
             calculate_score(&times1, &times2, &times3, &left, &right, &l_age, &r_age, &person[data_amount - 1], data_amount-1);
-            qsort(person, data_amount, sizeof(Data), comp);
+            qsort(person, data_amount-1, sizeof(Data), comp);
+            int a = 0;
             while(1){
-                display(data_amount);
+                if(a==1){
+                    initial_score_and_flag(data_amount, &times1, &times2, &times3);
+                    preference(&times1, &times2, &times3, &left, &right, &l_age, &r_age);
+                    calculate_score(&times1, &times2, &times3, &left, &right, &l_age, &r_age, &person[data_amount - 1], data_amount-1);
+                    qsort(person, data_amount-1, sizeof(Data), comp);
+                }
+                a = display(data_amount);
             }
         }
     }
@@ -1161,6 +1178,7 @@ void zodiac_choice(int *times1,int *x_zodiac,int *y_zodiac){
             getchar();
         }
         else{
+            getchar();
             return;
         }
     }
@@ -1217,11 +1235,12 @@ void height(int *times2,int *x1,int *x2,float *left,float *right){
             getchar();
         }
         else{
+            getchar();
             return;
         }
     }
     int num[6] = {160,165,170,175,180,185};
-    char line[49] = "------------------------------------------> (cm)";                                                         
+    char line[49] = "---------------------------------------+++> (cm)";                                                         
     while(1){
         system("cls");
         printf("Set the range of your soulmate's height!\n");
@@ -1306,12 +1325,16 @@ void height(int *times2,int *x1,int *x2,float *left,float *right){
             else if(*x2 == 31) *right = 180;
             else if(*x2 > 31 && *x2 < 38) *right = 182.5;
             else if(*x2 == 38) *right = 185;
-            else *right = 187.5;        
+            else *right = 205;        
             break;
         }
     }
     *times2 = 1;
-    printf(B_BLUE"\nPreferred height :\n%.2lf ~ %.2lf\nPress enter to continue..."finish,*left,*right);
+    if(*right>185){
+        printf(B_BLUE"\nPreferred height :\n%.2lf ~ 185+\nPress enter to continue..."finish,*left);
+    }else{
+        printf(B_BLUE"\nPreferred height :\n%.2lf ~ %.2lf\nPress enter to continue..."finish,*left,*right);
+    }
     getchar();
 }
 
@@ -1326,6 +1349,7 @@ void age(int *times3,int *l_age,int *r_age){
             getchar();
         }
         else{
+            getchar();
             return;
         }
     }
@@ -1531,9 +1555,10 @@ int comp(const void *p,const void *q){
     return (((Data *)q)->score - ((Data *)p)->score);
 }
 
-void display(int data_amount){
+int display(int data_amount){
     char like[20][100];
-    int x = 0,y = 0;
+    memset(like, '\0', sizeof(like));
+    int x = 0, y = 0;
     int right = 0;
     int like_people = 0;
     char yes_no[1][2][6] = {{{ " YES " },{ " NO " }}};
@@ -1546,67 +1571,93 @@ void display(int data_amount){
             correct++;
         }
     }
-    while(like_people < 20){
-        for(int i = 0;i < correct;i++){
-            system("cls");
-            if(like_people < 20){
-                while(1){
-                    // printf("\n%d\n",correct_person[i].score);
-                    printf(BACK_YELLOW"\nFIND YOUR SOULMATE!\n\n"finish);
-                    printf(B_U_I_yellow"***************************************************************************\n\n"finish); 
-                    int space = (70 - strlen(correct_person[i].name))/2;
-                    for(int j = 0;j < space;j++){
-                        printf(" ");
-                    }
-                    printf(B_BLUE"%s\n"finish,correct_person[i].name);
-                    printf(B_BLUE"Gender :%c\n"finish,correct_person[i].gender);
-                    printf(B_BLUE"Age    :%d\n"finish,correct_person[i].age);
-                    printf(B_BLUE"Height :%.1f\n"finish,correct_person[i].height);
-                    printf(B_BLUE"Zodiac :%s\n"finish,correct_person[i].zodiac);
-                    printf(B_BLUE"Area   :%s\n"finish,correct_person[i].area);
-                    printf(B_BLUE"Hobbies:%s %s %s %s %s\n"finish,correct_person[i].hobby[0],correct_person[i].hobby[1],correct_person[i].hobby[2],correct_person[i].hobby[3],correct_person[i].hobby[4]);
-                    printf(B_BLUE"Job    :%s\n"finish,correct_person[i].job);
-                    printf(B_PURPLE"Self introduction :\n  %s\n\n"finish,correct_person[i].self_introduction);  
-                    for(int i = 0;i < 1;i++){
-                        for(int j = 0;j < 2;j++){
-                            if(i == x && j == y ){
-                                if(y == 0)printf(B_I_BA_green"\t\t\t%s"finish,yes_no[i][j]);
-                                else if(y == 1)printf(B_I_BA_red"\t\t\t%s"finish,yes_no[i][j]);
-                            }
-                            else
-                                printf("\t\t\t%s",yes_no[i][j]);
-                        }
-                    }
-                    printf("\n\n");
-                    printf(B_U_I_yellow"***************************************************************************\n\n"finish);
-                    char key;
-                    key = getch();
-                    if((key == 'A' || key == 'a' || key == 75) && ((y - 1) >= 0)){
-                        y-=1;
-                    }
-                    else if((key == 'D' || key =='d' || key == 77) && ((y + 1) <= 1)){
-                        y+=1;
-                    }
-                    else if(key == '\r' && !strcmp(yes_no[x][y]," YES ")){
-                        person[correct_person[i].id].flag = 1;
-                        choose(right, like_people, like);
-                        right++;
-                        like_people++;
-                        break;
-                    }
-                    else if(key == '\r' && !strcmp(yes_no[x][y]," NO ")){
-                        break;
-                    }
-                    system("cls");
+    if(correct == 0){
+        int k;
+        system("cls");
+        setlocale(LC_CTYPE,setlocale(LC_ALL,""));
+        wprintf(red L"可憐吶 這麼挑 沒人符合你的條件了 你要重新選條件嗎\n" finish);
+        printf(B_white "[1] Yes [2] No ==> " finish);
+        scanf("%d", &k);
+        if(k==1){
+            return 1;
+        }
+        printf("So sad :(  Bye...");
+        exit(0);
+    }
+    for(int i = 0;i < correct;i++){
+        system("cls");
+        if(like_people < 20){
+            while(1){
+                // printf("\n%d\n",correct_person[i].score);
+                printf(BACK_YELLOW"\nFIND YOUR SOULMATE!\n\n"finish);
+                printf(B_U_I_yellow"***************************************************************************\n\n"finish); 
+                int space = (70 - strlen(correct_person[i].name))/2;
+                for(int j = 0;j < space;j++){
+                    printf(" ");
                 }
-            }
-            if(like_people==20){
+                printf(B_BLUE"%s\n"finish,correct_person[i].name);
+                printf(B_BLUE"Gender :%c\n"finish,correct_person[i].gender);
+                printf(B_BLUE"Age    :%d\n"finish,correct_person[i].age);
+                printf(B_BLUE"Height :%.1f\n"finish,correct_person[i].height);
+                printf(B_BLUE"Zodiac :%s\n"finish,correct_person[i].zodiac);
+                printf(B_BLUE"Area   :%s\n"finish,correct_person[i].area);
+                printf(B_BLUE"Hobbies:%s %s %s %s %s\n"finish,correct_person[i].hobby[0],correct_person[i].hobby[1],correct_person[i].hobby[2],correct_person[i].hobby[3],correct_person[i].hobby[4]);
+                printf(B_BLUE"Job    :%s\n"finish,correct_person[i].job);
+                printf(B_PURPLE"Self introduction :\n  %s\n\n"finish,correct_person[i].self_introduction);  
+                for(int i = 0;i < 1;i++){
+                    for(int j = 0;j < 2;j++){
+                        if(i == x && j == y ){
+                            if(y == 0)printf(B_I_BA_green"\t\t\t%s"finish,yes_no[i][j]);
+                            else if(y == 1)printf(B_I_BA_red"\t\t\t%s"finish,yes_no[i][j]);
+                        }
+                        else
+                            printf("\t\t\t%s",yes_no[i][j]);
+                    }
+                }
+                printf("\n\n");
+                printf(B_U_I_yellow"***************************************************************************\n\n"finish);
+                char key;
+                key = getch();
+                if((key == 'A' || key == 'a' || key == 75) && ((y - 1) >= 0)){
+                    y-=1;
+                }
+                else if((key == 'D' || key =='d' || key == 77) && ((y + 1) <= 1)){
+                    y+=1;
+                }
+                else if(key == '\r' && !strcmp(yes_no[x][y]," YES ")){
+                    person[correct_person[i].id].flag = 1;
+                    choose(right, like_people, like);
+                    right++;
+                    like_people++;
+                    break;
+                }
+                else if(key == '\r' && !strcmp(yes_no[x][y]," NO ")){
+                    break;
+                }
                 system("cls");
-                break;
             }
         }
-        very_cool(like_people, x,  y,  yes_no, send , &data_amount, like);
+        if(like_people == 20){
+            system("cls");
+            break;
+        }
     }
+    system("cls");
+    if(like_people == 0){
+        int k;
+        system("cls");
+        setlocale(LC_CTYPE,setlocale(LC_ALL,""));
+        wprintf(red L"可憐吶 這麼挑 沒人符合你的條件了 你要重新選條件嗎\n" finish);
+        printf(B_white "[1] Yes [2] No ==> " finish);
+        scanf("%d", &k);
+        if(k == 1){
+            return 1;
+        }
+        printf("So sad :(  Bye...");
+        exit(0);
+    }
+    very_cool(like_people, x,  y,  yes_no, send , &data_amount, like);
+    return 0;
 }
 
 bool check_height(char *str){
@@ -2250,13 +2301,13 @@ void very_cool(int like_people, int x, int y, char yes_no[1][2][6], char send[6]
         if(count_del >= 3){
             printf(B_U_I_yellow"You cannot delete more people today!\n\n"finish);
             printf(B_U_I_yellow"Please push the 'SEND' button\n\n"finish);
-        }
+        }   
         else{
             printf(B_U_I_yellow"You can delete at most 3 people today!\n\n"finish);
         }
         for (int i = 0; i < like_people; i++){
             if(i==g){
-                printf(B_U_I_yellow"%s    \t"finish, like[i]);
+                printf(B_U_I_yellow"%d.%s    \t"finish, i+1, like[i]);
             }
             else{
                 printf(DBLUE"%d."finish, i+1);
@@ -2272,15 +2323,15 @@ void very_cool(int like_people, int x, int y, char yes_no[1][2][6], char send[6]
         }
         char k;
         k = getch();
-        if((k == 'W' || k =='w' || k == 72) && check_boundary2(g-1)){
+        if((k == 'W' || k =='w' || k == 72) && check_boundary2(g - 1, like_people)){
             g -= 1;
         }
-        else if((k == 'S' || k =='s' || k == 80) && check_boundary2(g+1+count_del)){
+        else if((k == 'S' || k =='s' || k == 80) && check_boundary2(g + 1, like_people)){
             g += 1;
         }
         else if(k == '\r' && g == like_people){
             system("cls");
-            printf("Waiting for the resault......\n");
+            printf("Waiting for the result......\n");
             Sleep(3000);
             system("cls");
             break;
@@ -2425,8 +2476,8 @@ void delete_like(){ // 清空整個list
     }
 }
 
-bool check_boundary2(int x){
-    if(x<0 || x>20){
+bool check_boundary2(int x, int like_people){
+    if(x < 0 || x > like_people){
         return false;
     }
     return true;
@@ -2501,4 +2552,14 @@ void matching_success(int loca[], int *data_amount){
         fclose(output_file);
         exit(0);
     }
+}
+
+void initial_score_and_flag(int data_amount, int *times1, int *times2, int *times3){
+    for(int i=0; i<data_amount; i++){
+        person[i].flag = 0;
+        person[i].score = 0;
+    }
+    *times1 = 0;
+    *times2 = 0;
+    *times3 = 0;
 }
