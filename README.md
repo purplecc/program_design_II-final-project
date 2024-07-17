@@ -4,7 +4,7 @@
 
 </div>
 
-## *The advantage of this app is that it doesn't have a photo can mislead your mind, and you can decide whether to make friends by the way you talk to each other. In the other words, it's the soul that counts.*
+## *The advantage of this app is that it doesn't have a photo can mislead your mind, and you can decide whether to make friends by the way you talk to each other. In other words, it's the soul that counts.*
 
 <div style="color: red;">
 
